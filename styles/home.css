@@ -1,0 +1,45 @@
+.box { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: var(--rose);
+    padding: 0px 20px;
+    border-radius: 30px;
+
+    margin: 0 10px;
+}
+
+.box h2 { 
+    color: var(--dark);
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.box p { 
+    color: var(--black);
+    line-height: 26px;
+    font-size: 18px;
+    max-width: 316px;
+    opacity: 0.7;
+}
+
+.box img.chef { 
+    max-width: 216px;
+    max-height: 300px;
+    margin-top: 66px;
+}
+
+.box div.text { 
+    align-self: center;
+    padding-top: 30px;
+}
+
+@media screen and (min-width: 1000px) { 
+    .box { 
+        justify-content: space-between;
+        flex-direction: row;
+        margin: 0 auto;
+        padding: 0px 60px;
+    }
+}
