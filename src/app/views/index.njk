@@ -1,0 +1,42 @@
+{% extends "recipes.njk" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/styles/home.css">
+    <title>Foodfy | As melhores receitas para você</title>
+{% endblock %}
+
+{% block content %}
+    <section class="info box container">
+        <div class="text">
+            <h2 class="title font-lg">As melhores receitas</h2>
+            <p class="box__description">
+                Aprenda a construir os melhores pratos
+                com receitas criadas por profissionais
+                do mundo inteiro.
+            </p>
+        </div>
+        <img class="chef" src="assets/chef.png" alt="Chef" aria-hidden="true" title="chef"/>
+    </section>
+    <!-- info box end -->
+
+    <!-- recipes section init -->
+    <section class="recipes container">
+        <h3 class="recipes__title title font-md">Mais acessadas</h3>
+
+        <div class="grid">
+            {% for recipe in recipes %}
+                <a class="card card--cursor js-card" href="/receitas/{{recipes.indexOf(recipe)}}">
+                    <img class="card__img" src="{{recipe.image}}" alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-hidden="true"/>
+                    <div class="card-info">
+                        <span class="card-info__title card__title--underline" class="card-info__title">{{recipe.title}}</span>
+                        <small class="card-info__author" class="card-info__author">{{recipe.author}}</small>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/scripts.js"></script>
+{% endblock %}

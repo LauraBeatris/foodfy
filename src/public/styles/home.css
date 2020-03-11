@@ -10,13 +10,13 @@
     margin: 0 10px;
 }
 
-.box h2 { 
+.box__title { 
     color: var(--dark);
     font-size: 32px;
     font-weight: bold;
 }
 
-.box p { 
+.box__description { 
     color: var(--black);
     line-height: 26px;
     font-size: 18px;
@@ -24,13 +24,17 @@
     opacity: 0.7;
 }
 
-.box img.chef { 
+.info .box__description { 
+    margin-top: 10px;
+}
+
+.chef { 
     max-width: 216px;
     max-height: 300px;
     margin-top: 66px;
 }
 
-.box div.text { 
+.box .text { 
     align-self: center;
     padding-top: 30px;
 }
