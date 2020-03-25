@@ -51,6 +51,10 @@ a {
     color: var(--gray-dark);
 }
 
+.text.information { 
+    white-space: pre-line;
+}
+
 .hidden { 
     display: none;
 }
@@ -340,6 +344,10 @@ a.button {
     text-decoration: none;
 }
 
+input.button { 
+    cursor: pointer;
+}
+
 .button.button--delete { 
     background: var(--danger);
 }
@@ -401,6 +409,7 @@ button.field-container__action {
 textarea.field { 
     resize: none;
     padding: 18px 20px;
+    white-space: pre-line;
 }
 
 

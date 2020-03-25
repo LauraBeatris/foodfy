@@ -17,7 +17,13 @@
 <div class="field-container"> 
   <div id="ingredients">
     <label class="label" for="ingredients">Ingredientes</label>
-    <input type="text" class="field" name="ingredients[]"/>
+        {% if recipe.ingredients.length > 1 %}
+            {% for ingredient in recipe.ingredients %}
+                <input type="text" class="field" name="ingredients[]" value="{{ingredient}}"/>
+            {% endfor %}
+        {% else %}
+            <input type="text" class="field" name="ingredients[]"/>
+        {% endif %}
   </div>
   <button class="field-container__action" type="button">Adicionar novo ingrediente</button>
 </div>
@@ -25,7 +31,13 @@
 <div class="field-container"> 
     <div id="preparations">
         <label class="label" for="preparations">Modo de preparo</label>
-        <input type="text" class="field" name="preparations[]"/>
+        {% if recipe.preparations.length > 1 %}
+            {% for preparation in recipe.preparations %}
+                <input type="text" class="field" name="preparations[]" value="{{preparation}}"/>
+            {% endfor %}
+        {% else %}
+            <input type="text" class="field" name="preparations[]"/>
+        {% endif %}
      </div>
     <button class="field-container__action" type="button">Adicionar novo passo</button>
 </div>

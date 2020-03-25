@@ -12,6 +12,21 @@ function handleShow(target, buttonSelector) {
   }
 }
 
+// Showing a confirm alert on delete buttons click 
+function showDeleteAlert(buttonSelector, message) { 
+  const buttons = document.querySelectorAll(buttonSelector)
+
+  for (let button of buttons) { 
+      button.addEventListener('click', (event) => { 
+        const confirmation = confirm(message)
+  
+        if (!confirmation) event.preventDefault()
+  
+        return true; 
+    })
+  }
+}
+
 // Appending fields to a parent 
 function appendField(fieldSelector, parentSelector) { 
   const parentContainer = document.querySelector(parentSelector)
@@ -56,3 +71,5 @@ appendFieldInputListener('#ingredients input', '#ingredients')
 appendFieldInputListener('#preparations input', '#preparations')
 actionButtonsListener(".field-container__action", "#ingredients")
 actionButtonsListener(".field-container__action", "#preparations")
+
+showDeleteAlert('.button.button--delete', 'Voce tem certeza que deseja deletar essa receita?')
