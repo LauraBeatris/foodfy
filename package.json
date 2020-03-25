@@ -7,10 +7,14 @@
   "license": "MIT",
   "description": "Foodfy is a web application focused on food recipes",
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "nodemon": "nodemon src/server.js",
+    "browsersync": "browser-sync start --proxy localhost:8000 --files './src/app/views,./src/public/'",
+    "dev": "npm-run-all -p nodemon browsersync"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "method-override": "^3.0.0",
     "nunjucks": "^3.2.0"
   },
   "devDependencies": {

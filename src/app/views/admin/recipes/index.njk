@@ -1,0 +1,27 @@
+{% extends "admin/layout.njk" %}
+
+{% block head %}
+    <title>Foodfy Admin | Listagem de receitas </title>
+{% endblock %}
+
+{% block content %}
+<section class="recipes recipes--admin container">
+    <div class="row">
+        <h1 class="title font-md">Gerenciar receitas<h1/>
+    </div>
+    <div class="grid grid--two_columns">
+    {% for recipe in recipes %} 
+        <div class="card--secondary js-card">
+            <img class="card__img js-m" src="{{recipe.image}}" alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-hidden="true"/>
+            <div class="card-info">
+                <span class="card-info__title">{{recipe.title}}</span>
+                <small class="card-info__author">{{recipe.author}}</small>
+                <a class="card-info__action" href="/admin/recipes/{{recipes.indexOf(recipe)}}"}}>Visualizar</a>
+            </div>
+        </div>
+    {% endfor %}  
+    </section>
+    <!-- recipes section end -->
+{% endblock %}
+
+

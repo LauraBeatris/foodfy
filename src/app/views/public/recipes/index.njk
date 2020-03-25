@@ -1,0 +1,23 @@
+{% extends "public/layout.njk" %}
+
+{% block head %}
+    <title>Foodfy | Receitas</title>
+{% endblock %}
+
+{% block content %}
+<section class="recipes container">
+    <div class="grid grid--three_columns">
+    {% for recipe in recipes %} 
+        <a class="card card--cursor js-card" href="/recipes/{{recipes.indexOf(recipe)}}"}}>
+            <img class="card__img js-m" src="{{recipe.image}}" alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-hidden="true"/>
+            <div class="card-info">
+                <span class="card-info__title card__title--underline">{{recipe.title}}</span>
+                <small class="card-info__author">{{recipe.author}}</small>
+            </div>
+        </a>
+    {% endfor %}  
+    </section>
+    <!-- recipes section end -->
+{% endblock %}
+
+

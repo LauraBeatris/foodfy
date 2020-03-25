@@ -4,7 +4,9 @@
     --white: #FFF;
     --rose: #FBDFDB;
     --dark: #111111;
-    --black: hsl(0, 0%, 0%);
+    --black: #000;
+    --purple: #6558C3;
+    --danger: #DC4747;
     --gray: #777777;
     --gray-light: #EEEEEE;
     --gray-medium: #999999;
@@ -26,7 +28,7 @@
     box-sizing: border-box;
 }
 
-body { 
+body, input, button, textarea { 
     font-family: 'Roboto', sans-serif;
 }
 
@@ -40,6 +42,7 @@ a {
 .container { 
     max-width: 940px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .text { 
@@ -92,6 +95,14 @@ a {
     padding: 30px 0px;
 }
 
+.header > .container { 
+    padding: 0px 8px;
+}
+
+.header--admin { 
+    background: var(--dark);
+}
+
 .header__nav-link { 
     text-decoration: none;
 }
@@ -101,6 +112,10 @@ a {
     font-family: serif;
     font-weight: lighter;
     letter-spacing: 2px;
+}
+
+.header--admin .header__title { 
+    color: var(--white);
 }
 
 .header-list { 
@@ -125,6 +140,10 @@ a {
         flex-direction: row;
         justify-content: unset;
         margin: 0 auto;
+    }
+
+    .header > .container { 
+        padding: 0px;
     }
 
     .header nav { 
@@ -162,13 +181,39 @@ a {
     margin-bottom: 20px;
 }
 
+.card--secondary { 
+    display: grid; 
+    grid-template-columns: 172px 1fr;
+    align-items: center;
+    grid-gap: 20px;
+    width: 100%;
+    margin-bottom: 16px;
+    margin-left: 16px;
+}
+
+@media screen and (min-width: 1000px) { 
+    .card--secondary { 
+        margin-bottom: 0px;
+        margin-left: 0px;
+    }
+}
+
 .card__img { 
-    max-width: 300px;
-    min-height: 120px;
     border-radius: 15px;
 }
 
-a.card { 
+.card .card__img { 
+    max-width: 300px;
+    min-height: 120px;
+}
+
+.card--secondary .card__img { 
+    max-width: 172px;
+    min-height: 80px;
+}
+
+a.card,
+a.card--secondary { 
     text-decoration: none;
 }
 
@@ -184,14 +229,30 @@ a.card {
 
 .card-info__author { 
     color: var(--gray);
-    font-size: 14px;
+    font-size: var(--font-2xs);
+}
+
+.card-info__action,
+.field-container__action { 
+    color: var(--purple);
+    text-decoration: none;
+    display: block;
+    font-size: var(--font-2xs);
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+a.card-info__action:hover,
+.field-container__action:hover { 
+    text-decoration: underline;
 }
 
 .card--cursor { 
     cursor: pointer;
 }
 
-.card:hover .card__title--underline { 
+.card:hover .card__title--underline,
+.card--secondary:hover .card__title--underline { 
     text-decoration: underline;
 }
 
@@ -200,6 +261,10 @@ a.card {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 20px;
+    }
+
+    .grid.grid--two_columns { 
+            grid-template-columns: repeat(2, 1fr);
     }
 
     .recipes .title { 
@@ -248,6 +313,94 @@ a.card {
 }
 
 .list li::before { 
-    content: "• ";
+    content: "- ";
     color: var(--black);
 }
+
+.button { 
+    border-radius: 4px; 
+    color: var(--white);
+    background: var(--purple);
+    border: none;
+    min-width: 136px;
+    min-height: 37px;
+    font-size: calc(var(--font-xs) - 2px);
+    font-weight: bold;
+    transition: filter .3s;
+}
+
+.button:hover { 
+    filter: grayscale(45%);
+}
+
+a.button { 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.button.button--delete { 
+    background: var(--danger);
+}
+
+/* == Form == */ 
+
+.recipe__form { 
+    padding: 0 10px;
+}
+
+@media screen and (min-width: 1000px) { 
+    .recipe__form { 
+        padding: 0px;
+    }
+}
+
+.field-container { 
+    display: flex; 
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.field-container > div { 
+    display: inherit;
+    flex-direction: column;
+}
+
+button.field-container__action { 
+    background: none;
+    border: none;
+    align-self: flex-start;
+}
+
+.label { 
+    color: var(--dark);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.field-container .label { 
+    margin-bottom: 10px;
+}
+
+.field { 
+    min-height: 49px;
+    background: var(--white);
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    font-size: 16px;
+    color: var(--dark);
+    padding: 0 20px;
+}
+
+.field + .field { 
+    margin-top: 10px;
+}
+
+textarea.field { 
+    resize: none;
+    padding: 18px 20px;
+}
+
+

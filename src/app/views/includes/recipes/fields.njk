@@ -1,0 +1,36 @@
+
+<div class="field-container"> 
+    <label class="label" for="image">Imagem da receita</label>
+    <input name="image" type="url" id="image" class="field" value="{{recipe.image}}"/>
+</div>
+
+<div class="field-container"> 
+    <label class="label" for="title">Título da receita</label>
+    <input name="title" type="text" id="title" class="field" value="{{recipe.title}}"/>
+</div>
+
+<div class="field-container"> 
+    <label class="label" for="author">Autor da receita</label>
+    <input name="author" type="text" id="author" class="field" value="{{recipe.author}}"/>
+</div>
+
+<div class="field-container"> 
+  <div id="ingredients">
+    <label class="label" for="ingredients">Ingredientes</label>
+    <input type="text" class="field" name="ingredients[]"/>
+  </div>
+  <button class="field-container__action" type="button">Adicionar novo ingrediente</button>
+</div>
+
+<div class="field-container"> 
+    <div id="preparations">
+        <label class="label" for="preparations">Modo de preparo</label>
+        <input type="text" class="field" name="preparations[]"/>
+     </div>
+    <button class="field-container__action" type="button">Adicionar novo passo</button>
+</div>
+
+<div class="field-container"> 
+    <label class="label" for="information">Informações adicionais</label>
+    <textarea name="information" id="information" class="field" rows="8">{{recipe.information}}</textarea>
+</div>

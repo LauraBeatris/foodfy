@@ -1,13 +1,19 @@
-{% extends "layout.njk" %}
+{% extends "admin/layout.njk" %}
 
 {% block head %}
     <link rel="stylesheet" href="/styles/recipe.css"/>
-    <title> Foodfy | {{recipe.title}}
+    <title> Foodfy Admin | {{recipe.title}}
     </title>
 {% endblock %}
 
 {% block content %}
-    <main class="recipes">
+    <main class="recipes recipes--admin container">
+        <div class="row">
+            <h1 class="title font-md">Receita: {{recipe.title}}</h1>
+            <div class="actions-container">
+                <a class="button font-xs" href="/admin/recipes/{{recipe.id}}/edit">Editar receita</a>
+            </div>
+        </div>
         <section class="recipe__info container">
             <img class="recipe__image" src="{{recipe.image}}" alt="Receita de {{recipe.title}}" title={{recipe.title}} aria-label={{recipe.title}}/>
             <h1 class="recipe__title title font-xl">{{recipe.title}}</h1>
@@ -16,11 +22,11 @@
         <section class="recipe__ingredients container">
             <div class="row">
                 <h3 class="subtitle font-md">Ingredientes</h3>
-                <button onclick="handleShow('.js-list.ingredients', '.js-show-button.btn-ingredients')" class="show-button js-show-button btn-ingredients" data-target=".recipe-ingredients .list">Esconder</button>
             </div>
             <ul class="list js-list ingredients">
                 {% for ingredient in recipe.ingredients %}
-                    <li>{{ingredient}}
+                    <li>
+                        {{ingredient}}
                     </li>
                 {% endfor %}
             </ul>
@@ -28,12 +34,12 @@
         </section>
         <section class="recipe__preparation container">
             <div class="row">
-                <h3 class="subtitle font-md"font-md>Modo de preparo</h3>
-                <button onclick="handleShow('.js-list.preparation', '.js-show-button.btn-preparation')" class="show-button js-show-button btn-preparation">Esconder</button>
+                <h3 class="subtitle font-md">Modo de preparo</h3>
             </div>
             <ul class="list js-list preparation">
-                {% for intruction in recipe.preparation %}
-                    <li>{{intruction}}
+                {% for preparation in recipe.preparations %}
+                    <li>
+                        {{preparation}}
                     </li>
                 {% endfor %}
             </ul>
@@ -42,7 +48,6 @@
             <section class="recipe__information container">
                 <div class="row">
                     <h3 class="subtitle font-md"font-md>Informações adicionais</h3>
-                    <button onclick="handleShow('.js-text.information', '.js-show-button.btn-information')" class="show-button js-show-button btn-information">Esconder</button>
                 </div>
                 <p class="text js-text information">{{recipe.information}}</p>
             </section>

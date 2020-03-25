@@ -1,6 +1,7 @@
 const express = require('express')
 const nunjucks = require('nunjucks')
 const path = require('path')
+const bodyParser = require('body-parser')
 
 class App { 
     constructor() { 
@@ -12,17 +13,18 @@ class App {
 
     middlewares() { 
         this.server.use(express.static(path.resolve(__dirname, 'public')))
+        this.server.use(bodyParser.urlencoded({extended: true}))
     }
 
     routes () { 
         this.server.use(require('./routes'))
     }
 
-    views () { 
+    views (req, res) { 
         this.server.set('view engine', 'njk')
         nunjucks.configure(path.resolve(__dirname, 'app', 'views'), { 
             express: this.server,
-            autoescape: false, 
+            autoescape: true, 
             watch: true
         })
     }

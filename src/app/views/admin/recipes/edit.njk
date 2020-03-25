@@ -1,0 +1,30 @@
+{% extends "admin/layout.njk" %}
+
+{% block head %}
+    <link rel="stylesheet" href="/styles/recipe.css"/>
+    <title> Foodfy Admin | Editar {{recipe.title}}
+    </title>
+{% endblock %}
+
+{% block content %}
+    <form class="recipes recipes--admin container" action="/recipes" method="POST">
+        <!-- Prevent the form to be submitted with the enter key - If you want to continue with that behavior, just remove it -->
+        <!-- Reason: A keyup event with the enter key on a input will trigger the submit event and lose the main focus of the data -->        
+        <button type="submit" onclick="return false;" style="display:none;"></button>
+
+        <div class="row">
+            <h1 class="title font-md">Editando receita</h1>
+            <div class="actions-container">
+                <button class="button button--delete font-xs">Deletar</button>
+                <button class="button font-xs">Salvar receita</button>
+            </div>
+        </div>
+        <section class="recipe__form container">
+                {% include "includes/recipes/fields.njk" %}
+        </section>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/scripts.js"></script>
+{% endblock %}

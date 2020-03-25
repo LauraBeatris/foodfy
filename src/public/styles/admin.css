@@ -1,0 +1,33 @@
+.recipes.recipes--admin > .row { 
+    margin: 0 8px 30px;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 1000px) {
+    .recipes.recipes--admin > .row { 
+        margin: 0 0 30px;
+    }
+}
+
+.actions-container { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (min-width: 1000px) {
+    .actions-container { 
+        flex-direction: row;
+    }
+}
+
+.actions-container .button + .button { 
+    margin-top: 8px;
+}
+
+@media screen and (min-width: 1000px) {
+    .actions-container .button + .button { 
+        margin-left: 16px;
+        margin-top: 0;
+    }
+}
