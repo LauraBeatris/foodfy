@@ -17,6 +17,8 @@ module.exports = {
   },
   plugins: ["prettier"],
   rules: {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "class-methods-use-this": "off",
+    "no-unused-vars": ["error", { "args": "none" }]
   },
 };
