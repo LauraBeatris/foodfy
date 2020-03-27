@@ -9,7 +9,8 @@
   "scripts": {
     "nodemon": "nodemon src/server.js",
     "browsersync": "browser-sync start --proxy localhost:8000 --files './src/app/views,./src/public/'",
-    "dev": "npm-run-all -p nodemon browsersync"
+    "dev": "npm-run-all -p nodemon browsersync",
+    "commit": "git-cz"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -20,6 +21,23 @@
     "nunjucks": "^3.2.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "3.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.9",
+    "nodemon": "^2.0.2",
+    "prettier": "^2.0.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
