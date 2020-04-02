@@ -1,138 +1,41 @@
-const fs = require('fs');
-const data = require('../../data');
+const Recipe = require('../models/Recipe');
 
 /* 
-    This controller is responsable for the recipe operations (CRUD) and also rendering the screens that 
-    handle that operations, which are provided by the admin routes,
-    Public Routes doesn't need to access this controller because they only need to list and show data and not
-    to realize database operations.
+    This controller is responsable for the recipes operations related to
+    the public platform
 */
 class RecipesController {
-    index(_, res) {
-        return res.render('admin/recipes/index', { recipes: data.recipes });
-    }
-
-    create(_, res) {
-        return res.render('admin/recipes/create');
-    }
-
-    post(req, res) {
+    async index(_, res) {
         try {
-            // validate(req.body)
-            const {
-                title,
-                author,
-                image,
-                ingredients,
-                preparations,
-                information,
-            } = req.body;
-            const recipe = {
-                title,
-                author,
-                image,
-                ingredients,
-                preparations,
-                information,
-            };
-
-            const updatedRecipes = [...data.recipes, recipe];
-            data.recipes = updatedRecipes;
-
-            return fs.writeFile(
-                'src/data.json',
-                JSON.stringify(data, null, 2),
-                (error) => {
-                    if (error) throw new Error(error.message);
-                    return res.redirect(
-                        301,
-                        `/admin/recipes/${data.recipes.length - 1}`
-                    );
-                }
-            );
+            const recipes = await Recipe.all();
+            return res.render('public/recipes/index', { recipes });
         } catch (err) {
             const errorData = {
-                message: err.message,
+                message: err.message || 'Database error',
                 name: err.name,
                 status: err.status || 500,
             };
-
             return res.status(errorData.status).json({
-                error: 'Houve um erro durante a criação de uma receita',
+                error: 'Houve um erro durante a procura de receitas',
                 errorData,
             });
         }
     }
 
-    show(req, res) {
-        const recipe = data.recipes[req.params.id];
-        if (!recipe) return res.send('Recipe not found');
-
-        return res.render('admin/recipes/show', {
-            recipe: { id: req.params.id, ...recipe },
-        });
-    }
-
-    edit(req, res) {
-        const recipe = data.recipes[req.params.id];
-        return res.render('admin/recipes/edit', {
-            recipe: { id: req.params.id, ...recipe },
-        });
-    }
-
-    put(req, res) {
-        const recipe = data.recipes[req.params.id];
-        if (!recipe) return res.send('Recipe not found');
-
-        const updatedRecipe = {
-            ...recipe,
-            ...req.body,
-        };
-
-        const updatedRecipes = data.recipes.map((recipeData, index) => {
-            if (index === Number(req.params.id)) return updatedRecipe;
-            return recipeData;
-        });
-
-        data.recipes = updatedRecipes;
-
-        return fs.writeFile(
-            'src/data.json',
-            JSON.stringify(data, null, 2),
-            (error) => {
-                if (error) throw new Error(error.message);
-                return res.redirect(`/admin/recipes/${req.params.id}`);
-            }
-        );
-    }
-
-    delete(req, res) {
+    async show(req, res) {
         try {
-            const recipe = data.recipes[req.params.id];
-            if (!recipe) return res.send('Recipe not found');
+            const recipe = await Recipe.find([req.params.id]);
+            if (!recipe) return res.status(404).send('Recipe not found');
 
-            const filteredRecipes = data.recipes.filter(
-                (_, index) => index !== Number(req.params.id)
-            );
-            data.recipes = filteredRecipes;
-
-            return fs.writeFile(
-                'src/data.json',
-                JSON.stringify(data, null, 2),
-                (error) => {
-                    if (error) throw new Error(error.message);
-                    return res.redirect('/admin/recipes');
-                }
-            );
+            return res.render('public/recipes/show', { recipe });
         } catch (err) {
             const errorData = {
-                message: err.message,
+                message: err.message || 'Database error',
                 name: err.name,
                 status: err.status || 500,
             };
-
             return res.status(errorData.status).json({
-                error: 'Houve um erro durante a criação de uma receita',
+                error: 'Houve um erro durante a procura de uma receita',
                 errorData,
             });
         }

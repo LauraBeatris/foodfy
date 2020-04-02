@@ -17,7 +17,7 @@
         <section class="details__info container">
             <img class="details__image---big" src="{{recipe.image}}" alt="Receita de {{recipe.title}}" title={{recipe.title}} aria-label={{recipe.title}}/>
             <h1 class="details__title title font-xl">{{recipe.title}}</h1>
-            <h3 class="details__subtitle">{{recipe.author}}</h3>
+            <h3 class="details__subtitle">{{recipe.chef_name}}</h3>
         </section>
         <section class="recipe__ingredients container">
             <div class="row">
@@ -37,7 +37,7 @@
                 <h3 class="subtitle font-md">Modo de preparo</h3>
             </div>
             <ul class="list js-list preparation">
-                {% for preparation in recipe.preparations %}
+                {% for preparation in recipe.preparation %}
                     <li>
                         {{preparation}}
                     </li>

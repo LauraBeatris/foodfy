@@ -11,7 +11,7 @@
         <section class="recipe__info container">
             <img class="recipe__image" src="{{recipe.image}}" alt="Receita de {{recipe.title}}" title={{recipe.title}} aria-label={{recipe.title}}/>
             <h1 class="recipe__title title font-xl">{{recipe.title}}</h1>
-            <h3 class="recipe__author">{{recipe.author}}</h3>
+            <h3 class="recipe__author">{{recipe.chef_name}}</h3>
         </section>
         <section class="recipe__ingredients container">
             <div class="row">
@@ -32,9 +32,8 @@
                 <button onclick="handleShow('.js-list.preparation', '.js-show-button.btn-preparation')" class="show-button js-show-button btn-preparation">Esconder</button>
             </div>
             <ul class="list js-list preparation">
-                {% for intruction in recipe.preparations %}
-                    <li>{{intruction}}
-                    </li>
+                {% for intruction in recipe.preparation %}
+                    <li>{{intruction}}</li>
                 {% endfor %}
             </ul>
         </section>

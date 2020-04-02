@@ -8,11 +8,11 @@
 <section class="recipes container">
     <div class="grid grid--three_columns">
     {% for recipe in recipes %} 
-        <a class="card card--cursor" href="/recipes/{{recipes.indexOf(recipe)}}"}}>
+        <a class="card card--cursor" href="/recipes/{{recipe.id}}"}}>
             <img class="card__img" src="{{recipe.image}}" alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-hidden="true"/>
             <div class="card-info">
                 <span class="card-info__title card__title--underline">{{recipe.title}}</span>
-                <small class="card-info__author">{{recipe.author}}</small>
+                <small class="card-info__author">{{recipe.chef_name}}</small>
             </div>
         </a>
     {% endfor %}  

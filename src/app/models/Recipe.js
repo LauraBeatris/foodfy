@@ -4,10 +4,9 @@ class Chef {
     all() {
         return new Promise((resolve, reject) => {
             const query = `
-                SELECT recipes.*, count(recipes) as total_recipes 
+                SELECT recipes.*, chefs.name as chef_name
                 FROM recipes 
-                LEFT JOIN recipes ON (recipes.chef_id = recipes.id)
-                GROUP BY recipes.id
+                LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
             `;
 
             db.query(query, null, (error, results) => {
@@ -35,8 +34,9 @@ class Chef {
                     $2,
                     $3,
                     $4,
+                    $5,
                     $6
-                ) RETURNING Id 
+                ) RETURNING id
             `;
 
             db.query(query, values, (error, results) => {
@@ -49,8 +49,8 @@ class Chef {
     find(values) {
         return new Promise((resolve, reject) => {
             const query = `
-                SELECT recipes.* FROM recipes 
-                LEFT JOIN recipes ON (recipes.chef_id = recipes.id)
+                SELECT recipes.*, chefs.id as chef_id, chefs.name as chef_name FROM recipes 
+                LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
                 WHERE recipes.id = $1
             `;
 
@@ -61,15 +61,33 @@ class Chef {
         });
     }
 
-    findBy() {}
+    findBy(values) {
+        return new Promise((resolve, reject) => {
+            const query = `
+                SELECT recipes.*, chefs.name AS chef_name
+                FROM recipes 
+                LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+                WHERE recipes.name ILIKE '%${values.filter}%'
+            `;
+
+            db.query(query, null, (error, results) => {
+                if (error) return reject(error);
+                return resolve(results.rows);
+            });
+        });
+    }
 
     update(values) {
         return new Promise((resolve, reject) => {
             const query = `
                 UPDATE recipes SET 
-                    name = ($1),
-                    avatar_url = ($2)
-                WHERE recipes.id = $3
+                    chef_id = ($1),
+                    image = ($2),
+                    title = ($3),
+                    ingredients = ($4),
+                    preparation = ($5),
+                    information = ($6)
+                WHERE recipes.id = $7
                 RETURNING id
             `;
 
@@ -81,15 +99,27 @@ class Chef {
     }
 
     delete(values) {
-        // NOW ALLOW IF THE CHEF HAS EXISTING RECIPES
+        // NOT ALLOW IF THE CHEF HAS EXISTING RECIPES
         return new Promise((resolve, reject) => {
             const query = `
                 DELETE FROM recipes WHERE id = $1
             `;
-
             db.query(query, values, (error, results) => {
                 if (error) return reject(error);
                 return resolve(results);
+            });
+        });
+    }
+
+    chefOptions() {
+        return new Promise((resolve, reject) => {
+            const query = `
+                SELECT * FROM chefs ORDER BY name ASC
+            `;
+
+            db.query(query, null, (error, results) => {
+                if (error) return reject(error);
+                return resolve(results.rows);
             });
         });
     }

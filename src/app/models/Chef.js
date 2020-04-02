@@ -42,9 +42,11 @@ class Chef {
     find(values) {
         return new Promise((resolve, reject) => {
             const query = `
-                SELECT chefs.* FROM chefs 
+                SELECT chefs.*, count(recipes) as total_recipes 
+                FROM chefs 
                 LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
                 WHERE chefs.id = $1
+                GROUP BY chefs.id
             `;
 
             db.query(query, values, (error, results) => {
@@ -83,6 +85,22 @@ class Chef {
             db.query(query, values, (error, results) => {
                 if (error) return reject(error);
                 return resolve(results);
+            });
+        });
+    }
+
+    chefRecipes(values) {
+        return new Promise((resolve, reject) => {
+            const query = `
+                SELECT recipes.*, chefs.name as chef_name
+                FROM recipes 
+                INNER JOIN chefs ON (recipes.chef_id = chefs.id)
+                WHERE chefs.id = $1
+            `;
+
+            db.query(query, values, (error, results) => {
+                if (error) return reject(error);
+                return resolve(results.rows);
             });
         });
     }

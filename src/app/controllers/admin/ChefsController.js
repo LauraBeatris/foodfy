@@ -1,8 +1,8 @@
-const Chef = require('../models/Chef');
+const Chef = require('../../models/Chef');
 
 /* 
     This controller is responsable for the chefs operations related to
-    the public platform
+    the admin platform
 */
 class ChefsController {
     async index(_, res) {

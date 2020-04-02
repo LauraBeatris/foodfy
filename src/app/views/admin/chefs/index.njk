@@ -11,16 +11,17 @@
         <a class="button" href="/admin/chefs/create">Criar chef</a>
     </div>
     <div class="grid grid--four_columns">
-    {% for chef in chefs %} 
-        <div class="card--secondary">
-            <img class="card__img---rounded" src="{{chef.avatar_url}}" alt="Receita de {{chef.name}}" title="{{chef.name}}" aria-hidden="true"/>
-            <div class="card-info">
-                <span class="card-info__title">{{chef.name}}</span>
-                <a class="card-info__action" href="/admin/chefs/{{chef.id}}">Visualizar</a>
+        {% for chef in chefs %} 
+            <div class="card--secondary">
+                <img class="card__img---rounded" src="{{chef.avatar_url}}" alt="Receita de {{chef.name}}" title="{{chef.name}}" aria-hidden="true"/>
+                <div class="card-info">
+                    <span class="card-info__title">{{chef.name}}</span>
+                    <a class="card-info__action" href="/admin/chefs/{{chef.id}}">Visualizar</a>
+                </div>
             </div>
-        </div>
-    {% endfor %}  
-    </section>
+        {% endfor %}  
+    </div>
+</section>
     <!-- recipes section end -->
 {% endblock %}
 

@@ -65,3 +65,11 @@
         padding: 0;
     }
 }
+
+.chef-recipes { 
+    margin-top: var(--space-xl);
+}
+
+.chef-recipes .title { 
+    margin-bottom: var(--space-md);
+}
