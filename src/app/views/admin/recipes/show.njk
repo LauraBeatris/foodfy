@@ -1,7 +1,7 @@
 {% extends "admin/layout.njk" %}
 
 {% block head %}
-    <link rel="stylesheet" href="/styles/recipe.css"/>
+    <link rel="stylesheet" href="/styles/details.css"/>
     <title> Foodfy Admin | {{recipe.title}}
     </title>
 {% endblock %}
@@ -14,10 +14,10 @@
                 <a class="button font-xs" href="/admin/recipes/{{recipe.id}}/edit">Editar receita</a>
             </div>
         </div>
-        <section class="recipe__info container">
-            <img class="recipe__image" src="{{recipe.image}}" alt="Receita de {{recipe.title}}" title={{recipe.title}} aria-label={{recipe.title}}/>
-            <h1 class="recipe__title title font-xl">{{recipe.title}}</h1>
-            <h3 class="recipe__author">{{recipe.author}}</h3>
+        <section class="details__info container">
+            <img class="details__image---big" src="{{recipe.image}}" alt="Receita de {{recipe.title}}" title={{recipe.title}} aria-label={{recipe.title}}/>
+            <h1 class="details__title title font-xl">{{recipe.title}}</h1>
+            <h3 class="details__subtitle">{{recipe.author}}</h3>
         </section>
         <section class="recipe__ingredients container">
             <div class="row">

@@ -1,10 +1,12 @@
-.recipes.recipes--admin > .row { 
+.recipes.recipes--admin > .row,
+.chefs.chefs--admin > .row { 
     margin: 0 8px 30px;
     justify-content: space-between;
 }
 
 @media screen and (min-width: 1000px) {
-    .recipes.recipes--admin > .row { 
+    .recipes.recipes--admin > .row,
+    .chefs.chefs--admin > .row { 
         margin: 0 0 30px;
     }
 }
@@ -31,3 +33,4 @@
         margin-top: 0;
     }
 }
+

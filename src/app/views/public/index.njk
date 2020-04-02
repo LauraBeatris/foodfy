@@ -6,16 +6,18 @@
 {% endblock %}
 
 {% block content %}
-    <section class="info box container">
-        <div class="text">
-            <h2 class="title font-lg">As melhores receitas</h2>
-            <p class="box__description">
-                Aprenda a construir os melhores pratos
-                com receitas criadas por profissionais
-                do mundo inteiro.
-            </p>
+    <section class="info container">
+        <div class="box">
+            <div class="text">
+                <h2 class="title font-lg">As melhores receitas</h2>
+                <p class="box__description">
+                    Aprenda a construir os melhores pratos
+                    com receitas criadas por profissionais
+                    do mundo inteiro.
+                </p>
+            </div>
+            <img class="chef" src="assets/chef.png" alt="Chef" aria-hidden="true" title="chef"/>
         </div>
-        <img class="chef" src="assets/chef.png" alt="Chef" aria-hidden="true" title="chef"/>
     </section>
     <!-- info box end -->
 
@@ -25,7 +27,7 @@
 
         <div class="grid grid--three_columns">
             {% for recipe in recipes %}
-                <a class="card card--cursor js-card" href="/recipes/{{recipes.indexOf(recipe)}}">
+                <a class="card card--cursor" href="/recipes/{{recipes.indexOf(recipe)}}">
                     <img class="card__img" src="{{recipe.image}}" alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-hidden="true"/>
                     <div class="card-info">
                         <span class="card-info__title card__title--underline" class="card-info__title">{{recipe.title}}</span>

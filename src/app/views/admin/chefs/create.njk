@@ -2,24 +2,24 @@
 
 {% block head %}
     <link rel="stylesheet" href="/styles/recipe.css"/>
-    <title> Foodfy Admin | Criando receita
+    <title> Foodfy Admin | Criando chef
     </title>
 {% endblock %}
 
 {% block content %}
-    <form class="recipes recipes--admin container" action="/admin/recipes" method="POST">
+    <form class="recipes recipes--admin container" action="/admin/chefs" method="POST">
         <!-- Prevent the form to be submitted with the enter key - If you want to continue with that behavior, just remove it -->
         <!-- Reason: A keyup event with the enter key on a input will trigger the submit event and lose the main focus of the data -->
         <button type="submit" onclick="return false;" style="display:none;"></button>
 
         <div class="row">
-            <h1 class="title font-md">Criando receita</h1>
+            <h1 class="title font-md">Criando chef</h1>
             <div class="actions-container">
-                <button class="button font-xs" type="submit">Salvar receita</button>
+                <button class="button font-xs" type="submit">Salvar chef</button>
             </div>
         </div>
         <section class="recipe__form container">
-                {% include "includes/recipes/fields.njk" %}
+                {% include "includes/chefs/fields.njk" %}
         </section>
     </form>
 {% endblock %}

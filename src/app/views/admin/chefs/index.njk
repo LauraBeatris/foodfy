@@ -1,0 +1,27 @@
+{% extends "admin/layout.njk" %}
+
+{% block head %}
+    <title>Foodfy Admin | Listagem de chefs </title>
+{% endblock %}
+
+{% block content %}
+<section class="recipes recipes--admin container">
+    <div class="row">
+        <h1 class="title font-md">Gerenciar chefs<h1/>
+        <a class="button" href="/admin/chefs/create">Criar chef</a>
+    </div>
+    <div class="grid grid--four_columns">
+    {% for chef in chefs %} 
+        <div class="card--secondary">
+            <img class="card__img---rounded" src="{{chef.avatar_url}}" alt="Receita de {{chef.name}}" title="{{chef.name}}" aria-hidden="true"/>
+            <div class="card-info">
+                <span class="card-info__title">{{chef.name}}</span>
+                <a class="card-info__action" href="/admin/chefs/{{chef.id}}">Visualizar</a>
+            </div>
+        </div>
+    {% endfor %}  
+    </section>
+    <!-- recipes section end -->
+{% endblock %}
+
+

@@ -5,7 +5,7 @@ const data = require('../../data');
     This controller is responsable for the recipe operations (CRUD) and also rendering the screens that 
     handle that operations, which are provided by the admin routes,
     Public Routes doesn't need to access this controller because they only need to list and show data and not
-    to realize other operations.
+    to realize database operations.
 */
 class RecipesController {
     index(_, res) {

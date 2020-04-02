@@ -6,6 +6,7 @@
     background-color: var(--rose);
     padding: 0px 20px;
     border-radius: 30px;
+    margin: 0 var(--space-xs);
 }
 
 .box__title { 
@@ -43,5 +44,6 @@
         flex-direction: row;
         margin: 0 auto;
         padding: 0px 60px;
+        margin: 0;
     }
 }

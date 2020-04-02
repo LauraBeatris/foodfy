@@ -3,6 +3,7 @@ module.exports = {
     commonjs: true,
     es6: true,
     node: true,
+    browser: true,
   },
   extends: [
     'airbnb-base',
@@ -19,6 +20,7 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
     "class-methods-use-this": "off",
-    "no-unused-vars": ["error", { "args": "none" }]
-  },
+    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+    "camelcase": ["error", {allow: [".*_.*"], ignoreDestructuring: true}]
+},
 };

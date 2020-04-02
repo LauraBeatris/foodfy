@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
 
+/* TODO - ADD BREAKPOINT VARIABLES AND ADD MORE REUSABLE CLASSES */
 :root { 
     --white: #FFF;
     --rose: #FBDFDB;
@@ -19,6 +20,12 @@
     --font-md: 24px; 
     --font-lg: 32px;
     --font-xl: 36px;
+
+    --space-xs: 16px; 
+    --space-sm: 24px; 
+    --space-md: 32px;
+    --space-lg: 42px; 
+    --space-xl: 52px; 
 }
 
 * { 
@@ -100,7 +107,10 @@ a {
 }
 
 .header > .container { 
-    padding: 0px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .header--admin { 
@@ -137,6 +147,13 @@ a {
 .header__link { 
     color: var(--dark);
     text-decoration: none;
+    font-size: calc(var(--font-2xs) + 2px);
+}
+
+.header__link.header__link---admin { 
+    color: var(--white);
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 @media screen and (min-width: 1000px) { 
@@ -148,6 +165,8 @@ a {
 
     .header > .container { 
         padding: 0px;
+        display: flex;
+        flex-direction: row;
     }
 
     .header nav { 
@@ -162,7 +181,7 @@ a {
 
 /* === Receitas e Cards === */
 
-.recipes { 
+.recipes, .chefs { 
     padding: 50px 0;
 }
 
@@ -187,7 +206,7 @@ a {
 
 .card--secondary { 
     display: grid; 
-    grid-template-columns: 172px 1fr;
+    grid-template-columns: auto 1fr;
     align-items: center;
     grid-gap: 20px;
     width: 100%;
@@ -203,17 +222,20 @@ a {
 }
 
 .card__img { 
-    border-radius: 15px;
-}
-
-.card .card__img { 
     max-width: 300px;
+    border-radius: 15px;
     min-height: 120px;
 }
 
 .card--secondary .card__img { 
     max-width: 172px;
     min-height: 80px;
+}
+
+.card--secondary .card__img---rounded { 
+    border-radius: 50%;
+    height: 64px;
+    width: 64px;
 }
 
 a.card,
@@ -269,6 +291,14 @@ a.card-info__action:hover,
 
     .grid.grid--two_columns { 
             grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid.grid--three_columns { 
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid.grid--four_columns { 
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .recipes .title { 
