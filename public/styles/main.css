@@ -21,11 +21,13 @@
     --font-lg: 32px;
     --font-xl: 36px;
 
+    --space-2xs: 8px;
     --space-xs: 16px; 
-    --space-sm: 24px; 
-    --space-md: 32px;
-    --space-lg: 42px; 
-    --space-xl: 52px; 
+    --space-sm: 20px; 
+    --space-md: 30px;
+    --space-lg: 40px; 
+    --space-xl: 50px; 
+    --space-2xl: 60px;
 }
 
 * { 

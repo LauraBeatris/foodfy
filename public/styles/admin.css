@@ -1,13 +1,13 @@
 .recipes.recipes--admin > .row,
 .chefs.chefs--admin > .row { 
-    margin: 0 8px 30px;
+    margin: 0 var(--space-2xs) var(--space-md);
     justify-content: space-between;
 }
 
 @media screen and (min-width: 1000px) {
     .recipes.recipes--admin > .row,
     .chefs.chefs--admin > .row { 
-        margin: 0 0 30px;
+        margin: 0 0 var(--space-md);
     }
 }
 
@@ -24,12 +24,12 @@
 }
 
 .actions-container .button + .button { 
-    margin-top: 8px;
+    margin-top: var(--space-2xs);
 }
 
 @media screen and (min-width: 1000px) {
     .actions-container .button + .button { 
-        margin-left: 16px;
+        margin-left: var(--space-xs);
         margin-top: 0;
     }
 }
