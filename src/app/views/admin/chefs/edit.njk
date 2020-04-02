@@ -16,7 +16,13 @@
         <div class="row">
             <h1 class="title font-md">Editando chef</h1>
             <div class="actions-container">
-                <input class="button button--delete font-xs" type="submit" form="deleteForm" value="Deletar"></input>
+                <input 
+                    class="button button--delete font-xs" 
+                    onclick="showDeleteAlert(event, 'Você tem certeza que deseja deletar esse chef?')"
+                    type="submit" form="deleteForm" 
+                    value="Deletar"
+                >
+                </input>
                 <input class="button font-xs" type="submit" form="updateForm" value="Salvar chef"></input>
             </div>
         </div>
@@ -26,6 +32,3 @@
     </form>
 {% endblock %}
 
-{% block scripts %}
-    <script src="/scripts.js"></script>
-{% endblock %}

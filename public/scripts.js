@@ -1,3 +1,15 @@
+// Handle active nav links according to the location
+function activeLinks(linkSelector) {
+    const links = document.querySelectorAll(linkSelector);
+    links.forEach((link) => {
+        if (window.location.pathname.includes(link.getAttribute('href'))) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
 // Toggle the show state of the element and change the text of the button
 function handleShow(target, buttonSelector) {
     const button = document.querySelector(buttonSelector);
@@ -13,18 +25,12 @@ function handleShow(target, buttonSelector) {
 }
 
 // Showing a confirm alert on delete buttons click
-function showDeleteAlert(buttonSelector, message) {
-    const buttons = document.querySelectorAll(buttonSelector);
+function showDeleteAlert(event, message) {
+    const confirmation = confirm(message);
 
-    for (const button of buttons) {
-        button.addEventListener('click', (event) => {
-            const confirmation = confirm(message);
+    if (!confirmation) event.preventDefault();
 
-            if (!confirmation) event.preventDefault();
-
-            return true;
-        });
-    }
+    return true;
 }
 
 // Appending fields to a parent
@@ -80,7 +86,4 @@ appendFieldInputListener('#preparations input', '#preparations');
 actionButtonsListener('.field-container__action', '#ingredients');
 actionButtonsListener('.field-container__action', '#preparations');
 
-showDeleteAlert(
-    '.button.button--delete',
-    'Voce tem certeza que deseja deletar essa receita?'
-);
+activeLinks('.js-header__link');

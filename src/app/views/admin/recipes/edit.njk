@@ -16,7 +16,13 @@
         <div class="row">
             <h1 class="title font-md">Editando receita</h1>
             <div class="actions-container">
-                <input class="button button--delete font-xs" type="submit" form="deleteForm" value="Deletar"></input>
+                <input 
+                    class="button button--delete font-xs" 
+                    onclick="showDeleteAlert(event, 'Você tem certeza que deseja deletar essa receita?')" 
+                    type="submit" form="deleteForm" 
+                    value="Deletar"
+                >
+                </input>
                 <input class="button font-xs" type="submit" form="updateForm" value="Salvar receita"></input>
             </div>
         </div>
@@ -24,8 +30,4 @@
                 {% include "includes/recipes/fields.njk" %}
         </section>
     </form>
-{% endblock %}
-
-{% block scripts %}
-    <script src="/scripts.js"></script>
 {% endblock %}

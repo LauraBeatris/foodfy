@@ -152,9 +152,12 @@ a {
     font-size: calc(var(--font-2xs) + 2px);
 }
 
+.header__link.active { 
+    font-weight: bold;
+}
+
 .header__link.header__link---admin { 
     color: var(--white);
-    font-weight: bold;
     text-transform: uppercase;
 }
 
@@ -432,6 +435,14 @@ button.field-container__action {
     font-size: 16px;
     color: var(--dark);
     padding: 0 20px;
+}
+
+.field---select {
+    color: var(--gray);
+}
+
+select option[value=""][disabled] {
+    display: none;
 }
 
 .field + .field { 

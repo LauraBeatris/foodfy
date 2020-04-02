@@ -21,10 +21,10 @@
             <nav class="header-nav">
                 <ul class="header-list">
                     <li class="header-list__item">
-                        <a class="header__link header__link---admin" href="/admin/recipes">Receitas</a>
+                        <a class="header__link header__link---admin js-header__link" href="/admin/recipes">Receitas</a>
                     </li>
                     <li class="header-list__item">
-                        <a class="header__link header__link---admin" href="/admin/chefs">Chefs</a>
+                        <a class="header__link header__link---admin js-header__link" href="/admin/chefs">Chefs</a>
                     </li>
                 </ul>
             </nav>
@@ -35,7 +35,6 @@
     {% block content %}
     {% endblock %}
     
-    {% block scripts %}
-    {% endblock %}
+    <script src="/scripts.js"></script>
 </body>
 </html>

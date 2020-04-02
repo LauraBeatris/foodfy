@@ -10,8 +10,10 @@
 </div>
 
 <div class="field-container"> 
-    <label class="label" for="author">Autor da receita</label>
-    <input name="author" type="text" id="author" class="field" value="{{recipe.author}}"/>
+    <label class="label" for="author">Chef</label>
+    <select name="chef_id" class="field field---select" value="{{recipe.chef_id}}">
+        <option value="" disabled selected>Selecione um chef</option>
+    </select>
 </div>
 
 <div class="field-container"> 
