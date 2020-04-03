@@ -5,10 +5,16 @@ const Recipe = require('../models/Recipe');
     the home route
 */
 class HomeController {
-    async index(_, res) {
+    async index(req, res) {
         try {
+            const { filter } = req.query;
+            if (filter) {
+                const recipes = await Recipe.findBy({ filter });
+                return res.render('public/search', { recipes, filter });
+            }
+
             const recipes = await Recipe.all();
-            return res.render('public/index', { recipes });
+            return res.render('public/index', { recipes, filter });
         } catch (err) {
             const errorData = {
                 message: err.message || 'Database error',

@@ -67,7 +67,7 @@ class Chef {
                 SELECT recipes.*, chefs.name AS chef_name
                 FROM recipes 
                 LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-                WHERE recipes.name ILIKE '%${values.filter}%'
+                WHERE recipes.title ILIKE '%${values.filter}%'
             `;
 
             db.query(query, null, (error, results) => {

@@ -4,6 +4,13 @@
     <title>Foodfy | Receitas</title>
 {% endblock %}
 
+{% block header %}
+            <form class="header__search" action="/recipes/search">
+                <input type="text" class="field" name="filter" id="filter" value="{{filter}}" placeholder="Buscar uma receita"/>
+                <button class="button" type="submit">Buscar</button>
+            </form>
+{% endblock %}
+
 {% block content %}
 <section class="recipes container">
     <div class="grid grid--three_columns">

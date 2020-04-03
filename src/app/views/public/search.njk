@@ -1,0 +1,35 @@
+{% extends "public/layout.njk" %}
+
+{% block head %}
+    <title>Foodfy | Busca por {{filter}}</title>
+{% endblock %}
+
+{% block header %}
+            <form class="header__search" action="/recipes/search">
+                <input type="text" class="field" name="filter" id="filter" value="{{filter}}" placeholder="Buscar uma receita"/>
+                <button class="button" type="submit">Buscar</button>
+            </form>
+{% endblock %}
+
+{% block content %}
+<section class="recipes recipes-search container">
+    <h1 class="title font-md">Buscando por "{{filter}}"</h1>
+    <div class="grid grid--three_columns">
+    {% if recipes.length > 0 %}
+        {% for recipe in recipes %} 
+            <a class="card card--cursor" href="/recipes/{{recipe.id}}"}}>
+                <img class="card__img" src="{{recipe.image}}" alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-hidden="true"/>
+                <div class="card-info">
+                    <span class="card-info__title card__title--underline">{{recipe.title}}</span>
+                    <small class="card-info__subtitle">{{recipe.chef_name}}</small>
+                </div>
+            </a>
+        {% endfor %}  
+    {% else %}
+            <h4 class="subtitle subtitle---secondary font-md">Nenhum receita encontrada</h4>
+    {% endif %}
+    </section>
+    <!-- recipes section end -->
+{% endblock %}
+
+

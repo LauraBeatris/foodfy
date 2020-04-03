@@ -7,6 +7,7 @@
     <meta name="keywords" content="Receitas, chef, comidas">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="icon" href="/assets/favicon.ico">
+    <script src="pluralize.js"></script>
     {% block head %}
         <title>Foodfy | Receitas</title>
     {% endblock %}
@@ -19,7 +20,7 @@
                 <h1 class="header__title" >Foodfy</h1>
             </a>
 
-            <nav class="header-nav">
+            <nav class="header__nav">
                 <ul class="header-list">
                     <li class="header-list__item">
                         <a class="header__link js-header__link" href="/about">Sobre</a>
@@ -32,6 +33,9 @@
                     </li>
                 </ul>
             </nav>
+
+            {% block header %}
+            {% endblock %}
         </div>
     </header>
     <!-- end header -->
@@ -45,7 +49,6 @@
     </footer>
     <!-- footer end -->
 
-    <script src="pluralize.js"></script>
     <script src="/scripts.js"></script>
 </body>
 </html>

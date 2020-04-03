@@ -5,6 +5,13 @@
     <title>Foodfy | As melhores receitas para você</title>
 {% endblock %}
 
+{% block header %}
+            <form class="header__search" action="/recipes/search">
+                <input type="text" class="field" name="filter" id="filter" value="{{filter}}" placeholder="Buscar uma receita"/>
+                <button class="button" type="submit">Buscar</button>
+            </form>
+{% endblock %}
+
 {% block content %}
     <section class="info container">
         <div class="box">
@@ -16,7 +23,7 @@
                     do mundo inteiro.
                 </p>
             </div>
-            <img class="chef" src="assets/chef.png" alt="Chef" aria-hidden="true" title="chef"/>
+            <img class="chef" src="/assets/chef.png" alt="Chef" aria-hidden="true" title="chef"/>
         </div>
     </section>
     <!-- info box end -->

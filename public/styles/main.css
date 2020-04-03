@@ -73,6 +73,10 @@ a {
     color: var(--dark);
 }
 
+.subtitle---secondary { 
+    color: var(--gray-dark); 
+}
+
 .font-xs { 
     font-size: var(--font-xs)
 }
@@ -139,7 +143,7 @@ a {
     display: flex;
     align-items: center;
 
-    margin-top: 10px;
+    margin: 10px 0px;
 }
 
 .header-list__item:not(:last-child) { 
@@ -161,6 +165,24 @@ a {
     text-transform: uppercase;
 }
 
+@media screen and (max-width: 500px){ 
+    .header__search { 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+    }    
+
+    .header__search .button { 
+        margin-top: var(--space-2xs);
+    }
+}
+
+.header__search .field { 
+    min-height: 37px;
+}
+
+
 @media screen and (min-width: 1000px) { 
     .header { 
         flex-direction: row;
@@ -180,7 +202,7 @@ a {
     }
 
     .header ul { 
-        margin-top: 0;
+        margin: 0;
     }
 }
 
@@ -194,6 +216,23 @@ a {
     color: var(--dark);
     font-size: 24px;
     margin: 0 0 20px 14px;
+}
+
+.recipes-search .title { 
+    margin-bottom: var(--space-sm);
+    text-align: center;
+}
+
+@media screen and (min-width: 1000px) { 
+    .recipes-search .title { 
+        text-align: initial;
+    }
+}
+
+@media screen and (max-width: 1000px) { 
+    .recipes.recipes-search { 
+        padding: 0 0 50px;
+    }
 }
 
 .grid { 
@@ -454,5 +493,4 @@ textarea.field {
     padding: 18px 20px;
     white-space: pre-line;
 }
-
 

@@ -39,6 +39,7 @@ routes.delete('/admin/chefs/:id', ChefsAdminController.delete);
 */
 routes.get('/', HomeController.index);
 routes.get('/recipes', RecipesController.index);
+routes.get('/recipes/search', HomeController.index);
 routes.get('/recipes/:id', RecipesController.show);
 
 routes.get('/chefs', ChefsController.index);
