@@ -2,7 +2,7 @@ const Recipe = require('../models/Recipe');
 
 /* 
     This controller is responsable for the recipes operations related to
-    the public platform
+    the public domain
 */
 class RecipesController {
     async index(_, res) {

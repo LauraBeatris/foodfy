@@ -2,7 +2,7 @@ const Chef = require('../../models/Chef');
 
 /* 
     This controller is responsable for the chefs operations related to
-    the admin platform
+    the admin domain
 */
 class ChefsController {
     async index(_, res) {
@@ -108,6 +108,12 @@ class ChefsController {
 
     async delete(req, res) {
         try {
+            const chefRecipes = await Chef.chefRecipes([req.params.id]);
+            if (chefRecipes.length > 0)
+                return res
+                    .status(403)
+                    .send('Chefs que possuem receitas não podem ser deletados');
+
             await Chef.delete([req.params.id]);
             return res.redirect(301, `/admin/chefs`);
         } catch (err) {
@@ -117,7 +123,10 @@ class ChefsController {
                 status: err.status || 500,
             };
             return res.status(errorData.status).json({
-                error: 'Houve um erro durante a deleção de um chef',
+                error:
+                    err.code === '23503'
+                        ? 'Chefs que possuem receitas não podem ser deletados'
+                        : 'Houve um erro durante a deleção de um chef',
                 errorData,
             });
         }

@@ -76,7 +76,6 @@ class Chef {
     }
 
     delete(values) {
-        // NOW ALLOW IF THE CHEF HAS EXISTING RECIPES
         return new Promise((resolve, reject) => {
             const query = `
                 DELETE FROM chefs WHERE id = $1

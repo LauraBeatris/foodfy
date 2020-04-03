@@ -258,7 +258,7 @@ a.card--secondary {
     display: block;
 }
 
-.card-info__author { 
+.card-info__subtitle { 
     color: var(--gray);
     font-size: var(--font-2xs);
 }
