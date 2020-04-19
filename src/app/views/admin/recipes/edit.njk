@@ -9,21 +9,16 @@
 {% block content %}
     <form id="deleteForm" class="recipes recipes--admin container" style="display: none;" action="/admin/recipes/{{recipe.id}}?_method=DELETE" method="POST"></form>
     <form id="updateForm" class="recipes recipes--admin container" action="/admin/recipes/{{recipe.id}}?_method=PUT" method="POST">
-        <!-- Prevent the form to be submitted with the enter key - If you want to continue with that behavior, just remove it -->
-        <!-- Reason: A keyup event with the enter key on a input will trigger the submit event and lose the main focus of the data -->        
-        <button type="submit" onclick="return false;" style="display:none;"></button>
-
         <div class="row">
             <h1 class="title font-md">Editando receita</h1>
             <div class="actions-container">
                 <input 
                     class="button button--delete font-xs" 
-                    onclick="showDeleteAlert(event, 'Você tem certeza que deseja deletar essa receita?')" 
+                    onclick="DeleteAlert.run(event, 'Você tem certeza que deseja deletar essa receita?')" 
                     type="submit" form="deleteForm" 
                     value="Deletar"
-                >
-                </input>
-                <input class="button font-xs" type="submit" form="updateForm" value="Salvar receita"></input>
+                />
+                <input class="button font-xs" type="submit" form="updateForm" value="Salvar receita" />
             </div>
         </div>
         <section class="recipe__form container">

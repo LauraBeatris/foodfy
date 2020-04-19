@@ -11,7 +11,7 @@
 
 <div class="field-container"> 
     <label class="label" for="author">Chef</label>
-    <select name="chef_id" class="field field---select" value="{{recipe.chef_id}}">
+    <select id="author" name="chef_id" class="field field---select" value="{{recipe.chef_id}}">
         <option value="" disabled selected>Selecione um chef</option>
         {% for option in chefOptions %}
             <option value="{{option.id}}" {% if recipe.chef_id === option.id %} selected {% endif %}>{{option.name}}</option>
@@ -19,7 +19,7 @@
     </select>
 </div>
 
-<div class="field-container"> 
+<div class="field-container field-container---ingredients"> 
   <div id="ingredients">
     <label class="label" for="ingredients">Ingredientes</label>
         {% if recipe.ingredients.length > 0 %}
@@ -30,10 +30,10 @@
             <input type="text" class="field" name="ingredients[]"/>
         {% endif %}
   </div>
-  <button class="field-container__action" type="button">Adicionar novo ingrediente</button>
+  <button class="field-container__action js-add-ingredient" type="button">Adicionar novo ingrediente</button>
 </div>
 
-<div class="field-container"> 
+<div class="field-container field-container---preparations"> 
     <div id="preparations">
         <label class="label" for="preparations">Modo de preparo</label>
         {% if recipe.preparation.length > 0 %}
@@ -44,7 +44,7 @@
             <input type="text" class="field" name="preparations[]"/>
         {% endif %}
      </div>
-    <button class="field-container__action" type="button">Adicionar novo passo</button>
+    <button class="field-container__action js-add-preparation" type="button">Adicionar novo passo</button>
 </div>
 
 <div class="field-container"> 

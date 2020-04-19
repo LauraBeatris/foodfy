@@ -7,7 +7,7 @@
 
 {% block header %}
             <form class="header__search" action="/recipes/search">
-                <input type="text" class="field" name="filter" id="filter" value="{{filter}}" placeholder="Buscar uma receita"/>
+                <input type="text" class="field" name="filter" id="filter" {% if filter %} value="{{filter}}" {% endif %} placeholder="Buscar uma receita"/>
                 <button class="button" type="submit">Buscar</button>
             </form>
 {% endblock %}

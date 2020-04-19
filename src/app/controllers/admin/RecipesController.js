@@ -53,6 +53,8 @@ class RecipesAdminController {
                 req.body.information,
             ];
 
+            // TODO - PUT THE VALUES ON THE MODEL
+
             const recipe = await Recipe.create(values);
             return res.redirect(301, `/admin/recipes/${recipe.id}`);
         } catch (err) {

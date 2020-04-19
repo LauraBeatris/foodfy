@@ -48,6 +48,13 @@ a {
 
 /* === Utilities / Components === */
 
+.main-content { 
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 62px;
+    overflow: hidden;
+}
+
 .container { 
     max-width: 940px;
     margin: 0 auto;
@@ -359,13 +366,17 @@ a.card-info__action:hover,
 
 .footer { 
     background-color: var(--gray-light);
-    text-align: center;
-    padding: 23px 0px;
+    position: absolute; 
+    bottom: 0;
+    width: 100%;
+    height: 62px;
+    display: flex;
 }
 
 .footer__text { 
     color: var(--gray);
     font-size: 14px;
+    margin: auto;
 }
 
 /* === Buttons === */
@@ -477,7 +488,16 @@ button.field-container__action {
 }
 
 .field---select {
-    color: var(--gray);
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    background-color: var(--white);
+
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23000000%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right .7em top 50%; 
+    background-size: .65em auto;
 }
 
 select option[value=""][disabled] {

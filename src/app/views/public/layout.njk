@@ -13,42 +13,43 @@
     {% endblock %}
 </head>
 <body>
-    <!-- init header -->
-    <header class="header">
-        <div class="container">
-            <a class="header__link" href="/">
-                <h1 class="header__title" >Foodfy</h1>
-            </a>
+    <main class="main-content">
+        <!-- init header -->
+        <header class="header">
+            <div class="container">
+                <a class="header__link" href="/">
+                    <h1 class="header__title" >Foodfy</h1>
+                </a>
 
-            <nav class="header__nav">
-                <ul class="header-list">
-                    <li class="header-list__item">
-                        <a class="header__link js-header__link" href="/about">Sobre</a>
-                    </li>
-                    <li class="header-list__item">
-                        <a class="header__link js-header__link" href="/recipes">Receitas</a>
-                    </li>
+                <nav class="header__nav">
+                    <ul class="header-list">
                         <li class="header-list__item">
-                        <a class="header__link js-header__link" href="/chefs">Chefs</a>
-                    </li>
-                </ul>
-            </nav>
+                            <a class="header__link js-header__link" href="/about">Sobre</a>
+                        </li>
+                        <li class="header-list__item">
+                            <a class="header__link js-header__link" href="/recipes">Receitas</a>
+                        </li>
+                            <li class="header-list__item">
+                            <a class="header__link js-header__link" href="/chefs">Chefs</a>
+                        </li>
+                    </ul>
+                </nav>
 
-            {% block header %}
-            {% endblock %}
-        </div>
-    </header>
-    <!-- end header -->
+                {% block header %}
+                {% endblock %}
+            </div>
+        </header>
+        <!-- end header -->
 
-    {% block content %}
-    {% endblock %}
-    
-    <!-- footer init -->
-    <footer class="footer">
-        <span class="footer__text">Todos direitos reservados, receitas Foodfy.</span>
-    </footer>
-    <!-- footer end -->
-
+        {% block content %}
+        {% endblock %}
+        
+        <!-- footer init -->
+        <footer class="footer">
+            <span class="footer__text">Todos direitos reservados, receitas Foodfy.</span>
+        </footer>
+        <!-- footer end -->
+    </main>
     <script src="/scripts.js"></script>
 </body>
 </html>
