@@ -15,7 +15,14 @@
             </div>
         </div>
         <section class="details__info container">
-            <img class="details__image---big" src="{{recipe.image}}" alt="Receita de {{recipe.title}}" title={{recipe.title}} aria-label={{recipe.title}}/>
+            <div class="highlight">
+                <img class="details__image---big" {% if files[0].path %} src="{{files[0].path}}" {% else %} src="https://place-hold.it/500x500?text=Receita%20sem%20foto" {% endif %} alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-label="{{recipe.title}}"/>
+            </div>
+            <div class="gallery-preview">
+                {% for photo in files %}
+                    <img src="{{photo.path}}" {% if loop.first %} class="active" {% endif %} onclick="ImageGallery.setImage(event)"/>
+                {% endfor %}
+            </div>
             <h1 class="details__title title font-xl">{{recipe.title}}</h1>
             <h3 class="details__subtitle">{{recipe.chef_name}}</h3>
         </section>
@@ -54,4 +61,3 @@
         {% endif %}
     </main>
 {% endblock %}
-

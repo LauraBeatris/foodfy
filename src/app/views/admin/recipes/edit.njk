@@ -8,7 +8,7 @@
 
 {% block content %}
     <form id="deleteForm" class="recipes recipes--admin container" style="display: none;" action="/admin/recipes/{{recipe.id}}?_method=DELETE" method="POST"></form>
-    <form id="updateForm" class="recipes recipes--admin container" action="/admin/recipes/{{recipe.id}}?_method=PUT" method="POST">
+    <form id="updateForm" class="recipes recipes--admin container" action="/admin/recipes/{{recipe.id}}?_method=PUT" method="POST" enctype="multipart/form-data">
         <div class="row">
             <h1 class="title font-md">Editando receita</h1>
             <div class="actions-container">

@@ -2,14 +2,16 @@ const express = require('express');
 
 const routes = express.Router();
 
-const RecipesController = require('./app/controllers/RecipesController');
-const ChefsController = require('./app/controllers/ChefsController');
-const HomeController = require('./app/controllers/HomeController');
+const upload = require('./app/middlewares/multer');
+
+const RecipesController = require('./app/controllers/public/RecipesController');
+const ChefsController = require('./app/controllers/public/ChefsController');
+const HomeController = require('./app/controllers/public/HomeController');
 
 const RecipesAdminController = require('./app/controllers/admin/RecipesController');
 const ChefsAdminController = require('./app/controllers/admin/ChefsController');
 
-/*  
+/*
     == Admin Routes ==
 */
 
@@ -21,8 +23,16 @@ routes.get('/admin/recipes/create', RecipesAdminController.create);
 routes.get('/admin/recipes/:id', RecipesAdminController.show);
 routes.get('/admin/recipes/:id/edit', RecipesAdminController.edit);
 
-routes.post('/admin/recipes', RecipesAdminController.post);
-routes.put('/admin/recipes/:id', RecipesAdminController.put);
+routes.post(
+    '/admin/recipes',
+    upload.array('photos', 5),
+    RecipesAdminController.post
+);
+routes.put(
+    '/admin/recipes/:id',
+    upload.array('photos', 5),
+    RecipesAdminController.put
+);
 routes.delete('/admin/recipes/:id', RecipesAdminController.delete);
 
 routes.get('/admin/chefs', ChefsAdminController.index);
@@ -30,11 +40,15 @@ routes.get('/admin/chefs/create', ChefsAdminController.create);
 routes.get('/admin/chefs/:id', ChefsAdminController.show);
 routes.get('/admin/chefs/:id/edit', ChefsAdminController.edit);
 
-routes.post('/admin/chefs', ChefsAdminController.post);
-routes.put('/admin/chefs/:id', ChefsAdminController.put);
+routes.post('/admin/chefs', upload.single('avatar'), ChefsAdminController.post);
+routes.put(
+    '/admin/chefs/:id',
+    upload.single('avatar'),
+    ChefsAdminController.put
+);
 routes.delete('/admin/chefs/:id', ChefsAdminController.delete);
 
-/*  
+/*
     == Public Routes ==
 */
 routes.get('/', HomeController.index);

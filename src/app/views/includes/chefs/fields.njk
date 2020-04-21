@@ -1,9 +1,21 @@
-<div class="field-container"> 
+<div class="field-container">
     <label class="label" for="name">Nome</label>
     <input name="name" type="text" id="name" class="field" value="{{chef.name}}"/>
 </div>
 
-<div class="field-container"> 
-    <label class="label" for="author">Avatar</label>
-    <input name="avatar_url" type="url" id="avatar_url" class="field" value="{{chef.avatar_url}}"/>
+<div class="field-container">
+    <label class="label" for="avatar">Avatar</label>
+    {% if chef.avatar_url %}
+        <input name="avatar_url" type="text" id="avatar_url" class="field" disabled title="Link do seu avatar" value="{{chef.avatar_url}}"/>
+    {% endif %}
+    <button class="button avatar-upload">
+        <input
+            class="photos-input"
+            type="file" name="avatar"
+            id="avatar"
+            accept="image/*"
+            onchange="AvatarUpload.selected(event)"
+        />
+        <span>Enviar Avatar</span>
+    </button>
 </div>

@@ -2,106 +2,82 @@ const db = require('../../config/database');
 
 class Chef {
     all() {
-        return new Promise((resolve, reject) => {
-            const query = `
-                SELECT chefs.*, count(recipes) as total_recipes 
-                FROM chefs 
+        const query = `
+                SELECT chefs.*, count(recipes) as total_recipes, files.path as avatar
+                FROM chefs
                 LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
-                GROUP BY chefs.id
+                LEFT JOIN files ON (files.id = chefs.file_id)
+                GROUP BY chefs.id, files.id
             `;
 
-            db.query(query, null, (error, results) => {
-                if (error) return reject(error);
-                return resolve(results.rows);
-            });
-        });
+        return db.query(query, null);
     }
 
-    // TODO -> Pagination (FRONT AND BACK)
-    paginate() {}
-
     create(values) {
-        return new Promise((resolve, reject) => {
-            const query = `
+        const query = `
                 INSERT INTO chefs (
                     name,
-                    avatar_url
+                    file_id
                 ) VALUES (
                     $1,
                     $2
-                ) RETURNING Id 
+                ) RETURNING id
             `;
 
-            db.query(query, values, (error, results) => {
-                if (error) return reject(error);
-                return resolve(results.rows[0]);
-            });
-        });
+        return db.query(query, values);
     }
 
-    find(values) {
-        return new Promise((resolve, reject) => {
-            const query = `
-                SELECT chefs.*, count(recipes) as total_recipes 
-                FROM chefs 
+    find(id) {
+        const query = `
+                SELECT chefs.*, count(recipes) as total_recipes,
+                (
+                    SELECT files.path
+                    FROM chefs
+                    RIGHT JOIN files ON (files.id = chefs.file_id)
+                    WHERE chefs.id = $1
+                ) AS avatar
+                FROM chefs
                 LEFT JOIN recipes ON (recipes.chef_id = chefs.id)
                 WHERE chefs.id = $1
                 GROUP BY chefs.id
             `;
 
-            db.query(query, values, (error, results) => {
-                if (error) return reject(error);
-                return resolve(results.rows[0]);
-            });
-        });
+        return db.query(query, [id]);
     }
 
     findBy() {}
 
     update(values) {
-        return new Promise((resolve, reject) => {
-            const query = `
-                UPDATE chefs SET 
+        const query = `
+                UPDATE chefs SET
                     name = ($1),
-                    avatar_url = ($2)
+                    file_id = ($2)
                 WHERE chefs.id = $3
                 RETURNING id
             `;
 
-            db.query(query, values, (error, results) => {
-                if (error) return reject(error);
-                return resolve(results.rows[0]);
-            });
-        });
+        return db.query(query, [values.name, values.file_id, values.id]);
     }
 
     delete(values) {
-        return new Promise((resolve, reject) => {
-            const query = `
+        const query = `
                 DELETE FROM chefs WHERE id = $1
             `;
 
-            db.query(query, values, (error, results) => {
-                if (error) return reject(error);
-                return resolve(results);
-            });
-        });
+        return db.query(query, values);
     }
 
-    chefRecipes(values) {
-        return new Promise((resolve, reject) => {
-            const query = `
-                SELECT recipes.*, chefs.name as chef_name
-                FROM recipes 
+    chefRecipes(id) {
+        const query = `
+                SELECT recipes.*, chefs.name as chef_name, files.path as photo
+                FROM recipe_files
+                INNER JOIN recipes ON (recipe_files.recipe_id = recipes.id)
                 INNER JOIN chefs ON (recipes.chef_id = chefs.id)
+                LEFT JOIN files ON (recipe_files.file_id = files.id)
                 WHERE chefs.id = $1
             `;
 
-            db.query(query, values, (error, results) => {
-                if (error) return reject(error);
-                return resolve(results.rows);
-            });
-        });
+        return db.query(query, [id]);
     }
 }
 

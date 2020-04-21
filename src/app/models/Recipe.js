@@ -1,30 +1,22 @@
 const db = require('../../config/database');
+const File = require('./File');
 
 class Chef {
     all() {
-        return new Promise((resolve, reject) => {
-            const query = `
-                SELECT recipes.*, chefs.name as chef_name
-                FROM recipes 
+        const query = `
+                SELECT recipes.*, files.path as photo, chefs.name as chef_name FROM recipe_files
+                FULL JOIN recipes ON (recipe_files.recipe_id = recipes.id)
+                LEFT JOIN files ON (recipe_files.file_id = files.id)
                 LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
             `;
 
-            db.query(query, null, (error, results) => {
-                if (error) return reject(error);
-                return resolve(results.rows);
-            });
-        });
+        return db.query(query, null);
     }
 
-    // TODO -> Pagination (FRONT AND BACK)
-    paginate() {}
-
     create(values) {
-        return new Promise((resolve, reject) => {
-            const query = `
+        const query = `
                 INSERT INTO recipes (
                     chef_id,
-                    image,
                     title,
                     ingredients,
                     preparation,
@@ -34,94 +26,117 @@ class Chef {
                     $2,
                     $3,
                     $4,
-                    $5,
-                    $6
+                    $5
                 ) RETURNING id
             `;
 
-            db.query(query, values, (error, results) => {
-                if (error) return reject(error);
-                return resolve(results.rows[0]);
-            });
-        });
+        return db.query(query, [
+            values.chef_id,
+            values.title,
+            values.ingredients,
+            values.preparations,
+            values.information,
+        ]);
     }
 
-    find(values) {
-        return new Promise((resolve, reject) => {
-            const query = `
-                SELECT recipes.*, chefs.id as chef_id, chefs.name as chef_name FROM recipes 
+    find(id) {
+        const query = `
+                SELECT recipes.*, chefs.id as chef_id, chefs.name as chef_name, files.path as photo
+                FROM recipe_files
+                FULL JOIN recipes ON (recipe_files.recipe_id = recipes.id)
+                LEFT JOIN files ON (recipe_files.file_id = files.id)
                 LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
                 WHERE recipes.id = $1
             `;
 
-            db.query(query, values, (error, results) => {
-                if (error) return reject(error);
-                return resolve(results.rows[0]);
-            });
-        });
+        return db.query(query, [id]);
     }
 
     findBy(values) {
-        return new Promise((resolve, reject) => {
-            const query = `
-                SELECT recipes.*, chefs.name AS chef_name
-                FROM recipes 
+        const query = `
+                SELECT recipes.*, chefs.name AS chef_name, files.path as photo
+                FROM recipe_files
+                RIGHT JOIN recipes ON (recipe_files.recipe_id = recipes.id)
+                LEFT JOIN files ON (recipe_files.file_id = files.id)
                 LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
                 WHERE recipes.title ILIKE '%${values.filter}%'
             `;
 
-            db.query(query, null, (error, results) => {
-                if (error) return reject(error);
-                return resolve(results.rows);
-            });
-        });
+        return db.query(query, null);
     }
 
     update(values) {
-        return new Promise((resolve, reject) => {
-            const query = `
-                UPDATE recipes SET 
+        const query = `
+                UPDATE recipes SET
                     chef_id = ($1),
-                    image = ($2),
-                    title = ($3),
-                    ingredients = ($4),
-                    preparation = ($5),
-                    information = ($6)
-                WHERE recipes.id = $7
+                    title = ($2),
+                    ingredients = ($3),
+                    preparation = ($4),
+                    information = ($5)
+                WHERE recipes.id = $6
                 RETURNING id
             `;
 
-            db.query(query, values, (error, results) => {
-                if (error) return reject(error);
-                return resolve(results.rows[0]);
-            });
-        });
+        return db.query(query, values);
     }
 
-    delete(values) {
-        // NOT ALLOW IF THE CHEF HAS EXISTING RECIPES
-        return new Promise((resolve, reject) => {
-            const query = `
+    delete(id) {
+        const query = `
                 DELETE FROM recipes WHERE id = $1
             `;
-            db.query(query, values, (error, results) => {
-                if (error) return reject(error);
-                return resolve(results);
-            });
-        });
+
+        return db.query(query, [id]);
     }
 
     chefOptions() {
-        return new Promise((resolve, reject) => {
-            const query = `
+        const query = `
                 SELECT * FROM chefs ORDER BY name ASC
             `;
 
-            db.query(query, null, (error, results) => {
-                if (error) return reject(error);
-                return resolve(results.rows);
-            });
-        });
+        return db.query(query, null);
+    }
+
+    async createFile(values) {
+        const results = await File.create(values.file);
+        const file = results.rows[0];
+
+        const query = `
+            INSERT INTO recipe_files (
+                recipe_id,
+                file_id
+            ) VALUES (
+                $1,
+                $2
+            )
+        `;
+
+        return db.query(query, [values.recipe_id, file.id]);
+    }
+
+    files(id) {
+        const query = `
+            SELECT recipe_files.*, files.path FROM recipe_files
+            LEFT JOIN files ON (recipe_files.file_id = files.id)
+            WHERE recipe_files.recipe_id = $1
+        `;
+
+        return db.query(query, [id]);
+    }
+
+    async deleteFile(values) {
+        let query = `
+            DELETE FROM recipe_files
+            WHERE recipe_id = $1 AND file_id = $2
+        `;
+
+        await db.query(query, [values.recipe_id, values.file_id]);
+
+        query = `
+            DELETE FROM files
+            WHERE id = $1
+        `;
+
+        return db.query(query, [values.file_id]);
     }
 }
 

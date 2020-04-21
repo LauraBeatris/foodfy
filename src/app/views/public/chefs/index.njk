@@ -9,7 +9,7 @@
     <div class="grid grid--four_columns">
         {% for chef in chefs %} 
             <div class="card--secondary">
-                <img class="card__img---rounded" src="{{chef.avatar_url}}" alt="Receita de {{chef.name}}" title="{{chef.name}}" aria-hidden="true"/>
+                <img class="card__img---rounded" src="{{chef.avatar}}" alt="Receita de {{chef.name}}" title="{{chef.name}}" aria-hidden="true"/>
                 <div class="card-info">
                     <span class="card-info__title">{{chef.name}}</span>
                     <span class="card-info__subtitle">{{chef.total_recipes}}</span>

@@ -2,27 +2,23 @@
 
 {% block head %}
     <link rel="stylesheet" href="/styles/recipe.css"/>
-    <title> Foodfy Admin | Editar {{recipe.title}}
+    <title> Foodfy Admin | Editando Chef
     </title>
 {% endblock %}
 
 {% block content %}
     <form id="deleteForm" class="recipes recipes--admin container" style="display: none;" action="/admin/chefs/{{chef.id}}?_method=DELETE" method="POST"></form>
-    <form id="updateForm" class="recipes recipes--admin container" action="/admin/chefs/{{chef.id}}?_method=PUT" method="POST">
-        <!-- Prevent the form to be submitted with the enter key - If you want to continue with that behavior, just remove it -->
-        <!-- Reason: A keyup event with the enter key on a input will trigger the submit event and lose the main focus of the data -->        
-        <button type="submit" onclick="return false;" style="display:none;"></button>
-
+    <form id="updateForm" class="recipes recipes--admin container" action="/admin/chefs/{{chef.id}}?_method=PUT" method="POST" enctype="multipart/form-data">
         <div class="row">
             <h1 class="title font-md">Editando chef</h1>
             <div class="actions-container">
-                <input 
-                    class="button button--delete font-xs" 
+                <input
+                    class="button button--delete font-xs"
                     onclick="DeleteAlert.run(event, 'Você tem certeza que deseja deletar esse chef?')"
-                    type="submit" form="deleteForm" 
+                    type="submit" form="deleteForm"
                     value="Deletar"
                 />
-                <input class="button font-xs" type="submit" form="updateForm" value="Salvar chef"></input>
+                <input class="button font-xs" type="submit" form="updateForm" value="Salvar chef" />
             </div>
         </div>
         <section class="recipe__form container">
@@ -30,4 +26,3 @@
         </section>
     </form>
 {% endblock %}
-

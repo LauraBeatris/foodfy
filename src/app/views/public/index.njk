@@ -8,7 +8,7 @@
 {% block header %}
             <form class="header__search" action="/recipes/search">
                 <input type="text" class="field" name="filter" id="filter" {% if filter %} value="{{filter}}" {% endif %} placeholder="Buscar uma receita"/>
-                <button class="button" type="submit">Buscar</button>
+                <button class="button button---search" type="submit">Buscar</button>
             </form>
 {% endblock %}
 
@@ -35,7 +35,7 @@
         <div class="grid grid--three_columns">
             {% for recipe in recipes %}
                 <a class="card card--cursor" href="/recipes/{{recipe.id}}">
-                    <img class="card__img" src="{{recipe.image}}" alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-hidden="true"/>
+                    <img class="card__img" src="{{recipe.photo}}" alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-hidden="true"/>
                     <div class="card-info">
                         <span class="card-info__title card__title--underline" class="card-info__title">{{recipe.title}}</span>
                         <small class="card-info__subtitle">{{recipe.chef_name}}</small>
@@ -45,4 +45,3 @@
         </div>
     </section>
 {% endblock %}
-

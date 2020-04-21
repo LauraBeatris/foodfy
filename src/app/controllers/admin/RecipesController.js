@@ -1,13 +1,21 @@
 const Recipe = require('../../models/Recipe');
+const { formatFilePath } = require('../../../lib/utils');
 
-/* 
+/*
     This controller is responsable for the recipes operations related to
     the admin domain
 */
 class RecipesAdminController {
-    async index(_, res) {
+    async index(req, res) {
         try {
-            const recipes = await Recipe.all();
+            const results = await Recipe.all();
+            const recipes = results.rows.map((recipe) => ({
+                ...recipe,
+                photo: recipe.photo
+                    ? formatFilePath(req, recipe.photo)
+                    : 'https://place-hold.it/172x80?text=Receita%20sem%20foto',
+            }));
+
             return res.render('admin/recipes/index', { recipes });
         } catch (err) {
             const errorData = {
@@ -24,7 +32,9 @@ class RecipesAdminController {
 
     async create(_, res) {
         try {
-            const chefOptions = await Recipe.chefOptions();
+            const results = await Recipe.chefOptions();
+            const chefOptions = results.rows;
+
             return res.render('admin/recipes/create', { chefOptions });
         } catch (err) {
             const errorData = {
@@ -43,19 +53,14 @@ class RecipesAdminController {
 
     async post(req, res) {
         try {
-            // validate(req.body)
-            const values = [
-                req.body.chef_id,
-                req.body.image,
-                req.body.title,
-                req.body.ingredients,
-                req.body.preparations,
-                req.body.information,
-            ];
+            const results = await Recipe.create(req.body);
+            const recipe = results.rows[0];
 
-            // TODO - PUT THE VALUES ON THE MODEL
+            const recipeFilesPromises = req.files.map((file) =>
+                Recipe.createFile({ file, recipe_id: recipe.id })
+            );
+            await Promise.all(recipeFilesPromises);
 
-            const recipe = await Recipe.create(values);
             return res.redirect(301, `/admin/recipes/${recipe.id}`);
         } catch (err) {
             const errorData = {
@@ -73,10 +78,23 @@ class RecipesAdminController {
 
     async show(req, res) {
         try {
-            const recipe = await Recipe.find([req.params.id]);
+            // Get recipe
+            let results = await Recipe.find(req.params.id);
+            const recipe = results.rows[0];
+
             if (!recipe) return res.status(404).send('Recipe not found');
 
-            return res.render('admin/recipes/show', { recipe });
+            // Get recipe files
+            results = await Recipe.files(req.params.id);
+            const files = results.rows.map((file) => ({
+                ...file,
+                path: formatFilePath(req, file.path),
+            }));
+
+            return res.render('admin/recipes/show', {
+                recipe,
+                files,
+            });
         } catch (err) {
             const errorData = {
                 message: err.message || 'Database error',
@@ -92,18 +110,37 @@ class RecipesAdminController {
 
     async edit(req, res) {
         try {
-            const chefOptions = await Recipe.chefOptions();
-            const recipe = await Recipe.find([req.params.id]);
+            // Get recipe
+            let results = await Recipe.find(req.params.id);
+            const recipe = results.rows[0];
 
-            return res.render('admin/recipes/edit', { recipe, chefOptions });
+            // Get chef options
+            results = await Recipe.chefOptions();
+            const chefOptions = results.rows;
+
+            // Get recipe files
+            results = await Recipe.files(req.params.id);
+            let files = results.rows;
+
+            files = files.map((file) => ({
+                ...file,
+                path: formatFilePath(req, file.path),
+            }));
+
+            return res.render('admin/recipes/edit', {
+                recipe,
+                chefOptions,
+                files,
+            });
         } catch (err) {
             const errorData = {
                 message: err.message || 'Database error',
                 name: err.name,
                 status: err.status || 500,
             };
+
             return res.status(errorData.status).json({
-                error: 'Houve um erro durante a procura de uma receita',
+                error: 'Error when trying to edit a recipe',
                 errorData,
             });
         }
@@ -111,10 +148,8 @@ class RecipesAdminController {
 
     async put(req, res) {
         try {
-            // validate(req.body)
             const values = [
                 req.body.chef_id,
-                req.body.image,
                 req.body.title,
                 req.body.ingredients,
                 req.body.preparations,
@@ -122,7 +157,32 @@ class RecipesAdminController {
                 req.params.id,
             ];
 
-            const recipe = await Recipe.update(values);
+            const results = await Recipe.update(values);
+            const recipe = results.rows[0];
+
+            if (req.files) {
+                const recipeFilesPromises = req.files.map((file) =>
+                    Recipe.createFile({ file, recipe_id: recipe.id })
+                );
+
+                await Promise.all(recipeFilesPromises);
+            }
+
+            if (req.body.removed_files) {
+                const removedFilesId = req.body.removed_files.split(',');
+
+                removedFilesId.splice(removedFilesId.length - 1, 1);
+
+                const removedFilesPromises = removedFilesId.map((id) =>
+                    Recipe.deleteFile({
+                        file_id: parseInt(id, 10),
+                        recipe_id: recipe.id,
+                    })
+                );
+
+                await Promise.all(removedFilesPromises);
+            }
+
             return res.redirect(301, `/admin/recipes/${recipe.id}`);
         } catch (err) {
             const errorData = {
@@ -139,7 +199,7 @@ class RecipesAdminController {
 
     async delete(req, res) {
         try {
-            await Recipe.delete([req.params.id]);
+            await Recipe.delete(req.params.id);
             return res.redirect(301, `/admin/recipes`);
         } catch (err) {
             const errorData = {

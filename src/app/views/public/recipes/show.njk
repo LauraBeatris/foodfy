@@ -9,7 +9,14 @@
 {% block content %}
     <main class="recipes">
         <section class="recipe__info container">
-            <img class="recipe__image" src="{{recipe.image}}" alt="Receita de {{recipe.title}}" title={{recipe.title}} aria-label={{recipe.title}}/>
+            <div class="highlight">
+                <img class="recipe__image" {% if files[0].path %} src="{{files[0].path}}" {% else %} src="https://place-hold.it/500x500?text=Receita%20sem%20foto" {% endif %} alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-label="{{recipe.title}}"/>
+            </div>
+            <div class="gallery-preview">
+                {% for photo in files %}
+                    <img src="http://localhost:3000/uploads/1587335326160-desafio-07-chef-edição.png" />
+                {% endfor %}
+            </div>
             <h1 class="recipe__title title font-xl">{{recipe.title}}</h1>
             <h3 class="recipe__author">{{recipe.chef_name}}</h3>
         </section>
@@ -48,4 +55,3 @@
         {% endif %}
     </main>
 {% endblock %}
-
