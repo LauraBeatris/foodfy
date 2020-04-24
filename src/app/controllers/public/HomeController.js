@@ -9,27 +9,15 @@ class HomeController {
     async index(req, res) {
         try {
             const { filter } = req.query;
-            let results = [];
 
-            if (filter) {
-                results = await Recipe.findBy({ filter });
-                const recipes = results.rows.map((recipe) => ({
-                    ...recipe,
-                    photo: recipe.photo
-                        ? formatFilePath(req, recipe.photo)
-                        : 'https://place-hold.it/172x80?text=Receita%20sem%20foto',
-                }));
-
-                return res.render('public/search', { recipes, filter });
-            }
-
-            results = await Recipe.all();
+            const results = await Recipe.all();
             const recipes = results.rows.map((recipe) => ({
                 ...recipe,
                 photo: recipe.photo
                     ? formatFilePath(req, recipe.photo)
                     : 'https://place-hold.it/172x80?text=Receita%20sem%20foto',
             }));
+
             return res.render('public/index', { recipes, filter });
         } catch (err) {
             const errorData = {

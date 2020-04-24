@@ -7,6 +7,7 @@ const upload = require('./app/middlewares/multer');
 const RecipesController = require('./app/controllers/public/RecipesController');
 const ChefsController = require('./app/controllers/public/ChefsController');
 const HomeController = require('./app/controllers/public/HomeController');
+const SearchController = require('./app/controllers/public/SearchController');
 
 const RecipesAdminController = require('./app/controllers/admin/RecipesController');
 const ChefsAdminController = require('./app/controllers/admin/ChefsController');
@@ -53,7 +54,7 @@ routes.delete('/admin/chefs/:id', ChefsAdminController.delete);
 */
 routes.get('/', HomeController.index);
 routes.get('/recipes', RecipesController.index);
-routes.get('/recipes/search', HomeController.index);
+routes.get('/recipes/search', SearchController.index);
 routes.get('/recipes/:id', RecipesController.show);
 
 routes.get('/chefs', ChefsController.index);
