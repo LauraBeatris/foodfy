@@ -3,15 +3,19 @@
     the admin domain
 */
 class UserController {
-    index() {}
+    list(_, res) {
+        return res.render('admin/users/list');
+    }
 
-    create() {}
+    create(_, res) {
+        return res.render('admin/users/create');
+    }
 
     post() {}
 
-    show() {}
-
-    edit() {}
+    edit(_, res) {
+        return res.render('admin/users/edit');
+    }
 
     put() {}
 
