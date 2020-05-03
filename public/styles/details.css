@@ -1,10 +1,10 @@
 
 .details__image---big {
-    width: 300px;
     height: 120px;
     border-radius: 15px;
     object-fit: cover;
     object-position: center;
+    width: 100%;
 }
 
 .details__image---rounded {

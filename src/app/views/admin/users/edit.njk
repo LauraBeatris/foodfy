@@ -19,16 +19,18 @@
     >
         <section class="users container">
             <header class="section-header">
-                <h1 class="title font-md">Atualizar Usuário<h1/>
+                <h1 class="title font-md">Atualizar Usuário</h1>
 
-                <input
-                    class="button button--delete font-xs"
-                    onclick="DeleteAlert.run(event, 'Você tem certeza que deseja deletar esse usuário?')"
-                    type="submit"
-                    form="deleteForm"
-                    value="Deletar"
-                />
-                <input class="button font-xs" type="submit" form="updateForm" value="Salvar" />
+                <div class="actions-container">
+                    <input
+                        class="button button--delete font-xs"
+                        onclick="DeleteAlert.run(event, 'Você tem certeza que deseja deletar esse usuário?')"
+                        type="submit"
+                        form="deleteForm"
+                        value="Deletar"
+                    />
+                    <input class="button font-xs" type="submit" form="updateForm" value="Salvar" />
+                </div>
             </header>
 
             <section class="users__form container">
