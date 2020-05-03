@@ -2,13 +2,24 @@
 
 {% block head %}
     <link rel="stylesheet" href="/styles/recipe.css"/>
-    <title> Foodfy Admin | Editando Chef
-    </title>
+    <title> Foodfy | Editando Chef</title>
 {% endblock %}
 
 {% block content %}
-    <form id="deleteForm" class="recipes recipes--admin container" style="display: none;" action="/admin/chefs/{{chef.id}}?_method=DELETE" method="POST"></form>
-    <form id="updateForm" class="recipes recipes--admin container" action="/admin/chefs/{{chef.id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+    <form
+        id="deleteForm"
+        class="recipes recipes--admin container"
+        style="display: none;"
+        action="/admin/chefs/{{chef.id}}?_method=DELETE"
+        method="POST">
+    </form>
+    <form
+        id="updateForm"
+        class="recipes recipes--admin container"
+        action="/admin/chefs/{{chef.id}}?_method=PUT"
+        method="POST"
+        enctype="multipart/form-data"
+    >
         <div class="row">
             <h1 class="title font-md">Editando chef</h1>
             <div class="actions-container">

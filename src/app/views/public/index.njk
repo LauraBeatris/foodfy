@@ -32,7 +32,7 @@
     <section class="recipes container">
         <h3 class="recipes__title title font-md">Mais acessadas</h3>
 
-        <div class="grid grid--three_columns">
+        <div class="grid grid--three-columns">
             {% for recipe in recipes %}
                 <a class="card card--cursor" href="/recipes/{{recipe.id}}">
                     <img class="card__img" src="{{recipe.photo}}" alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-hidden="true"/>

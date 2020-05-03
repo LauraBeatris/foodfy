@@ -1,16 +1,16 @@
 {% extends "admin/layouts/main.njk" %}
 
 {% block head %}
-    <title>Foodfy Admin | Chefs </title>
+    <title>Foodfy | Gerenciar Chefs</title>
 {% endblock %}
 
 {% block content %}
-<section class="recipes recipes--admin container">
-    <div class="row">
+<section class="chefs container">
+    <section class="section-header">
         <h1 class="title font-md">Gerenciar chefs<h1/>
         <a class="button" href="/admin/chefs/create">Criar chef</a>
-    </div>
-    <div class="grid grid--four_columns">
+    </section>
+    <div class="grid grid--four-columns">
         {% for chef in chefs %}
             <div class="card--secondary">
                 <img class="card__img---rounded" src="{{chef.avatar}}" alt="Receita de {{chef.name}}" title="{{chef.name}}" aria-hidden="true"/>

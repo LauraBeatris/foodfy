@@ -14,7 +14,7 @@
 {% block content %}
 <section class="recipes recipes-search container">
     <h1 class="title font-md">Buscando por "{{filter}}"</h1>
-    <div class="grid grid--three_columns">
+    <div class="grid grid--three-columns">
     {% if recipes.length > 0 %}
         {% for recipe in recipes %}
             <a class="card card--cursor" href="/recipes/{{recipe.id}}"}}>

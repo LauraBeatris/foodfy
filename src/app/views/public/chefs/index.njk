@@ -6,8 +6,8 @@
 
 {% block content %}
 <section class="recipes recipes--admin container">
-    <div class="grid grid--four_columns">
-        {% for chef in chefs %} 
+    <div class="grid grid--four-columns">
+        {% for chef in chefs %}
             <div class="card--secondary">
                 <img class="card__img---rounded" src="{{chef.avatar}}" alt="Receita de {{chef.name}}" title="{{chef.name}}" aria-hidden="true"/>
                 <div class="card-info">
@@ -15,10 +15,8 @@
                     <span class="card-info__subtitle">{{chef.total_recipes}}</span>
                 </div>
             </div>
-        {% endfor %}  
+        {% endfor %}
     </div>
 </section>
     <!-- recipes section end -->
 {% endblock %}
-
-

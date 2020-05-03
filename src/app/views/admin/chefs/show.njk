@@ -3,8 +3,7 @@
 {% block head %}
     <link rel="stylesheet" href="/styles/recipe.css"/>
     <link rel="stylesheet" href="/styles/details.css"/>
-    <title> Foodfy Admin | Chef {{chef.name}}
-    </title>
+    <title> Foodfy | Chef {{chef.name}}</title>
 {% endblock %}
 
 {% block content %}
@@ -23,7 +22,7 @@
         <section class="chef-recipes">
             <h1 class="title font-md">Receitas</h1>
                 {% if chefRecipes.length > 0 %}
-                    <div class="grid grid--two_columns">
+                    <div class="grid grid--two-columns">
                         {% for recipe in chefRecipes %}
                             <div class="card--secondary">
                                 <img class="card__img" src="{{recipe.photo}}" alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-hidden="true"/>
