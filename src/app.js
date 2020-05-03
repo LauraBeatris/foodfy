@@ -4,6 +4,8 @@ const nunjucks = require('nunjucks');
 const path = require('path');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
+
+const session = require('./config/session');
 const routes = require('./routes');
 
 class App {
@@ -18,6 +20,7 @@ class App {
         this.express.use(express.static('public'));
         this.express.use(bodyParser.urlencoded({ extended: true }));
         this.express.use(methodOverride('_method'));
+        this.express.use(session);
     }
 
     routes() {
