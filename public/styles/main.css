@@ -8,6 +8,7 @@
     --gray: #777777;
     --gray-light: #EEEEEE;
     --gray-medium: #999999;
+    --gray-medium-secondary: #969696;
     --gray-dark: #444444;
 
     --font-3xs: 12px;
@@ -66,6 +67,17 @@ a {
 
 .text.information {
     white-space: pre-line;
+}
+
+.link {
+    color: var(--gray-medium-secondary);
+    font-size: calc(var(--font-2xs) + 2px);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: var(--gray-dark);
 }
 
 .hidden {

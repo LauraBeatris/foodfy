@@ -1,35 +1,63 @@
 .recipes.recipes--admin > .row,
-.chefs.chefs--admin > .row { 
+.chefs.chefs--admin > .row {
     margin: 0 var(--space-2xs) var(--space-md);
     justify-content: space-between;
 }
 
 @media screen and (min-width: 1000px) {
     .recipes.recipes--admin > .row,
-    .chefs.chefs--admin > .row { 
+    .chefs.chefs--admin > .row {
         margin: 0 0 var(--space-md);
     }
 }
 
-.actions-container { 
+.actions-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 @media screen and (min-width: 1000px) {
-    .actions-container { 
+    .actions-container {
         flex-direction: row;
     }
 }
 
-.actions-container .button + .button { 
+.actions-container .button + .button {
     margin-top: var(--space-2xs);
 }
 
 @media screen and (min-width: 1000px) {
-    .actions-container .button + .button { 
+    .actions-container .button + .button {
         margin-left: var(--space-xs);
         margin-top: 0;
     }
+}
+
+.auth-container {
+   max-width: 500px;
+   width: 100%;
+   margin: 0 auto;
+   margin-top: 146px;
+}
+
+@media screen and (max-width: 800px){
+    .auth-container {
+        padding: 0 var(--space-sm);
+        margin-top: var(--space-md)
+    }
+}
+
+.auth-container .title {
+    margin: 0 auto calc(var(--space-md) + 5px);
+    text-align: center;
+}
+
+
+.auth-container .button {
+    margin-left: auto;
+}
+
+.auth-container .link {
+    align-self: flex-end;
 }
