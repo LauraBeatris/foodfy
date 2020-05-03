@@ -71,7 +71,7 @@ class ChefsController {
                 photo: formatFilePath(req, recipe.photo),
             }));
 
-            return res.render('admin/chefs/show.njk', {
+            return res.render('admin/chefs/show', {
                 chef: {
                     ...chef,
                     avatar: formatFilePath(req, chef.avatar),
@@ -103,7 +103,7 @@ class ChefsController {
                 avatar_url: formatFilePath(req, chef.avatar),
             };
 
-            return res.render('admin/chefs/edit.njk', {
+            return res.render('admin/chefs/edit', {
                 chef,
             });
         } catch (err) {
