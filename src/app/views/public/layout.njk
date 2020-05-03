@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro."> 
+    <meta name="description" content="Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.">
     <meta name="keywords" content="Receitas, chef, comidas">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="icon" href="/assets/favicon.ico">
     <script src="pluralize.js"></script>
+    <link
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet"
+    >
+    <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
+        rel="stylesheet"
+    />
     {% block head %}
         <title>Foodfy | Receitas</title>
     {% endblock %}
@@ -43,7 +51,7 @@
 
         {% block content %}
         {% endblock %}
-        
+
         <!-- footer init -->
         <footer class="footer">
             <span class="footer__text">Todos direitos reservados, receitas Foodfy.</span>
