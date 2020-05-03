@@ -3,7 +3,9 @@
     the admin domain
 */
 class ProfileController {
-    index() {}
+    index(_, res) {
+        return res.render('admin/profile/index');
+    }
 
     put() {}
 }

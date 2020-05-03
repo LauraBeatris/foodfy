@@ -1,0 +1,21 @@
+{% extends "admin/layouts/main.njk" %}
+
+{% block head %}
+    <title> Foodfy | Bem vindo Laura</title>
+{% endblock %}
+
+{% block content %}
+    <form action="/admin/profile?_method=PUT" method="POST">
+        <section class="users container">
+            <header class="section-header">
+                <h1 class="title font-md">Bem vindo Laura</h1>
+                <div class="actions-container">
+                    <button class="button font-xs" type="submit">Salvar</button>
+                </div>
+            </header>
+            <div class="users__form container">
+                    {% include "includes/profile/fields.njk" %}
+            </div>
+        </section>
+    </form>
+{% endblock %}

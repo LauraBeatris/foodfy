@@ -5,6 +5,7 @@
     --black: #000;
     --purple: #6558C3;
     --danger: #DC4747;
+    --cancel: #8A8A8A;
     --gray: #777777;
     --gray-light: #EEEEEE;
     --gray-medium: #999999;
@@ -179,6 +180,27 @@ a {
     font-size: calc(var(--font-2xs) + 2px);
 }
 
+button.header__link {
+    background: none;
+    border: none;
+}
+
+@media screen and (min-width: 1000px){
+    .header__link + form {
+        margin-left: var(--space-md);
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .header__link + form {
+        margin-top: var(--space-2xs);
+    }
+
+    .header__link---account {
+        margin-top: var(--space-2xs);
+    }
+}
+
 .header__link.active, .header__link:hover {
     font-weight: bold;
 }
@@ -233,6 +255,12 @@ a {
 
 .recipes, .chefs, .users {
     padding: 50px 0;
+}
+
+@media screen and (max-width: 900px) {
+    .recipes, .chefs, .users {
+        padding: 50px 20px;
+    }
 }
 
 .recipes__title {
@@ -308,6 +336,7 @@ a {
     border-radius: 50%;
     height: 64px;
     width: 64px;
+    object-fit: cover;
 }
 
 a.card,
@@ -459,6 +488,10 @@ input.button {
     background: var(--danger);
 }
 
+.button.button--cancel {
+    background:  var(--cancel);
+}
+
 /* == Form == */
 
 .recipe__form {
@@ -476,6 +509,19 @@ input.button {
     flex-direction: column;
     text-align: left;
     margin-bottom: 30px;
+}
+
+.field-container--checkbox {
+    flex-direction: row;
+    align-items: center;
+}
+
+.field-container.field-container--checkbox .label {
+    margin-bottom: 0;
+}
+
+.field-container input[type="checkbox"] {
+    margin-right: var(--space-2xs);
 }
 
 .field-container > #ingredients, .field-container > #preparations {
