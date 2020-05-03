@@ -3,3 +3,38 @@
 {% block head %}
     <title>Foodfy | Editar Usuário </title>
 {% endblock %}
+
+{% block content %}
+    <form
+        id="deleteForm"
+        style="display: none;"
+        action="/admin/users/{{user.id}}?_method=DELETE"
+        method="POST">
+    </form>
+    <!-- users section init -->
+    <form
+        id="updateForm"
+        action="/admin/users/{{user.id}}?_method=PUT"
+        method="POST"
+    >
+        <section class="users container">
+            <header class="section-header">
+                <h1 class="title font-md">Atualizar Usuário<h1/>
+
+                <input
+                    class="button button--delete font-xs"
+                    onclick="DeleteAlert.run(event, 'Você tem certeza que deseja deletar esse usuário?')"
+                    type="submit"
+                    form="deleteForm"
+                    value="Deletar"
+                />
+                <input class="button font-xs" type="submit" form="updateForm" value="Salvar" />
+            </header>
+
+            <section class="users__form container">
+                {% include "includes/users/fields.njk" %}
+            </section>
+        </section>
+        <!-- users section end -->
+    </form>
+{% endblock %}

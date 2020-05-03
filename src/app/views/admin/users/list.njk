@@ -3,3 +3,117 @@
 {% block head %}
     <title>Foodfy | Gerenciar Usuários </title>
 {% endblock %}
+
+{% block content %}
+    <!-- users section init -->
+    <section class="users container">
+        <header class="section-header">
+            <h1 class="title font-md">Gerenciar usuários<h1/>
+            <a class="button" href="/admin/users/create">Novo</a>
+        </header>
+        <div class="grid users-grid">
+            <div class="user-card">
+                <form
+                    id="deleteForm"
+                    style="display: none;"
+                    action="/admin/users/{{user.id}}?_method=DELETE"
+                    method="POST">
+                </form>
+                <span class="user-card__username">Diego Fernandes</span>
+                <span class="user-card__email">diego@rocketseat.com.br</span>
+                <footer class="user-card__footer">
+                    <a
+                        href="/admin/users/1/edit"
+                        class="user-card__action user-card__edit-user"
+                    >
+                        Editar
+                    </a>
+                    <input
+                        type="submit"
+                        class="user-card__action user-card__remove-user"
+                        onclick="DeleteAlert.run(event, 'Você tem certeza que deseja deletar esse usuário?')"
+                        value="Remover"
+                        form="deleteForm"
+                    />
+                </footer>
+            </div>
+
+             <div class="user-card">
+                <span class="user-card__username">Diego Fernandes</span>
+                <span class="user-card__email">diego@rocketseat.com.br</span>
+                <footer class="user-card__footer">
+                    <a
+                        href="/users/1/edit"
+                        class="user-card__action user-card__edit-user"
+                    >
+                        Editar
+                    </a>
+                    <button
+                        type="submit"
+                        class="user-card__action user-card__remove-user"
+                    >
+                        Remover
+                    </button>
+                </footer>
+            </div>
+
+             <div class="user-card">
+                <span class="user-card__username">Diego Fernandes</span>
+                <span class="user-card__email">diego@rocketseat.com.br</span>
+                <footer class="user-card__footer">
+                    <a
+                        href="/users/1/edit"
+                        class="user-card__action user-card__edit-user"
+                    >
+                        Editar
+                    </a>
+                    <button
+                        type="submit"
+                        class="user-card__action user-card__remove-user"
+                    >
+                        Remover
+                    </button>
+                </footer>
+            </div>
+
+             <div class="user-card">
+                <span class="user-card__username">Diego Fernandes</span>
+                <span class="user-card__email">diego@rocketseat.com.br</span>
+                <footer class="user-card__footer">
+                    <a
+                        href="/users/1/edit"
+                        class="user-card__action user-card__edit-user"
+                    >
+                        Editar
+                    </a>
+                    <button
+                        type="submit"
+                        class="user-card__action user-card__remove-user"
+                    >
+                        Remover
+                    </button>
+                </footer>
+            </div>
+
+             <div class="user-card">
+                <span class="user-card__username">Diego Fernandes</span>
+                <span class="user-card__email">diego@rocketseat.com.br</span>
+                <footer class="user-card__footer">
+                    <a
+                        href="/users/1/edit"
+                        class="user-card__action user-card__edit-user"
+                    >
+                        Editar
+                    </a>
+                    <button
+                        type="submit"
+                        class="user-card__action user-card__remove-user"
+                    >
+                        Remover
+                    </button>
+                </footer>
+            </div>
+        </div>
+    </section>
+    <!-- users section end -->
+{% endblock %}

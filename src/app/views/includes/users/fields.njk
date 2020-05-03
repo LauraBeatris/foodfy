@@ -1,0 +1,35 @@
+<div class="field-container">
+    <label class="label" for="name">Nome</label>
+    <input
+        type="text"
+        name="name"
+        id="name"
+        class="field"
+        value="{{user.name}}"
+        placeholder="Digite o nome completo"
+    />
+</div>
+
+<div class="field-container">
+    <label class="label" for="email">Email</label>
+    <input
+        type="email"
+        name="email"
+        id="email"
+        class="field"
+        value="{{user.email}}"
+        placeholder="Digite o email"
+    />
+</div>
+
+<div class="field-container field-container--checkbox">
+    <input
+        type="checkbox"
+        name="is_admin"
+        id="is_admin"
+        class="field"
+        checked="{{user.is_admin}}"
+        placeholder="Digite o email"
+    />
+    <label class="label" for="is_admin">Administrator</label>
+</div>
