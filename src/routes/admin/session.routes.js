@@ -6,7 +6,7 @@ const SessionController = require('../../app/controllers/admin/SessionController
 
 routes.get('/login', SessionController.loginForm);
 routes.post('/login', SessionController.login);
-routes.post('/logout', SessionController.logout);
+routes.delete('/logout', SessionController.logout);
 
 routes.get('/recover-password', SessionController.recoverPasswordForm);
 routes.post('/recover-password', SessionController.recoverPassword);
