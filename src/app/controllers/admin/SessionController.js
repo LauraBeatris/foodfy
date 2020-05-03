@@ -10,8 +10,9 @@ const mail = require('../../../config/mail');
 */
 
 class SessionController {
-    loginForm(_, res) {
-        return res.render('admin/sessions/login');
+    loginForm(req, res) {
+        const { success } = req.query;
+        return res.render('admin/sessions/login', { success });
     }
 
     login(req, res) {
@@ -83,11 +84,34 @@ class SessionController {
         }
     }
 
-    resetPasswordForm(_, res) {
-        return res.render('admin/sessions/resetPassword');
+    resetPasswordForm(req, res) {
+        const { token } = req.query;
+        return res.render('admin/sessions/resetPassword', { token });
     }
 
-    resetPassword() {}
+    async resetPassword(req, res) {
+        try {
+            const { newPassword } = req.body;
+
+            await User.update({
+                id: req.user.id,
+                userData: {
+                    password: newPassword,
+                    reset_token: '',
+                    reset_token_expires: '',
+                },
+            });
+
+            return res.redirect(
+                '/admin/login?success=Senha atualizada com sucesso'
+            );
+        } catch (err) {
+            return res.render('admin/sessions/resetPassword', {
+                error:
+                    'Houve um erro ao enviar criar uma nova senha. Por favor, tente novamente.',
+            });
+        }
+    }
 }
 
 module.exports = new SessionController();

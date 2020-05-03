@@ -1,3 +1,4 @@
+const dateFns = require('date-fns');
 const User = require('../models/User');
 
 class SessionValidator {
@@ -63,6 +64,94 @@ class SessionValidator {
                 error:
                     'Houve um erro ao enviar o email de recuperação de senha. Por favor, tente novamente.',
                 email,
+            });
+        }
+    }
+
+    resetPasswordForm(req, res, next) {
+        if (!req.query.token) {
+            return res.redirect('/admin/login');
+        }
+
+        return next();
+    }
+
+    async resetPassword(req, res, next) {
+        // TODO - Verify fields
+        const { email, newPassword, confirmNewPassword, token } = req.body;
+
+        try {
+            const verifyIfUserExistsResults = await User.findOne({
+                where: {
+                    email,
+                },
+            });
+            const verifyIfUserExists = verifyIfUserExistsResults.rows[0];
+
+            if (!verifyIfUserExists) {
+                return res.render('admin/sessions/recoverPassword', {
+                    error:
+                        'Usuário não encontrado. Tem certeza que digitou o email correto?',
+                    user: req.body,
+                    token,
+                });
+            }
+
+            if (newPassword !== confirmNewPassword) {
+                return res.status(404).render('session/reset-password.njk', {
+                    error: 'Senhas não coincidem',
+                    user: req.body,
+                    token,
+                });
+            }
+
+            const { reset_token, reset_token_expires } = verifyIfUserExists;
+
+            if (!reset_token || !reset_token_expires) {
+                return res
+                    .status(404)
+                    .render('admin/sessions/resetPassword.njk', {
+                        error:
+                            'Tokens inválidos. Refaça a solicitação para criar uma nova senha',
+                        user: req.body,
+                        token,
+                    });
+            }
+
+            const parsedResetTokenExpire = dateFns.parseISO(
+                reset_token_expires
+            );
+
+            const expiredToken = dateFns.isAfter(
+                parsedResetTokenExpire,
+                new Date()
+            );
+            const validToken = reset_token === token;
+
+            if (expiredToken) {
+                return res.redirect(
+                    301,
+                    `/admin/recover-password?error=Token Expirado.
+                  Por favor, envie uma nova solicitação`
+                );
+            }
+
+            if (!validToken) {
+                return res.redirect(
+                    301,
+                    `/admin/recover-password?error=Token Inválido`
+                );
+            }
+
+            req.user = verifyIfUserExists;
+
+            return next();
+        } catch (err) {
+            return res.render('admin/sessions/resetPassword', {
+                error:
+                    'Houve um erro ao enviar criar uma nova senha. Por favor, tente novamente.',
+                user: req.body,
+                token,
             });
         }
     }
