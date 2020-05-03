@@ -1,3 +1,5 @@
+const User = require('../../models/User');
+
 /*
     This controller is responsable for the user operations related to
     the admin domain
@@ -11,7 +13,21 @@ class UserController {
         return res.render('admin/users/create');
     }
 
-    post() {}
+    async post(req, res) {
+        try {
+            await User.create(req.body);
+
+            return res.render('admin/users/create', {
+                success: 'Usuário criado com sucesso',
+            });
+        } catch (err) {
+            console.log(err);
+            return res.render('admin/users/create', {
+                error:
+                    'Houve um erro no cadastro do usuário. Por favor, tente novamente.',
+            });
+        }
+    }
 
     edit(_, res) {
         return res.render('admin/users/edit');
