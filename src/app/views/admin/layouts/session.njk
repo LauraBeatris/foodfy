@@ -15,22 +15,23 @@
         rel="stylesheet"
     />
     {% block head %}
-        <title>Foodfy Admin | Entrar na plataforma</title>
     {% endblock %}
 </head>
 <body>
     <!-- init header -->
-    <header class="header header--admin">
+    <header class="header">
         <div class="container">
-            <a class="header__link" href="/admin/recipes">
-                <h1 class="header__title" >Foodfy</h1>
+            <a class="header__link" href="/admin/login">
+                <h1 class="header__title">Foodfy</h1>
             </a>
         </div>
     </header>
     <!-- end header -->
 
-    {% block content %}
-    {% endblock %}
+    <main class="auth-container">
+        {% block content %}
+        {% endblock %}
+    </main>
 
     <script src="/scripts.js"></script>
 </body>
