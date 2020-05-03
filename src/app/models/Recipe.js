@@ -1,3 +1,4 @@
+const fs = require('fs');
 const db = require('../../config/database');
 const File = require('./File');
 
@@ -132,6 +133,15 @@ class Chef {
         `;
 
         await db.query(query, [values.recipe_id, values.file_id]);
+
+        query = `
+            SELECT * FROM files WHERE id = $1
+        `;
+
+        const fileResults = await db.query(query, [values.file_id]);
+        const file = fileResults.rows[0];
+
+        fs.unlinkSync(file.path);
 
         query = `
             DELETE FROM files
