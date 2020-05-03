@@ -1,5 +1,27 @@
 {% extends "admin/layouts/main.njk" %}
 
 {% block head %}
-    <title>Foodfy | Criar Usuário</title>
+    <title> Foodfy | Criar Usuário </title>
+{% endblock %}
+
+{% block content %}
+    <form action="/admin/recipes" method="POST">
+        <section class="users container">
+            <header class="section-header">
+                <h1 class="title font-md">Criar Usuário</h1>
+                <div class="actions-container">
+                    <button class="button font-xs" type="submit">Salvar</button>
+                    <a
+                        class="button button--cancel font-xs"
+                        href="/admin/users"
+                    >
+                        Cancelar
+                    </a>
+                </div>
+            </header>
+            <div class="users__form container">
+                    {% include "includes/users/fields.njk" %}
+            </div>
+        </section>
+    </form>
 {% endblock %}

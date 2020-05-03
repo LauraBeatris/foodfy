@@ -6,15 +6,21 @@
 {% endblock %}
 
 {% block content %}
-    <form class="recipes recipes--admin container" action="/admin/recipes" method="POST" enctype="multipart/form-data">
-        <div class="row">
-            <h1 class="title font-md">Criando receita</h1>
-            <div class="actions-container">
-                <button class="button font-xs" type="submit">Salvar receita</button>
+    <form
+        action="/admin/recipes"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+        <section class="recipes recipes--admin container">
+            <header class="section-header">
+                <h1 class="title font-md">Criando receita</h1>
+                <div class="actions-container">
+                    <button class="button font-xs" type="submit">Salvar receita</button>
+                </div>
+            </header>
+            <div class="recipe__form container">
+                    {% include "includes/recipes/fields.njk" %}
             </div>
-        </div>
-        <section class="recipe__form container">
-                {% include "includes/recipes/fields.njk" %}
         </section>
     </form>
 {% endblock %}
