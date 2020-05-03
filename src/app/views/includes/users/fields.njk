@@ -28,7 +28,7 @@
         name="is_admin"
         id="is_admin"
         class="field"
-        checked="{{user.is_admin}}"
+        {% if user.is_admin %} checked {% endif %}
         placeholder="Digite o email"
     />
     <label class="label" for="is_admin">Administrator</label>
