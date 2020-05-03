@@ -19,7 +19,11 @@
             </div>
             <div class="gallery-preview">
                 {% for photo in files %}
-                    <img src="{{photo.path}}" {% if loop.first %} class="active" {% endif %} onclick="ImageGallery.setImage(event)"/>
+                    <img
+                        src="{{photo.path}}"
+                        {% if loop.first %} class="active" {% endif %}
+                        onclick="ImageGallery.setImage(event)"
+                    />
                 {% endfor %}
             </div>
             <h1 class="details__title title font-xl">{{recipe.title}}</h1>

@@ -29,17 +29,38 @@
             <nav class="header__nav">
                 <ul class="header-list">
                     <li class="header-list__item">
-                        <a class="header__link header__link---admin js-header__link" href="/admin/recipes">Receitas</a>
+                        <a
+                          class="header__link header__link---admin js-header__link"
+                          href="/admin/recipes"
+                        >
+                            Receitas
+                        </a>
                     </li>
                     <li class="header-list__item">
-                        <a class="header__link header__link---admin js-header__link" href="/admin/chefs">Chefs</a>
+                        <a
+                          class="header__link header__link---admin js-header__link"
+                          href="/admin/chefs"
+                        >
+                            Chefs
+                        </a>
                     </li>
                     <li class="header-list__item">
-                        <a class="header__link header__link---admin js-header__link" href="/admin/users">Usuários</a>
+                        <a
+                          class="header__link header__link---admin js-header__link"
+                          href="/admin/users"
+                        >
+                          Usuários
+                        </a>
                     </li>
                 </ul>
             </nav>
 
+            <a
+              class="header__link header__link---account header__link---admin js-header__link"
+              href="/admin/profile"
+            >
+                Minha Conta
+            </a>
             <form
                 action="/admin/logout?_method=DELETE"
                 method="POST"
