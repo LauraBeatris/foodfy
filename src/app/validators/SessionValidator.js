@@ -29,9 +29,40 @@ class SessionValidator {
 
             return next();
         } catch (err) {
-            return res.render('admin/users', {
+            return res.render('admin/sessions/login', {
                 error:
                     'Houve um erro na autenticação do usuário. Por favor, tente novamente.',
+            });
+        }
+    }
+
+    async recoverPassword(req, res, next) {
+        const { email } = req.body;
+
+        try {
+            const verifyIfUserExistsResults = await User.findOne({
+                where: {
+                    email,
+                },
+            });
+            const verifyIfUserExists = verifyIfUserExistsResults.rows[0];
+
+            if (!verifyIfUserExists) {
+                return res.render('admin/sessions/recoverPassword', {
+                    error:
+                        'Usuário não encontrado. Tem certeza que digitou o email correto?',
+                    email,
+                });
+            }
+
+            req.user = verifyIfUserExists;
+
+            return next();
+        } catch (err) {
+            return res.render('admin/sessions/recoverPassword', {
+                error:
+                    'Houve um erro ao enviar o email de recuperação de senha. Por favor, tente novamente.',
+                email,
             });
         }
     }

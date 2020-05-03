@@ -10,7 +10,11 @@ routes.post('/login', SessionValidator.login, SessionController.login);
 routes.delete('/logout', SessionController.logout);
 
 routes.get('/recover-password', SessionController.recoverPasswordForm);
-routes.post('/recover-password', SessionController.recoverPassword);
+routes.post(
+    '/recover-password',
+    SessionValidator.recoverPassword,
+    SessionController.recoverPassword
+);
 
 routes.get('/reset-password', SessionController.resetPasswordForm);
 routes.post('/reset-password', SessionController.resetPassword);
