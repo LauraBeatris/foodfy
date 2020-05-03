@@ -3,17 +3,23 @@
     the admin domain
 */
 class SessionController {
-    loginForm() {}
+    loginForm(req, res) {
+        return res.render('admin/sessions/login');
+    }
 
     login() {}
 
     logout() {}
 
-    recoverPasswordForm() {}
+    recoverPasswordForm(req, res) {
+        return res.render('admin/sessions/recoverPassword');
+    }
 
     recoverPassword() {}
 
-    resetPasswordForm() {}
+    resetPasswordForm(req, res) {
+        return res.render('admin/sessions/resetPassword');
+    }
 
     resetPassword() {}
 }

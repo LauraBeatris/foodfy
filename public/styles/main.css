@@ -59,6 +59,13 @@ a {
     width: 100%;
 }
 
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 var(--space-md);
+}
+
 .text {
     line-height: 28px;
     font-size: var(--font-xs);
@@ -224,7 +231,7 @@ a {
 
 /* === Receitas e Cards === */
 
-.recipes, .chefs {
+.recipes, .chefs, .users {
     padding: 50px 0;
 }
 
@@ -354,15 +361,15 @@ a.card-info__action:hover,
         grid-gap: 20px;
     }
 
-    .grid.grid--two_columns {
+    .grid.grid--two-columns {
             grid-template-columns: repeat(2, 1fr);
     }
 
-    .grid.grid--three_columns {
+    .grid.grid--three-columns {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .grid.grid--four_columns {
+    .grid.grid--four-columns {
         grid-template-columns: repeat(4, 1fr);
     }
 
