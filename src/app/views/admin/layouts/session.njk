@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/admin.css">
+    <link rel="icon" href="/assets/favicon.ico">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+      >
+    <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
+        rel="stylesheet"
+    />
+    {% block head %}
+        <title>Foodfy Admin | Entrar na plataforma</title>
+    {% endblock %}
+</head>
+<body>
+    <!-- init header -->
+    <header class="header header--admin">
+        <div class="container">
+            <a class="header__link" href="/admin/recipes">
+                <h1 class="header__title" >Foodfy</h1>
+            </a>
+        </div>
+    </header>
+    <!-- end header -->
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="/scripts.js"></script>
+</body>
+</html>

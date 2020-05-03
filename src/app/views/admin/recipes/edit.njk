@@ -1,4 +1,4 @@
-{% extends "admin/layout.njk" %}
+{% extends "admin/layouts/main.njk" %}
 
 {% block head %}
     <link rel="stylesheet" href="/styles/recipe.css"/>
@@ -12,11 +12,11 @@
         <div class="row">
             <h1 class="title font-md">Editando receita</h1>
             <div class="actions-container">
-                <input 
-                    class="button button--delete font-xs" 
-                    onclick="DeleteAlert.run(event, 'Você tem certeza que deseja deletar essa receita?')" 
-                    type="submit" 
-                    form="deleteForm" 
+                <input
+                    class="button button--delete font-xs"
+                    onclick="DeleteAlert.run(event, 'Você tem certeza que deseja deletar essa receita?')"
+                    type="submit"
+                    form="deleteForm"
                     value="Deletar"
                 />
                 <input class="button font-xs" type="submit" form="updateForm" value="Salvar receita" />

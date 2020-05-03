@@ -1,4 +1,4 @@
-{% extends "admin/layout.njk" %}
+{% extends "admin/layouts/main.njk" %}
 
 {% block head %}
     <title>Foodfy Admin | Chefs </title>
@@ -11,7 +11,7 @@
         <a class="button" href="/admin/chefs/create">Criar chef</a>
     </div>
     <div class="grid grid--four_columns">
-        {% for chef in chefs %} 
+        {% for chef in chefs %}
             <div class="card--secondary">
                 <img class="card__img---rounded" src="{{chef.avatar}}" alt="Receita de {{chef.name}}" title="{{chef.name}}" aria-hidden="true"/>
                 <div class="card-info">
@@ -19,10 +19,8 @@
                     <a class="card-info__action" href="/admin/chefs/{{chef.id}}">Visualizar</a>
                 </div>
             </div>
-        {% endfor %}  
+        {% endfor %}
     </div>
 </section>
     <!-- recipes section end -->
 {% endblock %}
-
-
