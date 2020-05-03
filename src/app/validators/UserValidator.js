@@ -12,7 +12,8 @@ class UserValidator {
 
             if (findUserByEmail) {
                 return res.render('admin/users/create', {
-                    error: 'Esse usuário já está cadastrado no sistema',
+                    error:
+                        'Esse email já está sendo utilizado por outro usuário',
                 });
             }
 
@@ -63,7 +64,8 @@ class UserValidator {
 
                 if (findUserByEmail) {
                     return res.render('admin/users/edit', {
-                        error: 'Esse usuário já está cadastrado no sistema',
+                        error:
+                            'Esse email já está sendo utilizado por outro usuário',
                         user: { ...req.body, id },
                     });
                 }

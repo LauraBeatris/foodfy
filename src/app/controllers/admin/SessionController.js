@@ -3,21 +3,38 @@
     the admin domain
 */
 class SessionController {
-    loginForm(req, res) {
+    loginForm(_, res) {
         return res.render('admin/sessions/login');
     }
 
-    login() {}
+    login(req, res) {
+        try {
+            req.session.user = req.user;
 
-    logout() {}
+            return res.redirect(
+                '/admin/profile?success=Usuário autenticado com sucesso'
+            );
+        } catch (err) {
+            return res.render('admin/sessions/login', {
+                error:
+                    'Houve um erro na autenticação do usuário. Por favor, tente novamente.',
+            });
+        }
+    }
 
-    recoverPasswordForm(req, res) {
+    logout(req, res) {
+        req.session.destroy();
+
+        return res.redirect('/admin/login');
+    }
+
+    recoverPasswordForm(_, res) {
         return res.render('admin/sessions/recoverPassword');
     }
 
     recoverPassword() {}
 
-    resetPasswordForm(req, res) {
+    resetPasswordForm(_, res) {
         return res.render('admin/sessions/resetPassword');
     }
 

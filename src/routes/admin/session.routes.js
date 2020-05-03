@@ -3,9 +3,10 @@ const express = require('express');
 const routes = express.Router();
 
 const SessionController = require('../../app/controllers/admin/SessionController');
+const SessionValidator = require('../../app/validators/SessionValidator');
 
 routes.get('/login', SessionController.loginForm);
-routes.post('/login', SessionController.login);
+routes.post('/login', SessionValidator.login, SessionController.login);
 routes.delete('/logout', SessionController.logout);
 
 routes.get('/recover-password', SessionController.recoverPasswordForm);
