@@ -3,14 +3,15 @@
     --rose: #FBDFDB;
     --dark: #111111;
     --black: #000;
-    --purple: #6558C3;
-    --danger: #DC4747;
-    --cancel: #8A8A8A;
     --gray: #777777;
     --gray-light: #EEEEEE;
     --gray-medium: #999999;
     --gray-medium-secondary: #969696;
     --gray-dark: #444444;
+    --purple: #6558C3;
+    --danger: #DC4747;
+    --cancel: #8A8A8A;
+    --success: #01B12A;
 
     --font-3xs: 12px;
     --font-2xs: 14px;
@@ -86,6 +87,35 @@ a {
 
 .link:hover {
     color: var(--gray-dark);
+}
+
+.message {
+    position: absolute;
+    right: 18px;
+    top: 12px;
+    width: 344px;
+    padding: 61px 44px;
+    color: var(--white);
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.message---error {
+    background: var(--danger);
+}
+
+.message---success {
+    background: var(--success);
+}
+
+.message.hide {
+    animation: hidemessage 1.5s 1s ease-out forwards;
+}
+
+.message.show {
+    animation: showmessage 1s 0s ease-out forwards;
 }
 
 .hidden {

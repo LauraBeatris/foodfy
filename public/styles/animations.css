@@ -1,0 +1,15 @@
+@keyframes hidemessage {
+    to {
+      right: -1000px;
+    }
+  }
+
+  @keyframes showmessage {
+    from {
+      right: -1000px;
+    }
+
+    to {
+      right: 18px;
+    }
+}

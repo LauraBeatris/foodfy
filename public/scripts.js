@@ -204,5 +204,18 @@ const ImageGallery = {
     },
 };
 
+const ToastyMessages = {
+    listen() {
+        const message = document.querySelector('.message');
+
+        if (message)
+            setTimeout(() => {
+                message.classList.remove('show');
+                message.classList.add('hide');
+            }, 3000);
+    },
+};
+
 Navigation.active();
 AddField.listen();
+ToastyMessages.listen();
