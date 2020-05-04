@@ -6,6 +6,11 @@ const ProfileController = require('../../app/controllers/admin/ProfileController
 const ProfileValidator = require('../../app/validators/ProfileValidator');
 
 routes.get('/profile', ProfileController.index);
-routes.put('/profile', ProfileValidator.put, ProfileController.put);
+routes.put(
+    '/profile',
+    ProfileValidator.putFields(),
+    ProfileValidator.put,
+    ProfileController.put
+);
 
 module.exports = routes;

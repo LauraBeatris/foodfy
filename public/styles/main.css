@@ -10,6 +10,7 @@
     --gray-dark: #444444;
     --purple: #6558C3;
     --danger: #DC4747;
+    --error: #FF3131;
     --cancel: #8A8A8A;
     --success: #01B12A;
 
@@ -583,6 +584,16 @@ button.field-container__action {
     font-size: 16px;
     color: var(--dark);
     padding: 0 20px;
+}
+
+.field.error {
+    border: 1px solid var(--error);
+}
+
+.error-message {
+    font-size: var(--font-2xs);
+    color: var(--error);
+    margin-top: calc(var(--space-2xs) / 2);
 }
 
 .field:disabled {

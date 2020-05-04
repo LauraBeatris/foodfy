@@ -27,17 +27,34 @@
 
 <div class="field-container">
     <label class="label" for="title">Título da receita</label>
-    <input name="title" type="text" id="title" class="field" value="{{recipe.title}}"/>
+    <input
+        name="title"
+        type="text"
+        id="title"
+        class="field {% if validationErrorMessages.title %}error{% endif %}"
+        value="{{recipe.title}}"
+    />
+    {% if validationErrorMessages.title %}
+        <span class="error-message">{{validationErrorMessages.title}}</span>
+    {% endif %}
 </div>
 
 <div class="field-container">
     <label class="label" for="author">Chef</label>
-    <select id="author" name="chef_id" class="field field---select" value="{{recipe.chef_id}}">
+    <select
+        id="author"
+        name="chef_id"
+        class="field field---select  {% if validationErrorMessages.email %}error{% endif %}"
+        value="{{recipe.chef_id}}"
+    >
         <option value="" disabled selected>Selecione um chef</option>
         {% for option in chefOptions %}
             <option value="{{option.id}}" {% if recipe.chef_id === option.id %} selected {% endif %}>{{option.name}}</option>
         {% endfor %}
     </select>
+    {% if validationErrorMessages.chef_id %}
+        <span class="error-message">{{validationErrorMessages.chef_id}}</span>
+    {% endif %}
 </div>
 
 <div class="field-container field-container---ingredients">
@@ -52,13 +69,16 @@
         {% endif %}
   </div>
   <button class="field-container__action js-add-ingredient" type="button">Adicionar novo ingrediente</button>
+   {% if validationErrorMessages.ingredients %}
+        <span class="error-message">{{validationErrorMessages.ingredients}}</span>
+   {% endif %}
 </div>
 
 <div class="field-container field-container---preparations">
     <div id="preparations">
         <label class="label" for="preparations">Modo de preparo</label>
-        {% if recipe.preparation.length > 0 %}
-            {% for preparation in recipe.preparation %}
+        {% if recipe.preparations.length > 0 %}
+            {% for preparation in recipe.preparations %}
                 <input type="text" class="field" name="preparations[]" value="{{preparation}}"/>
             {% endfor %}
         {% else %}
@@ -66,6 +86,9 @@
         {% endif %}
      </div>
     <button class="field-container__action js-add-preparation" type="button">Adicionar novo passo</button>
+    {% if validationErrorMessages.preparations %}
+        <span class="error-message">{{validationErrorMessages.preparations}}</span>
+    {% endif %}
 </div>
 
 <div class="field-container">

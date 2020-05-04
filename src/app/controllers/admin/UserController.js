@@ -43,9 +43,9 @@ class UserController {
                 `,
             });
 
-            return res.render('admin/users/create', {
-                success: 'Usuário criado com sucesso',
-            });
+            return res.redirect(
+                '/admin/users?success=Usuário criado com sucesso'
+            );
         } catch (err) {
             return res.render('admin/users/create', {
                 error:

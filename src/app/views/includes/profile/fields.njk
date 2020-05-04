@@ -4,10 +4,13 @@
         type="text"
         name="name"
         id="name"
-        class="field"
+        class="field {% if validationErrorMessages.name %}error{% endif %}"
         value="{{user.name}}"
         placeholder="Digite o nome completo"
     />
+    {% if validationErrorMessages.name %}
+        <span class="error-message">{{validationErrorMessages.name}}</span>
+    {% endif %}
 </div>
 
 <div class="field-container">
@@ -16,10 +19,13 @@
         type="email"
         name="email"
         id="email"
-        class="field"
+        class="field {% if validationErrorMessages.email %}error{% endif %}"
         value="{{user.email}}"
         placeholder="Digite o email"
     />
+    {% if validationErrorMessages.email %}
+        <span class="error-message">{{validationErrorMessages.email}}</span>
+    {% endif %}
 </div>
 
 <div class="field-container">
@@ -28,7 +34,10 @@
         type="password"
         name="password"
         id="password"
-        class="field"
+        class="field {% if validationErrorMessages.password %}error{% endif %}"
         placeholder="Digite a senha"
     />
+    {% if validationErrorMessages.password %}
+        <span class="error-message">{{validationErrorMessages.password}}</span>
+    {% endif %}
 </div>

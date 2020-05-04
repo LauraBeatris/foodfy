@@ -1,7 +1,30 @@
+const { check } = require('express-validator');
 const User = require('../models/User');
+const { parseValidationErrors } = require('../../lib/utils');
 
 class SessionValidator {
+    loginFields() {
+        return [
+            check('email')
+                .isEmail()
+                .withMessage('Email inválido')
+                .not()
+                .isEmpty()
+                .withMessage('Digite seu email'),
+            check('password').not().isEmpty().withMessage('Digite sua senha'),
+        ];
+    }
+
     async login(req, res, next) {
+        const validationErrorMessages = parseValidationErrors(req);
+
+        if (Object.keys(validationErrorMessages).length > 0) {
+            return res.render('admin/sessions/login', {
+                validationErrorMessages,
+                user: req.body,
+            });
+        }
+
         try {
             const verifyIfUserExistsResults = await User.findOne({
                 where: {
@@ -36,7 +59,27 @@ class SessionValidator {
         }
     }
 
+    recoverPasswordFields() {
+        return [
+            check('email')
+                .isEmail()
+                .withMessage('Email inválido')
+                .not()
+                .isEmpty()
+                .withMessage('Digite seu email'),
+        ];
+    }
+
     async recoverPassword(req, res, next) {
+        const validationErrorMessages = parseValidationErrors(req);
+
+        if (Object.keys(validationErrorMessages).length > 0) {
+            return res.render('admin/sessions/recoverPassword', {
+                validationErrorMessages,
+                user: req.body,
+            });
+        }
+
         const { email } = req.body;
 
         try {
@@ -75,7 +118,44 @@ class SessionValidator {
         return next();
     }
 
+    resetPasswordFields() {
+        return [
+            check('email')
+                .isEmail()
+                .withMessage('Email inválido')
+                .not()
+                .isEmpty()
+                .withMessage('Digite seu email'),
+            check('newPassword')
+                .not()
+                .isEmpty()
+                .withMessage('Digite uma nova senha'),
+            check('confirmNewPassword')
+                .not()
+                .isEmpty()
+                .withMessage('Confirme sua nova senha')
+                .bail()
+                .custom((value, { req }) => {
+                    if (value !== req.body.newPassword) {
+                        return false;
+                    }
+                    return true;
+                })
+                .withMessage('As senhas não correspondem'),
+        ];
+    }
+
     async resetPassword(req, res, next) {
+        const validationErrorMessages = parseValidationErrors(req);
+
+        if (Object.keys(validationErrorMessages).length > 0) {
+            return res.render('admin/sessions/resetPassword', {
+                validationErrorMessages,
+                user: req.body,
+                token: req.body.token,
+            });
+        }
+
         const { email, newPassword, confirmNewPassword, token } = req.body;
 
         try {

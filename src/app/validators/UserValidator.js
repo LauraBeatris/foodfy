@@ -1,7 +1,33 @@
+const { check } = require('express-validator');
 const User = require('../models/User');
+const { parseValidationErrors } = require('../../lib/utils');
 
 class UserValidator {
+    postFields() {
+        return [
+            check('name')
+                .not()
+                .isEmpty()
+                .withMessage('Digite o nome do usuário'),
+            check('email')
+                .isEmail()
+                .withMessage('Email inválido')
+                .not()
+                .isEmpty()
+                .withMessage('Digite o email do usuário'),
+        ];
+    }
+
     async post(req, res, next) {
+        const validationErrorMessages = parseValidationErrors(req);
+
+        if (Object.keys(validationErrorMessages).length > 0) {
+            return res.render('admin/users/create', {
+                validationErrorMessages,
+                user: req.body,
+            });
+        }
+
         try {
             const { email } = req.body;
 
@@ -50,7 +76,29 @@ class UserValidator {
         }
     }
 
+    putFields() {
+        return [
+            check('name')
+                .not()
+                .isNumeric()
+                .withMessage('O nome do usuário não pode conter numéros'),
+            check('email').isEmail().withMessage('Email inválido'),
+        ];
+    }
+
     async put(req, res, next) {
+        const validationErrorMessages = parseValidationErrors(req);
+
+        if (Object.keys(validationErrorMessages).length > 0) {
+            return res.render('admin/users/edit', {
+                validationErrorMessages,
+                user: {
+                    ...req.body,
+                    id: req.params.id,
+                },
+            });
+        }
+
         const { id } = req.params;
 
         try {

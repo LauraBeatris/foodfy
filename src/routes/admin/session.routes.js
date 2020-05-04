@@ -6,12 +6,18 @@ const SessionController = require('../../app/controllers/admin/SessionController
 const SessionValidator = require('../../app/validators/SessionValidator');
 
 routes.get('/login', SessionController.loginForm);
-routes.post('/login', SessionValidator.login, SessionController.login);
+routes.post(
+    '/login',
+    SessionValidator.loginFields(),
+    SessionValidator.login,
+    SessionController.login
+);
 routes.delete('/logout', SessionController.logout);
 
 routes.get('/recover-password', SessionController.recoverPasswordForm);
 routes.post(
     '/recover-password',
+    SessionValidator.recoverPasswordFields(),
     SessionValidator.recoverPassword,
     SessionController.recoverPassword
 );
@@ -23,6 +29,7 @@ routes.get(
 );
 routes.post(
     '/reset-password',
+    SessionValidator.resetPasswordFields(),
     SessionValidator.resetPassword,
     SessionController.resetPassword
 );

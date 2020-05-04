@@ -7,8 +7,12 @@ const { formatFilePath } = require('../../../lib/utils');
 */
 class RecipesAdminController {
     async index(req, res) {
+        const { success, error } = req.query;
+        const { user } = req.session;
         try {
-            const results = await Recipe.allByUser(req.session.user.id);
+            const results = user.is_admin
+                ? await Recipe.allByUser(user.id)
+                : await Recipe.all();
             const recipes = results.rows.map((recipe) => ({
                 ...recipe,
                 photo: recipe.photo
@@ -16,16 +20,14 @@ class RecipesAdminController {
                     : 'https://place-hold.it/172x80?text=Receita%20sem%20foto',
             }));
 
-            return res.render('admin/recipes/index', { recipes });
+            return res.render('admin/recipes/index', {
+                recipes,
+                success,
+                error,
+            });
         } catch (err) {
-            const errorData = {
-                message: err.message || 'Database error',
-                name: err.name,
-                status: err.status || 500,
-            };
-            return res.status(errorData.status).json({
-                error: 'Houve um erro durante a procura de receitas',
-                errorData,
+            return res.render('admin/recipes/index', {
+                error: 'Erro ao listar receitas',
             });
         }
     }
@@ -45,7 +47,7 @@ class RecipesAdminController {
 
             return res.status(errorData.status).json({
                 error:
-                    'Houve um erro durante o render da view de criação uma receita',
+                    'Houve um erro ao renderizar a view de criação uma receita',
                 errorData,
             });
         }
@@ -61,22 +63,22 @@ class RecipesAdminController {
             );
             await Promise.all(recipeFilesPromises);
 
-            return res.redirect(301, `/admin/recipes/${recipe.id}`);
+            return res.redirect(
+                301,
+                `/admin/recipes/${recipe.id}?success=Receita criada com sucesso`
+            );
         } catch (err) {
-            const errorData = {
-                message: err.message || 'Database error',
-                name: err.name,
-                status: err.status || 500,
-            };
-
-            return res.status(errorData.status).json({
-                error: 'Houve um erro durante a criação de uma receita',
-                errorData,
+            return res.render('admin/recipes/create', {
+                error:
+                    'Houve um erro ao criar a receita. Por favor, tente novamente.',
+                recipe: req.body,
+                chefOptions: req.chefOptions,
             });
         }
     }
 
     async show(req, res) {
+        const { success, error } = req.query;
         try {
             // Get recipe
             let results = await Recipe.find(req.params.id);
@@ -94,6 +96,8 @@ class RecipesAdminController {
             return res.render('admin/recipes/show', {
                 recipe,
                 files,
+                success,
+                error,
             });
         } catch (err) {
             const errorData = {
@@ -101,8 +105,9 @@ class RecipesAdminController {
                 name: err.name,
                 status: err.status || 500,
             };
+
             return res.status(errorData.status).json({
-                error: 'Houve um erro durante a procura de um chef',
+                error: 'Houve um erro ao procurar pela receita',
                 errorData,
             });
         }
@@ -140,7 +145,8 @@ class RecipesAdminController {
             };
 
             return res.status(errorData.status).json({
-                error: 'Error when trying to edit a recipe',
+                error:
+                    'Houve um erro durante o render da view de edição uma receita',
                 errorData,
             });
         }
@@ -183,16 +189,15 @@ class RecipesAdminController {
                 await Promise.all(removedFilesPromises);
             }
 
-            return res.redirect(301, `/admin/recipes/${recipe.id}`);
+            return res.redirect(
+                301,
+                `/admin/recipes/${recipe.id}?success=Receita editada com sucesso`
+            );
         } catch (err) {
-            const errorData = {
-                message: err.message || 'Database error',
-                name: err.name,
-                status: err.status || 500,
-            };
-            return res.status(errorData.status).json({
-                error: 'Houve um erro durante a atualização de um chef',
-                errorData,
+            return res.render('admin/recipes/edit', {
+                error:
+                    'Houve um erro ao editar a receita. Por favor, tente novamente',
+                recipe: req.body,
             });
         }
     }
@@ -200,16 +205,15 @@ class RecipesAdminController {
     async delete(req, res) {
         try {
             await Recipe.delete(req.params.id);
-            return res.redirect(301, `/admin/recipes`);
+            return res.redirect(
+                301,
+                `/admin/recipes?success=Receita deletada com sucesso`
+            );
         } catch (err) {
-            const errorData = {
-                message: err.message || 'Database error',
-                name: err.name,
-                status: err.status || 500,
-            };
-            return res.status(errorData.status).json({
-                error: 'Houve um erro durante a deleção de uma receita',
-                errorData,
+            return res.render('admin/recipes/edit', {
+                error:
+                    'Houve um erro ao deletar a receita. Por favor, tente novamente',
+                recipe: req.body,
             });
         }
     }

@@ -4,10 +4,13 @@
         type="email"
         name="email"
         id="email"
-        class="field"
+        class="field {% if validationErrorMessages.email %}error{% endif %}"
         value="{{user.email}}"
         placeholder="Digite seu email"
     />
+    {% if validationErrorMessages.email %}
+        <span class="error-message">{{validationErrorMessages.email}}</span>
+    {% endif %}
 </div>
 
 <div class="field-container">
@@ -16,8 +19,11 @@
         type="password"
         name="password"
         id="password"
-        class="field"
+        class="field {% if validationErrorMessages.password %}error{% endif %}"
         value="{{user.password}}"
         placeholder="Digite sua senha"
     />
+    {% if validationErrorMessages.password %}
+        <span class="error-message">{{validationErrorMessages.password}}</span>
+    {% endif %}
 </div>
