@@ -35,7 +35,7 @@ class Recipe {
                     user_id,
                     title,
                     ingredients,
-                    preparation,
+                    preparations,
                     information
                 ) VALUES (
                     $1,
@@ -90,7 +90,7 @@ class Recipe {
                     chef_id = ($1),
                     title = ($2),
                     ingredients = ($3),
-                    preparation = ($4),
+                    preparations = ($4),
                     information = ($5)
                 WHERE recipes.id = $6
                 RETURNING id
