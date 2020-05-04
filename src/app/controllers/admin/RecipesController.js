@@ -8,7 +8,7 @@ const { formatFilePath } = require('../../../lib/utils');
 class RecipesAdminController {
     async index(req, res) {
         try {
-            const results = await Recipe.all();
+            const results = await Recipe.allByUser(req.session.user.id);
             const recipes = results.rows.map((recipe) => ({
                 ...recipe,
                 photo: recipe.photo
@@ -30,7 +30,7 @@ class RecipesAdminController {
         }
     }
 
-    async create(_, res) {
+    async create(req, res) {
         try {
             const results = await Recipe.chefOptions();
             const chefOptions = results.rows;
@@ -53,7 +53,10 @@ class RecipesAdminController {
 
     async post(req, res) {
         try {
-            const results = await Recipe.create(req.body);
+            const results = await Recipe.create({
+                ...req.body,
+                user_id: req.session.user.id,
+            });
             const recipe = results.rows[0];
 
             const recipeFilesPromises = req.files.map((file) =>

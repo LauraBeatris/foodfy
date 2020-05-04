@@ -2,7 +2,7 @@ const fs = require('fs');
 const db = require('../../config/database');
 const File = require('./File');
 
-class Chef {
+class Recipe {
     all() {
         const query = `
                 SELECT recipes.*, files.path as photo, chefs.name as chef_name FROM recipe_files
@@ -15,10 +15,24 @@ class Chef {
         return db.query(query, null);
     }
 
+    allByUser(userId) {
+        const query = `
+            SELECT recipes.*, files.path as photo, chefs.name as chef_name FROM recipe_files
+            FULL JOIN recipes ON (recipe_files.recipe_id = recipes.id)
+            LEFT JOIN files ON (recipe_files.file_id = files.id)
+            LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+            WHERE recipes.user_id = $1
+            ORDER BY created_at DESC
+        `;
+
+        return db.query(query, [userId]);
+    }
+
     create(values) {
         const query = `
                 INSERT INTO recipes (
                     chef_id,
+                    user_id,
                     title,
                     ingredients,
                     preparation,
@@ -28,12 +42,14 @@ class Chef {
                     $2,
                     $3,
                     $4,
-                    $5
+                    $5,
+                    $6
                 ) RETURNING id
             `;
 
         return db.query(query, [
             values.chef_id,
+            values.user_id,
             values.title,
             values.ingredients,
             values.preparations,
@@ -152,4 +168,4 @@ class Chef {
     }
 }
 
-module.exports = new Chef();
+module.exports = new Recipe();
