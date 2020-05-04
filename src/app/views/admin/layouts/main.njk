@@ -45,14 +45,16 @@
                             Chefs
                         </a>
                     </li>
-                    <li class="header-list__item">
-                        <a
-                          class="header__link header__link---admin js-header__link"
-                          href="/admin/users"
-                        >
-                          Usuários
-                        </a>
-                    </li>
+                    {% if user.is_admin %}
+                        <li class="header-list__item">
+                            <a
+                            class="header__link header__link---admin js-header__link"
+                            href="/admin/users"
+                            >
+                            Usuários
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
             </nav>
 

@@ -9,9 +9,11 @@
     <main class="recipes recipes--admin container">
         <div class="row">
             <h1 class="title font-md">Receita: {{recipe.title}}</h1>
-            <div class="actions-container">
-                <a class="button font-xs" href="/admin/recipes/{{recipe.id}}/edit">Editar receita</a>
-            </div>
+            {% if user.is_admin %}
+                <div class="actions-container">
+                    <a class="button font-xs" href="/admin/recipes/{{recipe.id}}/edit">Editar receita</a>
+                </div>
+            {% endif %}
         </div>
         <section class="details__info container">
             <div class="highlight">
@@ -47,7 +49,7 @@
                 <h3 class="subtitle font-md">Modo de preparo</h3>
             </div>
             <ul class="list js-list preparation">
-                {% for preparation in recipe.preparation %}
+                {% for preparation in recipe.preparations %}
                     <li>
                         {{preparation}}
                     </li>

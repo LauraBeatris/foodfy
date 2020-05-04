@@ -8,7 +8,9 @@
 <section class="chefs container">
     <section class="section-header">
         <h1 class="title font-md">Gerenciar chefs<h1/>
-        <a class="button" href="/admin/chefs/create">Criar chef</a>
+        {% if user.is_admin %}
+            <a class="button" href="/admin/chefs/create">Criar chef</a>
+        {% endif %}
     </section>
     <div class="grid grid--four-columns">
         {% for chef in chefs %}
