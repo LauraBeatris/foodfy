@@ -1,14 +1,14 @@
 
-<div class="field-container"> 
+<div class="field-container">
     <label class="label" for="image">Imagem da receita</label>
     <div class="field-container__photos js-photos">
         <div class="photos-upload photos-upload---box">
-            <input 
-                class="photos-input" 
-                type="file" name="photos" 
-                id="photos" 
-                multiple 
-                accept="image/*" 
+            <input
+                class="photos-input"
+                type="file" name="photos"
+                id="photos"
+                multiple
+                accept="image/*"
                 onchange="PhotoUpload.handleFileInput(event)"
             />
             <i class="material-icons add">add</i>
@@ -25,12 +25,12 @@
     <input type="hidden" name="removed_files" />
 </div>
 
-<div class="field-container"> 
+<div class="field-container">
     <label class="label" for="title">Título da receita</label>
     <input name="title" type="text" id="title" class="field" value="{{recipe.title}}"/>
 </div>
 
-<div class="field-container"> 
+<div class="field-container">
     <label class="label" for="author">Chef</label>
     <select id="author" name="chef_id" class="field field---select" value="{{recipe.chef_id}}">
         <option value="" disabled selected>Selecione um chef</option>
@@ -40,7 +40,7 @@
     </select>
 </div>
 
-<div class="field-container field-container---ingredients"> 
+<div class="field-container field-container---ingredients">
   <div id="ingredients">
     <label class="label" for="ingredients">Ingredientes</label>
         {% if recipe.ingredients.length > 0 %}
@@ -54,7 +54,7 @@
   <button class="field-container__action js-add-ingredient" type="button">Adicionar novo ingrediente</button>
 </div>
 
-<div class="field-container field-container---preparations"> 
+<div class="field-container field-container---preparations">
     <div id="preparations">
         <label class="label" for="preparations">Modo de preparo</label>
         {% if recipe.preparation.length > 0 %}
@@ -68,7 +68,9 @@
     <button class="field-container__action js-add-preparation" type="button">Adicionar novo passo</button>
 </div>
 
-<div class="field-container"> 
+<div class="field-container">
     <label class="label" for="information">Informações adicionais</label>
     <textarea name="information" id="information" class="field" rows="8">{{recipe.information}}</textarea>
 </div>
+
+<input type="hidden" name="user_id" value="{{user.id}}"/>

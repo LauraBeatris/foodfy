@@ -53,10 +53,7 @@ class RecipesAdminController {
 
     async post(req, res) {
         try {
-            const results = await Recipe.create({
-                ...req.body,
-                user_id: req.session.user.id,
-            });
+            const results = await Recipe.create(req.body);
             const recipe = results.rows[0];
 
             const recipeFilesPromises = req.files.map((file) =>
