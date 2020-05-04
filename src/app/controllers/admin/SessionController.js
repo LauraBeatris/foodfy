@@ -1,5 +1,4 @@
 const crypto = require('crypto');
-const dateFns = require('date-fns');
 
 const User = require('../../models/User');
 const mail = require('../../../config/mail');
@@ -50,9 +49,8 @@ class SessionController {
 
         try {
             const resetToken = crypto.randomBytes(20).toString('hex');
-            const resetTokenExpires = dateFns
-                .addHours(new Date(), 1)
-                .toISOString();
+            const now = new Date();
+            const resetTokenExpires = now.setHours(now.getHours() + 1);
 
             await User.update({
                 id: req.user.id,

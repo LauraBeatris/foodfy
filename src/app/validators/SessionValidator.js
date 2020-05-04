@@ -1,4 +1,3 @@
-const dateFns = require('date-fns');
 const User = require('../models/User');
 
 class SessionValidator {
@@ -77,7 +76,6 @@ class SessionValidator {
     }
 
     async resetPassword(req, res, next) {
-        // TODO - Verify fields
         const { email, newPassword, confirmNewPassword, token } = req.body;
 
         try {
@@ -118,14 +116,7 @@ class SessionValidator {
                     });
             }
 
-            const parsedResetTokenExpire = dateFns.parseISO(
-                reset_token_expires
-            );
-
-            const expiredToken = dateFns.isAfter(
-                parsedResetTokenExpire,
-                new Date()
-            );
+            const expiredToken = Date.now() > reset_token_expires;
             const validToken = reset_token === token;
 
             if (expiredToken) {
