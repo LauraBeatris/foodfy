@@ -4,37 +4,42 @@ const routes = express.Router();
 
 const ChefsAdminController = require('../../app/controllers/admin/ChefsController');
 const ChefValidator = require('../../app/validators/ChefValidator');
+
 const adminMiddleware = require('../../app/middlewares/admin');
+const uploadMiddleware = require('../../app/middlewares/multer');
 
-const upload = require('../../app/middlewares/multer');
+routes
+    .get('/chefs', ChefsAdminController.index)
+    .get('/chefs/create', adminMiddleware, ChefsAdminController.create)
+    .get('/chefs/create', adminMiddleware, ChefsAdminController.create)
 
-routes.get('/chefs', ChefsAdminController.index);
-routes.get('/chefs/create', adminMiddleware, ChefsAdminController.create);
-routes.get('/chefs/:id', ChefsAdminController.show);
-routes.get('/chefs/:id/edit', adminMiddleware, ChefsAdminController.edit);
+    .get('/chefs/:id', ChefsAdminController.show)
+    .get('/chefs/:id/edit', adminMiddleware, ChefsAdminController.edit)
 
-routes.post(
-    '/chefs',
-    adminMiddleware,
-    upload.single('avatar'),
-    ChefValidator.postFields(),
-    ChefValidator.post,
-    ChefsAdminController.post
-);
-
-routes.put(
-    '/chefs/:id',
-    adminMiddleware,
-    upload.single('avatar'),
-    ChefValidator.putFields(),
-    ChefValidator.put,
-    ChefsAdminController.put
-);
-routes.delete(
-    '/chefs/:id',
-    adminMiddleware,
-    ChefValidator.delete,
-    ChefsAdminController.delete
-);
+    .post(
+        '/chefs',
+        [
+            adminMiddleware,
+            uploadMiddleware.single('avatar'),
+            ChefValidator.postFields(),
+            ChefValidator.post,
+        ],
+        ChefsAdminController.post
+    )
+    .put(
+        '/chefs/:id',
+        adminMiddleware,
+        [
+            uploadMiddleware.single('avatar'),
+            ChefValidator.putFields(),
+            ChefValidator.put,
+        ],
+        ChefsAdminController.put
+    )
+    .delete(
+        '/chefs/:id',
+        [adminMiddleware, ChefValidator.delete],
+        ChefsAdminController.delete
+    );
 
 module.exports = routes;
