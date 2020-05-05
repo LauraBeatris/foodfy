@@ -1,7 +1,7 @@
 function adminMiddleware(req, res, next) {
     if (!req.session || !req.session.user.is_admin) {
         return res.redirect(
-            '/admin/recipes?error=Somente administradores do sistema podem efetuar essa ação'
+            '/admin/recipes?error=Somente administradores do sistema possuem acesso à esse recurso'
         );
     }
 

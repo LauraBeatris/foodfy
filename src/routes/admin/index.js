@@ -3,7 +3,6 @@ const express = require('express');
 const routes = express.Router();
 
 const authMiddleware = require('../../app/middlewares/auth');
-const adminMiddleware = require('../../app/middlewares/admin');
 
 const sessionRoutes = require('./session.routes');
 const userRoutes = require('./user.routes');
@@ -17,7 +16,6 @@ routes.use(
     profileRoutes,
     recipeRoutes,
     chefRoutes,
-    adminMiddleware,
     userRoutes
 );
 
