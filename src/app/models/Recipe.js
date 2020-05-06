@@ -1,63 +1,14 @@
 const fs = require('fs');
 const db = require('../../config/database');
 const File = require('./File');
+const Base = require('./Base');
 
-class Recipe {
-    all() {
-        const query = `
-                SELECT recipes.*, files.path as photo, chefs.name as chef_name FROM recipe_files
-                FULL JOIN recipes ON (recipe_files.recipe_id = recipes.id)
-                LEFT JOIN files ON (recipe_files.file_id = files.id)
-                LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-                ORDER BY created_at DESC
-            `;
-
-        return db.query(query, null);
+class Recipe extends Base {
+    constructor() {
+        super('recipes');
     }
 
-    allByUser(userId) {
-        const query = `
-            SELECT recipes.*, files.path as photo, chefs.name as chef_name FROM recipe_files
-            FULL JOIN recipes ON (recipe_files.recipe_id = recipes.id)
-            LEFT JOIN files ON (recipe_files.file_id = files.id)
-            LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-            WHERE recipes.user_id = $1
-            ORDER BY created_at DESC
-        `;
-
-        return db.query(query, [userId]);
-    }
-
-    create(values) {
-        const query = `
-                INSERT INTO recipes (
-                    chef_id,
-                    user_id,
-                    title,
-                    ingredients,
-                    preparations,
-                    information
-                ) VALUES (
-                    $1,
-                    $2,
-                    $3,
-                    $4,
-                    $5,
-                    $6
-                ) RETURNING id
-            `;
-
-        return db.query(query, [
-            values.chef_id,
-            values.user_id,
-            values.title,
-            values.ingredients,
-            values.preparations,
-            values.information,
-        ]);
-    }
-
-    find(id) {
+    async findOne(id) {
         const query = `
                 SELECT recipes.*, chefs.id as chef_id, chefs.name as chef_name, files.path as photo
                 FROM recipe_files
@@ -67,10 +18,38 @@ class Recipe {
                 WHERE recipes.id = $1
             `;
 
-        return db.query(query, [id]);
+        const results = await db.query(query, [id]);
+        return results.rows[0];
     }
 
-    findBy(values) {
+    async findAll() {
+        const query = `
+                SELECT recipes.*, files.path as photo, chefs.name as chef_name FROM recipe_files
+                FULL JOIN recipes ON (recipe_files.recipe_id = recipes.id)
+                LEFT JOIN files ON (recipe_files.file_id = files.id)
+                LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+                ORDER BY created_at DESC
+            `;
+
+        const results = await db.query(query);
+        return results.rows;
+    }
+
+    async findAllByUser(userId) {
+        const query = `
+            SELECT recipes.*, files.path as photo, chefs.name as chef_name FROM recipe_files
+            FULL JOIN recipes ON (recipe_files.recipe_id = recipes.id)
+            LEFT JOIN files ON (recipe_files.file_id = files.id)
+            LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+            WHERE recipes.user_id = $1
+            ORDER BY created_at DESC
+        `;
+
+        const results = await db.query(query, [userId]);
+        return results.rows;
+    }
+
+    async findBy(values) {
         const query = `
                 SELECT recipes.*, chefs.name AS chef_name, files.path as photo
                 FROM recipe_files
@@ -81,43 +60,24 @@ class Recipe {
                 ORDER BY updated_at DESC
             `;
 
-        return db.query(query, null);
+        const results = await db.query(query);
+        return results.rows;
     }
 
-    update(values) {
-        const query = `
-                UPDATE recipes SET
-                    chef_id = ($1),
-                    title = ($2),
-                    ingredients = ($3),
-                    preparations = ($4),
-                    information = ($5)
-                WHERE recipes.id = $6
-                RETURNING id
-            `;
-
-        return db.query(query, values);
-    }
-
-    delete(id) {
-        const query = `
-                DELETE FROM recipes WHERE id = $1
-            `;
-
-        return db.query(query, [id]);
-    }
-
-    chefOptions() {
+    async chefOptions() {
         const query = `
                 SELECT * FROM chefs ORDER BY name ASC
             `;
 
-        return db.query(query, null);
+        const results = await db.query(query);
+        return results.rows;
     }
 
     async createFile(values) {
-        const results = await File.create(values.file);
-        const file = results.rows[0];
+        const file = await File.create({
+            name: values.file.name,
+            path: values.file.path,
+        });
 
         const query = `
             INSERT INTO recipe_files (
@@ -132,14 +92,15 @@ class Recipe {
         return db.query(query, [values.recipe_id, file.id]);
     }
 
-    files(id) {
+    async files(id) {
         const query = `
             SELECT recipe_files.*, files.path FROM recipe_files
             LEFT JOIN files ON (recipe_files.file_id = files.id)
             WHERE recipe_files.recipe_id = $1
         `;
 
-        return db.query(query, [id]);
+        const results = await db.query(query, [id]);
+        return results.rows;
     }
 
     async deleteFile(values) {

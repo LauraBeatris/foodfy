@@ -1,7 +1,12 @@
 const db = require('../../config/database');
+const Base = require('./Base');
 
-class Chef {
-    all() {
+class Chef extends Base {
+    constructor() {
+        super('chefs');
+    }
+
+    async findAll() {
         const query = `
                 SELECT chefs.*, count(recipes) as total_recipes, files.path as avatar
                 FROM chefs
@@ -10,24 +15,12 @@ class Chef {
                 GROUP BY chefs.id, files.id
             `;
 
-        return db.query(query, null);
+        const results = await db.query(query, null);
+
+        return results.rows;
     }
 
-    create(values) {
-        const query = `
-                INSERT INTO chefs (
-                    name,
-                    file_id
-                ) VALUES (
-                    $1,
-                    $2
-                ) RETURNING id
-            `;
-
-        return db.query(query, values);
-    }
-
-    find(id) {
+    async find(id) {
         const query = `
                 SELECT chefs.*, count(recipes) as total_recipes,
                 (
@@ -42,32 +35,11 @@ class Chef {
                 GROUP BY chefs.id
             `;
 
-        return db.query(query, [id]);
+        const results = await db.query(query, [id]);
+        return results.rows[0];
     }
 
-    findBy() {}
-
-    update(values) {
-        const query = `
-                UPDATE chefs SET
-                    name = ($1),
-                    file_id = ($2)
-                WHERE chefs.id = $3
-                RETURNING id
-            `;
-
-        return db.query(query, [values.name, values.file_id, values.id]);
-    }
-
-    delete(values) {
-        const query = `
-                DELETE FROM chefs WHERE id = $1
-            `;
-
-        return db.query(query, values);
-    }
-
-    chefRecipes(id) {
+    async chefRecipes(id) {
         const query = `
                 SELECT recipes.*, chefs.name as chef_name, files.path as photo
                 FROM recipe_files
@@ -77,7 +49,8 @@ class Chef {
                 WHERE chefs.id = $1
             `;
 
-        return db.query(query, [id]);
+        const results = await db.query(query, [id]);
+        return results.rows;
     }
 }
 
