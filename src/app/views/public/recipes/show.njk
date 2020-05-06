@@ -43,7 +43,7 @@
                 <button onclick="ToggleElement.toggle(event, '.js-list.preparation')" class="show-button js-show-button btn-preparation">Esconder</button>
             </div>
             <ul class="list js-list preparation">
-                {% for intruction in recipe.preparation %}
+                {% for intruction in recipe.preparations %}
                     <li>{{intruction}}</li>
                 {% endfor %}
             </ul>
