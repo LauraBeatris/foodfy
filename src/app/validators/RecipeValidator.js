@@ -26,8 +26,7 @@ class ProfileValidator {
 
     async post(req, res, next) {
         const validationErrorMessages = parseValidationErrors(req);
-        const results = await Recipe.chefOptions();
-        const chefOptions = results.rows;
+        const chefOptions = await Recipe.chefOptions();
 
         if (Object.keys(validationErrorMessages).length > 0) {
             return res.render('admin/recipes/create', {
@@ -66,12 +65,8 @@ class ProfileValidator {
         const validationErrorMessages = parseValidationErrors(req);
 
         if (Object.keys(validationErrorMessages).length > 0) {
-            let results = await Recipe.chefOptions();
-            const chefOptions = results.rows;
-
-            // Get recipe files
-            results = await Recipe.files(req.params.id);
-            let files = results.rows;
+            const chefOptions = await Recipe.chefOptions();
+            let files = await Recipe.files(req.params.id);
 
             files = files.map((file) => ({
                 ...file,

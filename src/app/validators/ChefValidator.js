@@ -36,6 +36,7 @@ class ChefValidator {
             let chef = results.rows[0];
 
             chef = {
+                ...chef,
                 ...req.body,
                 id: chef.id,
                 avatar_url: formatFilePath(req, chef.avatar),
@@ -51,16 +52,21 @@ class ChefValidator {
     }
 
     async delete(req, res, next) {
-        const results = await Chef.chefRecipes(req.params.id);
-        const chefRecipes = results.rows;
+        const chefRecipes = await Chef.chefRecipes(req.params.id);
 
         if (chefRecipes.length > 0) {
+            let chef = await Chef.find(req.params.id);
+
+            chef = {
+                ...chef,
+                ...req.body,
+                id: chef.id,
+                avatar_url: formatFilePath(req, chef.avatar),
+            };
+
             return res.render('admin/chefs/edit', {
                 error: 'Chefs que possuem receitas não podem ser deletados',
-                chef: {
-                    id: req.params.id,
-                    ...req.body,
-                },
+                chef,
             });
         }
 

@@ -26,12 +26,13 @@ class SessionValidator {
         }
 
         try {
-            const verifyIfUserExistsResults = await User.findOne({
-                where: {
-                    email: req.body.email,
+            const verifyIfUserExists = await User.findOne({
+                filters: {
+                    where: {
+                        email: req.body.email,
+                    },
                 },
             });
-            const verifyIfUserExists = verifyIfUserExistsResults.rows[0];
 
             if (!verifyIfUserExists) {
                 return res.render('admin/sessions/login', {
@@ -83,12 +84,13 @@ class SessionValidator {
         const { email } = req.body;
 
         try {
-            const verifyIfUserExistsResults = await User.findOne({
-                where: {
-                    email,
+            const verifyIfUserExists = await User.findOne({
+                filters: {
+                    where: {
+                        email,
+                    },
                 },
             });
-            const verifyIfUserExists = verifyIfUserExistsResults.rows[0];
 
             if (!verifyIfUserExists) {
                 return res.render('admin/sessions/recoverPassword', {
@@ -159,15 +161,16 @@ class SessionValidator {
         const { email, newPassword, confirmNewPassword, token } = req.body;
 
         try {
-            const verifyIfUserExistsResults = await User.findOne({
-                where: {
-                    email,
+            const verifyIfUserExists = await User.findOne({
+                filters: {
+                    where: {
+                        email,
+                    },
                 },
             });
-            const verifyIfUserExists = verifyIfUserExistsResults.rows[0];
 
             if (!verifyIfUserExists) {
-                return res.render('admin/sessions/recoverPassword', {
+                return res.render('admin/sessions/resetPassword', {
                     error:
                         'Usuário não encontrado. Tem certeza que digitou o email correto?',
                     user: req.body,

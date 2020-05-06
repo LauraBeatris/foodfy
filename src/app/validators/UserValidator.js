@@ -31,10 +31,11 @@ class UserValidator {
         try {
             const { email } = req.body;
 
-            const findUserByEmailResults = await User.findOne({
-                where: { email },
+            const findUserByEmail = await User.findOne({
+                filters: {
+                    where: { email },
+                },
             });
-            const findUserByEmail = findUserByEmailResults.rows[0];
 
             if (findUserByEmail) {
                 return res.render('admin/users/create', {
@@ -54,10 +55,9 @@ class UserValidator {
 
     async edit(req, res, next) {
         try {
-            const verifyIfUserExistsResults = await User.findOne({
-                where: { id: req.params.id || req.body.id },
+            const verifyIfUserExists = await User.findOne({
+                filters: { where: { id: req.params.id || req.body.id } },
             });
-            const verifyIfUserExists = verifyIfUserExistsResults.rows[0];
 
             if (!verifyIfUserExists) {
                 return res.redirect(
@@ -69,7 +69,7 @@ class UserValidator {
 
             return next();
         } catch (err) {
-            return res.render('admin/users', {
+            return res.render('admin/users/edit', {
                 error:
                     'Houve um erro na procura do usuário. Por favor, tente novamente.',
             });
@@ -105,10 +105,11 @@ class UserValidator {
             const { email, currentEmail } = req.body;
 
             if (email !== currentEmail) {
-                const findUserByEmailResults = await User.findOne({
-                    where: { email },
+                const findUserByEmail = await User.findOne({
+                    filters: {
+                        where: { email },
+                    },
                 });
-                const findUserByEmail = findUserByEmailResults.rows[0];
 
                 if (findUserByEmail) {
                     return res.render('admin/users/edit', {

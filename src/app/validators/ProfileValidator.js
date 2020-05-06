@@ -42,10 +42,11 @@ class ProfileValidator {
 
         try {
             if (email !== currentEmail) {
-                const findUserByEmailResults = await User.findOne({
-                    where: { email },
+                const findUserByEmail = await User.findOne({
+                    filters: {
+                        where: { email },
+                    },
                 });
-                const findUserByEmail = findUserByEmailResults.rows[0];
 
                 if (findUserByEmail) {
                     return res.render('admin/profile/index', {
