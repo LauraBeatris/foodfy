@@ -10,8 +10,8 @@ class HomeController {
         try {
             const { filter } = req.query;
 
-            const results = await Recipe.all();
-            const recipes = results.rows.map((recipe) => ({
+            let recipes = await Recipe.findAll();
+            recipes = recipes.map((recipe) => ({
                 ...recipe,
                 photo: recipe.photo
                     ? formatFilePath(req, recipe.photo)
@@ -20,14 +20,8 @@ class HomeController {
 
             return res.render('public/index', { recipes, filter });
         } catch (err) {
-            const errorData = {
-                message: err.message || 'Database error',
-                name: err.name,
-                status: err.status || 500,
-            };
-            return res.status(errorData.status).json({
-                error: 'Houve um erro durante a procura de receitas',
-                errorData,
+            return res.render('public/index', {
+                error: 'Erro ao listar receitas',
             });
         }
     }

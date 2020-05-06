@@ -9,8 +9,7 @@ const { formatFilePath } = require('../../../lib/utils');
 class ChefsController {
     async index(req, res) {
         try {
-            const results = await Chef.all();
-            let chefs = results.rows;
+            let chefs = await Chef.findAll();
 
             chefs = chefs.map((chef) => ({
                 ...chef,

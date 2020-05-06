@@ -10,10 +10,11 @@ class RecipesAdminController {
         const { success, error } = req.query;
         const { user } = req.session;
         try {
-            const results = user.is_admin
-                ? await Recipe.allByUser(user.id)
-                : await Recipe.all();
-            const recipes = results.rows.map((recipe) => ({
+            let recipes = user.is_admin
+                ? await Recipe.findAllByUser(user.id)
+                : await Recipe.findAll();
+
+            recipes = recipes.map((recipe) => ({
                 ...recipe,
                 photo: recipe.photo
                     ? formatFilePath(req, recipe.photo)
@@ -34,8 +35,7 @@ class RecipesAdminController {
 
     async create(req, res) {
         try {
-            const results = await Recipe.chefOptions();
-            const chefOptions = results.rows;
+            const chefOptions = await Recipe.chefOptions();
 
             return res.render('admin/recipes/create', { chefOptions });
         } catch (err) {
@@ -55,8 +55,23 @@ class RecipesAdminController {
 
     async post(req, res) {
         try {
-            const results = await Recipe.create(req.body);
-            const recipe = results.rows[0];
+            const {
+                chef_id,
+                user_id,
+                title,
+                ingredients,
+                preparations,
+                information,
+            } = req.body;
+
+            const recipe = await Recipe.create({
+                chef_id,
+                user_id,
+                title,
+                ingredients: `{${ingredients}}`,
+                preparations: `{${preparations}}`,
+                information,
+            });
 
             const recipeFilesPromises = req.files.map((file) =>
                 Recipe.createFile({ file, recipe_id: recipe.id })
@@ -81,14 +96,13 @@ class RecipesAdminController {
         const { success, error } = req.query;
         try {
             // Get recipe
-            let results = await Recipe.find(req.params.id);
-            const recipe = results.rows[0];
+            const recipe = await Recipe.findOne(req.params.id);
 
             if (!recipe) return res.status(404).send('Recipe not found');
 
             // Get recipe files
-            results = await Recipe.files(req.params.id);
-            const files = results.rows.map((file) => ({
+            let files = await Recipe.files(req.params.id);
+            files = files.map((file) => ({
                 ...file,
                 path: formatFilePath(req, file.path),
             }));
@@ -115,22 +129,19 @@ class RecipesAdminController {
 
     async edit(req, res) {
         try {
-            // Get recipe
-            let results = await Recipe.find(req.params.id);
-            const recipe = results.rows[0];
-
-            // Get chef options
-            results = await Recipe.chefOptions();
-            const chefOptions = results.rows;
-
-            // Get recipe files
-            results = await Recipe.files(req.params.id);
-            let files = results.rows;
+            let recipe = await Recipe.findOne(req.params.id);
+            const chefOptions = await Recipe.chefOptions();
+            let files = await Recipe.files(req.params.id);
 
             files = files.map((file) => ({
                 ...file,
                 path: formatFilePath(req, file.path),
             }));
+
+            recipe = {
+                ...recipe,
+                id: req.params.id,
+            };
 
             return res.render('admin/recipes/edit', {
                 recipe,
@@ -153,18 +164,25 @@ class RecipesAdminController {
     }
 
     async put(req, res) {
-        try {
-            const values = [
-                req.body.chef_id,
-                req.body.title,
-                req.body.ingredients,
-                req.body.preparations,
-                req.body.information,
-                req.params.id,
-            ];
+        const {
+            chef_id,
+            title,
+            ingredients,
+            preparations,
+            information,
+        } = req.body;
 
-            const results = await Recipe.update(values);
-            const recipe = results.rows[0];
+        try {
+            const recipe = await Recipe.update({
+                id: req.params.id,
+                fieldsData: {
+                    chef_id,
+                    title,
+                    ingredients: `{${ingredients}}`,
+                    preparations: `{${preparations}}`,
+                    information,
+                },
+            });
 
             if (req.files) {
                 const recipeFilesPromises = req.files.map((file) =>
@@ -194,6 +212,7 @@ class RecipesAdminController {
                 `/admin/recipes/${recipe.id}?success=Receita editada com sucesso`
             );
         } catch (err) {
+            console.log(err);
             return res.render('admin/recipes/edit', {
                 error:
                     'Houve um erro ao editar a receita. Por favor, tente novamente',

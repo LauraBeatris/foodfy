@@ -7,7 +7,6 @@ const mail = require('../../../config/mail');
     This controller is responsable for the user profile operations related to
     the admin domain
 */
-
 class SessionController {
     loginForm(req, res) {
         const { success } = req.query;
@@ -54,7 +53,7 @@ class SessionController {
 
             await User.update({
                 id: req.user.id,
-                userData: {
+                fieldsData: {
                     reset_token: resetToken,
                     reset_token_expires: resetTokenExpires,
                 },
@@ -93,7 +92,7 @@ class SessionController {
 
             await User.update({
                 id: req.user.id,
-                userData: {
+                fieldsData: {
                     password: newPassword,
                     reset_token: '',
                     reset_token_expires: '',

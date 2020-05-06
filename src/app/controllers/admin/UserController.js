@@ -10,8 +10,9 @@ class UserController {
     async list(req, res) {
         const { error, success } = req.query;
 
-        const usersResults = await User.all();
-        const users = usersResults.rows;
+        const users = await User.findAll({
+            endOfQuery: 'ORDER BY created_at DESC',
+        });
 
         return res.render('admin/users/list', {
             users,
@@ -27,9 +28,13 @@ class UserController {
     async post(req, res) {
         try {
             const password = crypto.randomBytes(11).toString('hex');
+
+            const { name, email, is_admin } = req.body;
             await User.create({
-                ...req.body,
+                name,
+                email,
                 password,
+                is_admin: !!is_admin,
             });
 
             mail.sendMail({
@@ -61,15 +66,27 @@ class UserController {
     async put(req, res) {
         const { id } = req.params;
 
+        const updatedData = {
+            name: req.body.name,
+            email: req.body.email,
+            is_admin: !!req.body.is_admin,
+        };
+
         try {
             await User.update({
                 id,
-                userData: {
-                    name: req.body.name,
-                    email: req.body.email,
-                    is_admin: !!req.body.is_admin,
-                },
+                fieldsData: updatedData,
             });
+
+            if (Number(id) === req.session.user.id) {
+                req.session.user = {
+                    id: Number(id),
+                    ...req.session.user,
+                    ...updatedData,
+                };
+
+                req.session.save();
+            }
 
             return res.render('admin/users/edit', {
                 success: 'Usuário atualizado com sucesso',
@@ -87,6 +104,12 @@ class UserController {
     async delete(req, res) {
         try {
             await User.delete(req.params.id);
+
+            if (req.params.id === req.session.user.id) {
+                return res.redirect(
+                    '/admin/login?success=Sua conta foi deletado com sucesso'
+                );
+            }
 
             return res.redirect(
                 '/admin/users?success=Usuário deletado com sucesso'

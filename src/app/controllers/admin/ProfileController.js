@@ -25,11 +25,10 @@ class ProfileController {
         try {
             await User.update({
                 id,
-                userData: updatedUserData,
+                fieldsData: updatedUserData,
             });
 
             req.session.user = updatedUserData;
-
             req.session.save();
 
             return res.render('admin/profile/index', {

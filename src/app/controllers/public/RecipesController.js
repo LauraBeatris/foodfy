@@ -8,8 +8,8 @@ const { formatFilePath } = require('../../../lib/utils');
 class RecipesController {
     async index(req, res) {
         try {
-            const results = await Recipe.all();
-            const recipes = results.rows.map((recipe) => ({
+            let recipes = await Recipe.findAll();
+            recipes = recipes.map((recipe) => ({
                 ...recipe,
                 photo: recipe.photo
                     ? formatFilePath(req, recipe.photo)
@@ -18,14 +18,8 @@ class RecipesController {
 
             return res.render('public/recipes/index', { recipes });
         } catch (err) {
-            const errorData = {
-                message: err.message || 'Database error',
-                name: err.name,
-                status: err.status || 500,
-            };
-            return res.status(errorData.status).json({
-                error: 'Houve um erro durante a procura de receitas',
-                errorData,
+            return res.render('public/recipes/index', {
+                error: 'Erro ao listar receitas',
             });
         }
     }
@@ -33,14 +27,13 @@ class RecipesController {
     async show(req, res) {
         try {
             // Get recipe
-            let results = await Recipe.find(req.params.id);
-            const recipe = results.rows[0];
+            const recipe = await Recipe.findOne(req.params.id);
 
             if (!recipe) return res.status(404).send('Recipe not found');
 
             // Get recipe files
-            results = await Recipe.files(req.params.id);
-            const files = results.rows.map((file) => ({
+            let files = await Recipe.files(req.params.id);
+            files = files.map((file) => ({
                 ...file,
                 path: formatFilePath(req, file.path),
             }));
@@ -55,6 +48,7 @@ class RecipesController {
                 name: err.name,
                 status: err.status || 500,
             };
+
             return res.status(errorData.status).json({
                 error: 'Houve um erro durante a procura de uma receita',
                 errorData,

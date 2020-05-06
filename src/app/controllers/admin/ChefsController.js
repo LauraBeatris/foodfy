@@ -11,8 +11,8 @@ class ChefsController {
         const { success, error } = req.query;
 
         try {
-            const results = await Chef.all();
-            const chefs = results.rows.map((chef) => ({
+            let chefs = await Chef.findAll();
+            chefs = chefs.map((chef) => ({
                 ...chef,
                 avatar: formatFilePath(req, chef.avatar),
             }));
@@ -36,14 +36,19 @@ class ChefsController {
     async post(req, res) {
         try {
             if (!req.file)
-                return res.status(400).send('Envie uma imagem de avatar');
+                return res.render('admin/chefs/create', {
+                    error: 'Faça o upload de um avatar para o chef',
+                    chef: req.body,
+                });
 
-            const { name } = req.body;
-            let results = await File.create(req.file);
-            const file = results.rows[0];
-
-            results = await Chef.create([name, file.id]);
-            const chef = results.rows[0];
+            const file = await File.create({
+                name: req.file.name,
+                path: req.file.path,
+            });
+            const chef = await Chef.create({
+                name: req.body.name,
+                file_id: file.id,
+            });
 
             return res.redirect(
                 301,
@@ -61,22 +66,24 @@ class ChefsController {
     async show(req, res) {
         const { success, error } = req.query;
         try {
-            let results = await Chef.find(req.params.id);
-            const chef = results.rows[0];
-            if (!chef) return res.status(404).send('Chef not found');
+            let chef = await Chef.find(req.params.id);
 
-            results = await Chef.chefRecipes(req.params.id);
-            const chefRecipes = results.rows.map((recipe) => ({
+            if (!chef)
+                return res.redirect('/admin/chefs?error=Chef não encontrado');
+
+            chef = {
+                ...chef,
+                avatar: formatFilePath(req, chef.avatar),
+            };
+
+            let chefRecipes = await Chef.chefRecipes(req.params.id);
+            chefRecipes = chefRecipes.map((recipe) => ({
                 ...recipe,
                 photo: formatFilePath(req, recipe.photo),
             }));
 
-            console.log(chef.avatar);
             return res.render('admin/chefs/show', {
-                chef: {
-                    ...chef,
-                    avatar: formatFilePath(req, chef.avatar),
-                },
+                chef,
                 chefRecipes,
                 success,
                 error,
@@ -96,10 +103,10 @@ class ChefsController {
 
     async edit(req, res) {
         try {
-            const results = await Chef.find(req.params.id);
-            let chef = results.rows[0];
+            let chef = await Chef.find(req.params.id);
 
-            if (!chef) await res.status(404).send('Chef not found');
+            if (!chef)
+                return res.redirect('/admin/chefs?error=Chef não encontrado');
 
             chef = {
                 ...chef,
@@ -126,23 +133,30 @@ class ChefsController {
 
     async put(req, res) {
         try {
-            let results = await Chef.find(req.params.id);
-            let chef = results.rows[0];
-            if (!chef) return res.status(404).send('Chef not found');
+            let chef = await Chef.find(req.params.id);
+            if (!chef)
+                return res.redirect('/admin/chefs?error=Chef não encontrado');
 
-            const values = {
+            const updatedValues = {
                 ...chef,
                 ...req.body,
             };
 
             if (req.file) {
-                const fileResults = await File.create(req.file);
-                const file = fileResults.rows[0];
-                values.file_id = file.id;
+                const file = await File.create({
+                    name: req.file.name,
+                    path: req.file.path,
+                });
+                updatedValues.file_id = file.id;
             }
 
-            results = await Chef.update(values);
-            [chef] = results.rows;
+            chef = await Chef.update({
+                id: req.params.id,
+                fieldsData: {
+                    name: updatedValues.name,
+                    file_id: updatedValues.file_id,
+                },
+            });
 
             return res.redirect(
                 301,
@@ -159,7 +173,7 @@ class ChefsController {
 
     async delete(req, res) {
         try {
-            await Chef.delete([req.params.id]);
+            await Chef.delete(req.params.id);
             return res.redirect(
                 301,
                 `/admin/chefs?success=Chef deletado com sucesso`

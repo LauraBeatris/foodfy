@@ -5,8 +5,8 @@ class SearchController {
     async index(req, res) {
         const { filter } = req.query;
 
-        const results = await Recipe.findBy({ filter });
-        const recipes = results.rows.map((recipe) => ({
+        let recipes = await Recipe.findBy({ filter });
+        recipes = recipes.map((recipe) => ({
             ...recipe,
             photo: recipe.photo
                 ? formatFilePath(req, recipe.photo)
