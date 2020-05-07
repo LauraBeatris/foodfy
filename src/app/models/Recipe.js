@@ -75,7 +75,7 @@ class Recipe extends Base {
 
     async createFile(values) {
         const file = await File.create({
-            name: values.file.name,
+            name: values.file.filename,
             path: values.file.path,
         });
 
