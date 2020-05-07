@@ -1,5 +1,6 @@
 const Chef = require('../../models/Chef');
 const File = require('../../models/File');
+const LoadChefsService = require('../../services/LoadChefsService');
 const { formatFilePath } = require('../../../lib/utils');
 
 /*
@@ -11,11 +12,7 @@ class ChefsController {
         const { success, error } = req.query;
 
         try {
-            let chefs = await Chef.findAll();
-            chefs = chefs.map((chef) => ({
-                ...chef,
-                avatar: formatFilePath(req, chef.avatar),
-            }));
+            const chefs = await new LoadChefsService().execute();
 
             return res.render('admin/chefs/index', {
                 chefs,
@@ -35,19 +32,18 @@ class ChefsController {
 
     async post(req, res) {
         try {
-            if (!req.file)
-                return res.render('admin/chefs/create', {
-                    error: 'Faça o upload de um avatar para o chef',
-                    chef: req.body,
-                });
+            let file_id = null;
 
-            const file = await File.create({
-                name: req.file.name,
-                path: req.file.path,
-            });
+            if (req.file) {
+                const file = await File.create({
+                    name: req.file.name,
+                    path: req.file.path,
+                });
+                file_id = file.id;
+            }
             const chef = await Chef.create({
                 name: req.body.name,
-                file_id: file.id,
+                file_id,
             });
 
             return res.redirect(
@@ -66,15 +62,12 @@ class ChefsController {
     async show(req, res) {
         const { success, error } = req.query;
         try {
-            let chef = await Chef.find(req.params.id);
+            const chef = await new LoadChefsService({
+                filters: { id: req.params.id },
+            }).execute();
 
             if (!chef)
                 return res.redirect('/admin/chefs?error=Chef não encontrado');
-
-            chef = {
-                ...chef,
-                avatar: formatFilePath(req, chef.avatar),
-            };
 
             let chefRecipes = await Chef.chefRecipes(req.params.id);
             chefRecipes = chefRecipes.map((recipe) => ({
@@ -89,6 +82,7 @@ class ChefsController {
                 error,
             });
         } catch (err) {
+            console.log(err);
             const errorData = {
                 message: err.message || 'Database error',
                 name: err.name,

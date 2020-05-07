@@ -1,6 +1,4 @@
-const pluralize = require('pluralize');
-const Chef = require('../../models/Chef');
-const { formatFilePath } = require('../../../lib/utils');
+const LoadChefsService = require('../../services/LoadChefsService');
 
 /*
     This controller is responsable for the chefs operations related to
@@ -9,16 +7,7 @@ const { formatFilePath } = require('../../../lib/utils');
 class ChefsController {
     async index(req, res) {
         try {
-            let chefs = await Chef.findAll();
-
-            chefs = chefs.map((chef) => ({
-                ...chef,
-                total_recipes: `${chef.total_recipes} ${pluralize(
-                    'receitas',
-                    parseInt(chef.total_recipes, 10)
-                )}`,
-                avatar: formatFilePath(req, chef.avatar),
-            }));
+            const chefs = await new LoadChefsService().execute();
 
             return res.render('public/chefs/index', { chefs });
         } catch (err) {
