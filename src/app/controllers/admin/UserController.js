@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const bcrypt = require('bcrypt');
 const User = require('../../models/User');
 const mail = require('../../../config/mail');
 
@@ -27,7 +27,7 @@ class UserController {
 
     async post(req, res) {
         try {
-            const password = crypto.randomBytes(11).toString('hex');
+            const password = await bcrypt.hash('123', 8);
 
             const { name, email, is_admin } = req.body;
             await User.create({
