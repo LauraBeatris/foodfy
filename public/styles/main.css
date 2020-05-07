@@ -628,7 +628,7 @@ textarea.field {
 }
 
 /* Photos Upload */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 700px) {
     .field-container__photos {
         display: flex;
         flex-direction: column;
@@ -643,7 +643,7 @@ textarea.field {
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 700px) {
     .field-container__photos {
         display: grid;
         grid-template-columns: repeat(6, 149px);
