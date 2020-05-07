@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS foodfy;
 CREATE DATABASE foodfy;
 
 CREATE TABLE files (
