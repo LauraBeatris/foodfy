@@ -1,7 +1,6 @@
 const Chef = require('../../models/Chef');
 const File = require('../../models/File');
 const LoadChefsService = require('../../services/LoadChefsService');
-const { formatFilePath } = require('../../../lib/utils');
 
 /*
     This controller is responsable for the chefs operations related to
@@ -69,11 +68,9 @@ class ChefsController {
             if (!chef)
                 return res.redirect('/admin/chefs?error=Chef não encontrado');
 
-            let chefRecipes = await Chef.chefRecipes(req.params.id);
-            chefRecipes = chefRecipes.map((recipe) => ({
-                ...recipe,
-                photo: formatFilePath(req, recipe.photo),
-            }));
+            const chefRecipes = await new LoadChefsService({
+                filters: { chef_id: chef.id },
+            }).execute();
 
             return res.render('admin/chefs/show', {
                 chef,
@@ -82,7 +79,6 @@ class ChefsController {
                 error,
             });
         } catch (err) {
-            console.log(err);
             const errorData = {
                 message: err.message || 'Database error',
                 name: err.name,
@@ -97,15 +93,16 @@ class ChefsController {
 
     async edit(req, res) {
         try {
-            let chef = await Chef.find(req.params.id);
+            const chef = await new LoadChefsService({
+                filters: { id: req.params.id },
+            }).execute();
 
             if (!chef)
                 return res.redirect('/admin/chefs?error=Chef não encontrado');
 
-            chef = {
-                ...chef,
-                avatar_url: formatFilePath(req, chef.avatar),
-            };
+            if (chef.avatar.search(/http(s)?/) < 1) {
+                chef.avatar = `${req.protocol}://${req.headers.host}${chef.avatar}`;
+            }
 
             return res.render('admin/chefs/edit', {
                 chef,

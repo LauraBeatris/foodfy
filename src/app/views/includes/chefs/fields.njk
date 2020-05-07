@@ -14,15 +14,15 @@
 
 <div class="field-container">
     <label class="label" for="avatar">Avatar</label>
-    {% if chef.avatar_url %}
+    {% if chef.avatar %}
         <input
-            name="avatar_url"
+            name="avatar"
             type="text"
-            id="avatar_url"
+            id="avatar"
             class="field"
             disabled
             title="Link do seu avatar"
-            value='{{chef.avatar_url}}'
+            value='{{chef.avatar}}'
         />
     {% endif %}
     <button class="button avatar-upload">
