@@ -10,6 +10,7 @@
     "nodemon": "nodemon --inspect=0.0.0.0:9229 src/server.js",
     "browsersync": "browser-sync start --proxy localhost:8080 --files './src/app/views,./public/'",
     "dev": "npm-run-all -p nodemon browsersync",
+    "run:seeds": "node ./src/database/seeds.js",
     "commit": "git-cz"
   },
   "dependencies": {
@@ -21,6 +22,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "express-validator": "^6.4.1",
+    "faker": "^4.1.0",
     "method-override": "^3.0.0",
     "multer": "^1.4.2",
     "nodemailer": "^6.4.6",
