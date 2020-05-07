@@ -1,20 +1,13 @@
-const Recipe = require('../../models/Recipe');
-const { formatFilePath } = require('../../../lib/utils');
+const LoadRecipesService = require('../../services/LoadRecipesService');
 
 /*
     This controller is responsable for the recipes operations related to
     the public domain
 */
 class RecipesController {
-    async index(req, res) {
+    async index(_, res) {
         try {
-            let recipes = await Recipe.findAll();
-            recipes = recipes.map((recipe) => ({
-                ...recipe,
-                photo: recipe.photo
-                    ? formatFilePath(req, recipe.photo)
-                    : 'https://place-hold.it/172x80?text=Receita%20sem%20foto',
-            }));
+            const recipes = await new LoadRecipesService().execute();
 
             return res.render('public/recipes/index', { recipes });
         } catch (err) {
@@ -26,17 +19,9 @@ class RecipesController {
 
     async show(req, res) {
         try {
-            // Get recipe
-            const recipe = await Recipe.findOne(req.params.id);
-
-            if (!recipe) return res.status(404).send('Recipe not found');
-
-            // Get recipe files
-            let files = await Recipe.files(req.params.id);
-            files = files.map((file) => ({
-                ...file,
-                path: formatFilePath(req, file.path),
-            }));
+            const { recipe, files } = await new LoadRecipesService({
+                filters: { recipe_id: req.params.id },
+            }).execute();
 
             return res.render('public/recipes/show', {
                 recipe,

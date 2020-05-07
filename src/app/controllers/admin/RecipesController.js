@@ -1,5 +1,5 @@
 const Recipe = require('../../models/Recipe');
-const { formatFilePath } = require('../../../lib/utils');
+const LoadRecipesService = require('../../services/LoadRecipesService');
 
 /*
     This controller is responsable for the recipes operations related to
@@ -9,17 +9,9 @@ class RecipesAdminController {
     async index(req, res) {
         const { success, error } = req.query;
         const { user } = req.session;
-        try {
-            let recipes = user.is_admin
-                ? await Recipe.findAllByUser(user.id)
-                : await Recipe.findAll();
 
-            recipes = recipes.map((recipe) => ({
-                ...recipe,
-                photo: recipe.photo
-                    ? formatFilePath(req, recipe.photo)
-                    : 'https://place-hold.it/172x80?text=Receita%20sem%20foto',
-            }));
+        try {
+            const recipes = await new LoadRecipesService({ user }).execute();
 
             return res.render('admin/recipes/index', {
                 recipes,
@@ -95,17 +87,9 @@ class RecipesAdminController {
     async show(req, res) {
         const { success, error } = req.query;
         try {
-            // Get recipe
-            const recipe = await Recipe.findOne(req.params.id);
-
-            if (!recipe) return res.status(404).send('Recipe not found');
-
-            // Get recipe files
-            let files = await Recipe.files(req.params.id);
-            files = files.map((file) => ({
-                ...file,
-                path: formatFilePath(req, file.path),
-            }));
+            const { recipe, files } = await new LoadRecipesService({
+                filters: { recipe_id: req.params.id },
+            }).execute();
 
             return res.render('admin/recipes/show', {
                 recipe,
@@ -129,19 +113,11 @@ class RecipesAdminController {
 
     async edit(req, res) {
         try {
-            let recipe = await Recipe.findOne(req.params.id);
+            const { recipe, files } = await new LoadRecipesService({
+                filters: { recipe_id: req.params.id },
+            }).execute();
+
             const chefOptions = await Recipe.chefOptions();
-            let files = await Recipe.files(req.params.id);
-
-            files = files.map((file) => ({
-                ...file,
-                path: formatFilePath(req, file.path),
-            }));
-
-            recipe = {
-                ...recipe,
-                id: req.params.id,
-            };
 
             return res.render('admin/recipes/edit', {
                 recipe,
@@ -212,7 +188,6 @@ class RecipesAdminController {
                 `/admin/recipes/${recipe.id}?success=Receita editada com sucesso`
             );
         } catch (err) {
-            console.log(err);
             return res.render('admin/recipes/edit', {
                 error:
                     'Houve um erro ao editar a receita. Por favor, tente novamente',
