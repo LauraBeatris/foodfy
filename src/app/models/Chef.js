@@ -43,7 +43,7 @@ class Chef extends Base {
         const query = `
                 SELECT recipes.*, chefs.name as chef_name, files.path as photo
                 FROM recipe_files
-                INNER JOIN recipes ON (recipe_files.recipe_id = recipes.id)
+                FULL JOIN recipes ON (recipe_files.recipe_id = recipes.id)
                 INNER JOIN chefs ON (recipes.chef_id = chefs.id)
                 LEFT JOIN files ON (recipe_files.file_id = files.id)
                 WHERE chefs.id = $1

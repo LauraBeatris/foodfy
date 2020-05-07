@@ -20,9 +20,9 @@
                 <img class="details__image---big" {% if files[0].path %} src="{{files[0].path}}" {% else %} src="https://place-hold.it/500x500?text=Receita%20sem%20foto" {% endif %} alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-label="{{recipe.title}}"/>
             </div>
             <div class="gallery-preview">
-                {% for photo in files %}
+                {% for file in files %}
                     <img
-                        src="{{photo.path}}"
+                        src="{{file.path}}"
                         {% if loop.first %} class="active" {% endif %}
                         onclick="ImageGallery.setImage(event)"
                     />
