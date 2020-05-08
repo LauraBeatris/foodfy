@@ -56,7 +56,8 @@ class Recipe extends Base {
                 RIGHT JOIN recipes ON (recipe_files.recipe_id = recipes.id)
                 LEFT JOIN files ON (recipe_files.file_id = files.id)
                 LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
-                WHERE recipes.title ILIKE '%${values.filter}%'
+                WHERE 1 = 1
+                AND recipes.title ILIKE '%${values.filter}%'
                 ORDER BY updated_at DESC
             `;
 

@@ -13,7 +13,7 @@
 
 {% block content %}
 <section class="recipes recipes-search container">
-    <h1 class="title font-md">Buscando por "{{filter}}"</h1>
+    <h1 class="title font-md">Buscando por {% if filter %}"{{filter}}"{% else %}todas as receitas{% endif %}</h1>
     <div class="grid grid--three-columns">
     {% if recipes.length > 0 %}
         {% for recipe in recipes %}
