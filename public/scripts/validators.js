@@ -128,13 +128,13 @@ const FormValidator = {
             // Get the form node and validation schema
             FormValidator.form = form;
             FormValidator.schema = form.getAttribute('data-schema');
-            FormValidator.fields = form.querySelectorAll('.field');
+            FormValidator.fields = document.getElementsByClassName('field');
 
             // Listener to verify it there are validators errors on submit
             form.addEventListener('submit', (event) => {
-                FormValidator.fields.forEach((field) =>
-                    FormValidator.validate(field)
-                );
+                Array.from(FormValidator.fields).forEach((field) => {
+                    FormValidator.validate(field);
+                });
 
                 if (Object.keys(FormValidator.errors).length > 0) {
                     event.preventDefault();
@@ -165,13 +165,21 @@ const FormValidator = {
         const fieldContainer = field.parentNode;
 
         if (Object.keys(FormValidator.errors).includes(field.name)) {
-            field.classList.add('error');
-            field.classList.remove('valid');
+            const validateSingleField = validate.single(
+                field.value,
+                FormValidatorSchema[FormValidator.schema][field.name]
+            );
+
+            if (validateSingleField) {
+                field.classList.add('error');
+                field.classList.remove('valid');
+            }
 
             const errorMessage = FormValidator.createErrorMessage(
                 field.name,
                 fieldContainer
             );
+
             if (errorMessage) fieldContainer.appendChild(errorMessage);
         } else {
             field.classList.remove('error');
