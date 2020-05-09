@@ -52,6 +52,18 @@ a {
     display: none;
 }
 
+.list {
+    line-height: 28px;
+    color: var(--gray-dark);
+    font-size: var(--font-xs);
+    list-style: none;
+}
+
+.list li::before {
+    content: "- ";
+    color: var(--black);
+}
+
 .actions-container .button + .button {
     margin-top: $space-2xs;
 }
