@@ -60,16 +60,24 @@ class UserController {
     }
 
     edit(req, res) {
-        return res.render('admin/users/edit', { user: req.user });
+        const { registedUser } = req;
+        return res.render('admin/users/edit', {
+            registedUser,
+        });
     }
 
     async put(req, res) {
         const { id } = req.params;
+        const { updatedData } = req;
 
-        const updatedData = {
-            name: req.body.name,
-            email: req.body.email,
-            is_admin: !!req.body.is_admin,
+        const registedUser = {
+            id,
+            ...req.body,
+        };
+
+        const updatedUser = {
+            ...registedUser,
+            ...updatedData,
         };
 
         try {
@@ -78,6 +86,7 @@ class UserController {
                 fieldsData: updatedData,
             });
 
+            /* Updating logged user */
             if (Number(id) === req.session.user.id) {
                 req.session.user = {
                     id: Number(id),
@@ -90,13 +99,13 @@ class UserController {
 
             return res.render('admin/users/edit', {
                 success: 'Usuário atualizado com sucesso',
-                user: { ...req.body, id },
+                registedUser: updatedUser,
             });
         } catch (err) {
-            return res.render('admin/users/create', {
+            return res.render('admin/users/edit', {
                 error:
                     'Houve um erro na atualização do usuário. Por favor, tente novamente.',
-                user: { ...req.body, id },
+                registedUser,
             });
         }
     }

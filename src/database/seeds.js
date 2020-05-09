@@ -24,7 +24,7 @@ async function createRegularUser() {
     const password = await bcrypt.hash('123', 8);
     const regularUserValues = {
         name: 'Usuário Comum',
-        email: 'usuáriocomum@foodfy.com',
+        email: 'usuariocomum@foodfy.com',
         password,
         is_admin: false,
     };

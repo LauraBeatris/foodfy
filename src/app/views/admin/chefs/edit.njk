@@ -15,25 +15,28 @@
     </form>
     <form
         id="updateForm"
-        class="recipes recipes--admin container"
+        class="submit-form"
         action="/admin/chefs/{{chef.id}}?_method=PUT"
         method="POST"
         enctype="multipart/form-data"
+        data-schema="chefs"
     >
-        <div class="row">
-            <h1 class="title font-md">Editando chef</h1>
-            <div class="actions-container">
-                <input
-                    class="button button--delete font-xs"
-                    onclick="DeleteAlert.run(event, 'Você tem certeza que deseja deletar esse chef?')"
-                    type="submit" form="deleteForm"
-                    value="Deletar"
-                />
-                <input class="button font-xs" type="submit" form="updateForm" value="Salvar chef" />
-            </div>
-        </div>
-        <section class="recipe__form container">
-                {% include "includes/chefs/fields.njk" %}
+        <section class="chefs container">
+            <header class="section-header">
+                <h1 class="title font-md">Editando chef</h1>
+                <div class="actions-container">
+                    <input
+                        class="button button--delete font-xs"
+                        onclick="DeleteAlert.run(event, 'Você tem certeza que deseja deletar esse chef?')"
+                        type="submit" form="deleteForm"
+                        value="Deletar"
+                    />
+                    <input class="button font-xs" type="submit" form="updateForm" value="Salvar chef" />
+                </div>
+            </header>
+            <section class="recipe__form container">
+                    {% include "includes/chefs/fields.njk" %}
+            </section>
         </section>
     </form>
 {% endblock %}

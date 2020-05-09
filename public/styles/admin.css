@@ -66,6 +66,7 @@
     display: grid;
     grid-template-columns: repeat(3, 182px);
     grid-column-gap: 23%;
+    grid-row-gap: 20px;
 }
 
 @media screen and (max-width: 900px){

@@ -8,14 +8,17 @@
     <form
         id="deleteForm"
         style="display: none;"
-        action="/admin/users/{{user.id}}?_method=DELETE"
-        method="POST">
+        action="/admin/users/{{registedUser.id}}?_method=DELETE"
+        method="POST"
+        data-schema="users"
+        >
     </form>
-    <!-- users section init -->
     <form
         id="updateForm"
-        action="/admin/users/{{user.id}}?_method=PUT"
+        action="/admin/users/{{registedUser.id}}?_method=PUT"
         method="POST"
+        class="submit-form"
+        data-schema="users"
     >
         <section class="users container">
             <header class="section-header">
@@ -37,6 +40,5 @@
                 {% include "includes/users/fields.njk" %}
             </section>
         </section>
-        <!-- users section end -->
     </form>
 {% endblock %}

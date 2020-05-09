@@ -6,7 +6,12 @@
 
 {% block content %}
     <h3 class="title font-md">Iniciar Sessão</h3>
-    <form action="/admin/login" method="POST">
+    <form
+        action="/admin/login"
+        method="POST"
+        class="submit-form"
+        data-schema="login"
+    >
         {% include "includes/sessions/loginFields.njk" %}
         <div class="row">
             <a class="link" href="/admin/recover-password">Perdeu a senha?</a>

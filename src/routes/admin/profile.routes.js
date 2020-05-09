@@ -9,7 +9,7 @@ routes
     .get('/profile', ProfileController.index)
     .put(
         '/profile',
-        [ProfileValidator.putFields(), ProfileValidator.put],
+        [ProfileValidator.putFields, ProfileValidator.put],
         ProfileController.put
     );
 

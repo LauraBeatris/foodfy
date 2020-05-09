@@ -7,14 +7,7 @@
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/admin.css">
     <link rel="icon" href="/assets/favicon.ico">
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-      >
-    <link
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap"
-        rel="stylesheet"
-    />
+    {% include "includes/head.njk" %}
     {% block head %}
     {% endblock %}
 </head>
@@ -35,6 +28,6 @@
         {% endblock %}
     </main>
 
-    <script src="/scripts.js"></script>
+    {% include "includes/scripts.njk" %}
 </body>
 </html>

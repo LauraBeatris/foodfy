@@ -3,7 +3,7 @@ const User = require('../models/User');
 const { parseValidationErrors } = require('../../lib/utils');
 
 class ProfileValidator {
-    putFields() {
+    get putFields() {
         return [
             check('name')
                 .not()
@@ -16,7 +16,7 @@ class ProfileValidator {
             check('email')
                 .not()
                 .isEmpty()
-                .withMessage('Digite um email')
+                .withMessage('Digite seu email')
                 .bail()
                 .isEmail()
                 .withMessage('Email inválido'),
@@ -37,11 +37,12 @@ class ProfileValidator {
             });
         }
 
-        const { id, email: currentEmail, password } = req.session.user;
         const { email, password: confirmPassword } = req.body;
+        const { user: loggedUser } = req.session;
+        const { email: loggedUserEmail, password } = loggedUser;
 
         try {
-            if (email !== currentEmail) {
+            if (email !== loggedUserEmail) {
                 const findUserByEmail = await User.findOne({
                     filters: {
                         where: { email },
@@ -52,16 +53,16 @@ class ProfileValidator {
                     return res.render('admin/profile/index', {
                         error:
                             'Esse email já está sendo utilizado por outro usuário',
-                        user: { ...req.session.user, id },
+                        user: loggedUser,
                     });
                 }
             }
 
             const passwordMismatch = confirmPassword !== password;
-            if (passwordMismatch || !confirmPassword) {
+            if (passwordMismatch) {
                 return res.render('admin/profile/index', {
                     error: 'Senha inválida',
-                    user: { ...req.session.user, id },
+                    user: loggedUser,
                 });
             }
 

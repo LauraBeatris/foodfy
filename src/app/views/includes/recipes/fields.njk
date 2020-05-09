@@ -33,6 +33,7 @@
         id="title"
         class="field {% if validationErrorMessages.title %}error{% endif %}"
         value="{{recipe.title}}"
+        oninput="FormValidator.validate(this)"
     />
     {% if validationErrorMessages.title %}
         <span class="error-message">{{validationErrorMessages.title}}</span>
@@ -46,6 +47,7 @@
         name="chef_id"
         class="field field---select  {% if validationErrorMessages.email %}error{% endif %}"
         value="{{recipe.chef_id}}"
+        oninput="FormValidator.validate(this)"
     >
         <option value="" disabled selected>Selecione um chef</option>
         {% for option in chefOptions %}
@@ -62,10 +64,21 @@
     <label class="label" for="ingredients">Ingredientes</label>
         {% if recipe.ingredients.length > 0 %}
             {% for ingredient in recipe.ingredients %}
-                <input type="text" class="field" name="ingredients[]" value="{{ingredient}}"/>
+                <input
+                    type="text"
+                    class="field"
+                    name="ingredients[]"
+                    value="{{ingredient}}"
+                    oninput="FormValidator.validate(this)"
+                >
             {% endfor %}
         {% else %}
-            <input type="text" class="field" name="ingredients[]"/>
+            <input
+                type="text"
+                class="field"
+                name="ingredients[]"
+                oninput="FormValidator.validate(this)"
+            />
         {% endif %}
   </div>
   <button class="field-container__action js-add-ingredient" type="button">Adicionar novo ingrediente</button>
@@ -79,10 +92,21 @@
         <label class="label" for="preparations">Modo de preparo</label>
         {% if recipe.preparations.length > 0 %}
             {% for preparation in recipe.preparations %}
-                <input type="text" class="field" name="preparations[]" value="{{preparation}}"/>
+                <input
+                    type="text"
+                    class="field"
+                    name="preparations[]"
+                    value="{{preparation}}"
+                    oninput="FormValidator.validate(this)"
+                />
             {% endfor %}
         {% else %}
-            <input type="text" class="field" name="preparations[]"/>
+            <input
+                type="text"
+                class="field"
+                name="preparations[]"
+                oninput="FormValidator.validate(this)"
+            />
         {% endif %}
      </div>
     <button class="field-container__action js-add-preparation" type="button">Adicionar novo passo</button>

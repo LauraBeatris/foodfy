@@ -38,6 +38,12 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+}
+
 body, input, button, textarea {
     font-family: 'Roboto', sans-serif;
 }
@@ -60,6 +66,8 @@ a {
     max-width: 940px;
     margin: 0 auto;
     width: 100%;
+    overflow-x: hidden;
+    position: relative;
 }
 
 .section-header {
@@ -101,6 +109,7 @@ a {
     font-size: 16px;
     text-align: center;
     border-radius: 4px;
+    z-index: 100;
 }
 
 .message---error {
@@ -540,6 +549,7 @@ input.button {
     flex-direction: column;
     text-align: left;
     margin-bottom: 30px;
+    position: relative;
 }
 
 .field-container--checkbox {

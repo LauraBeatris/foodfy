@@ -6,6 +6,7 @@ const LoadChefsService = require('../../services/LoadChefsService');
     This controller is responsable for the chefs operations related to
     the admin domain
 */
+
 class ChefsController {
     async index(req, res) {
         const { success, error } = req.query;
@@ -33,13 +34,14 @@ class ChefsController {
         try {
             let file_id = null;
 
-            if (req.file) {
-                const file = await File.create({
-                    name: req.file.name,
-                    path: req.file.path,
-                });
-                file_id = file.id;
-            }
+            const file = await File.create({
+                name: req.file ? req.file.name : 'placeholder',
+                path: req.file
+                    ? req.file.path
+                    : 'https://place-hold.it/120x120?text=Chef Sem Foto',
+            });
+            file_id = file.id;
+
             const chef = await Chef.create({
                 name: req.body.name,
                 file_id,
@@ -100,7 +102,7 @@ class ChefsController {
             if (!chef)
                 return res.redirect('/admin/chefs?error=Chef não encontrado');
 
-            if (chef.avatar.search(/http(s)?/) < 1) {
+            if (chef.avatar.search(/http(s)?/) < 0) {
                 chef.avatar = `${req.protocol}://${req.headers.host}${chef.avatar}`;
             }
 

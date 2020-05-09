@@ -10,13 +10,16 @@
         id="deleteForm"
         style="display: none;"
         action="/admin/recipes/{{recipe.id}}?_method=DELETE"
-        method="POST">
+        method="POST"
+    >
     </form>
     <form
         id="updateForm"
+        class="submit-form"
         action="/admin/recipes/{{recipe.id}}?_method=PUT"
         method="POST"
         enctype="multipart/form-data"
+        data-schema="recipes"
     >
         <section class="recipes recipes--admin container">
             <div class="row">

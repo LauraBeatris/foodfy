@@ -21,7 +21,7 @@ routes
         adminMiddleware,
         [
             uploadMiddleware.array('photos', 5),
-            RecipeValidator.postFields(),
+            RecipeValidator.postFields,
             RecipeValidator.post,
         ],
         RecipesAdminController.post
@@ -31,7 +31,7 @@ routes
         adminMiddleware,
         [
             uploadMiddleware.array('photos', 5),
-            RecipeValidator.putFields(),
+            RecipeValidator.putFields,
             RecipeValidator.put,
         ],
         RecipesAdminController.put
