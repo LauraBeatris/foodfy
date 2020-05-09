@@ -5,8 +5,10 @@ const routes = express.Router();
 const SessionController = require('../../app/controllers/admin/SessionController');
 const SessionValidator = require('../../app/validators/SessionValidator');
 
+const guestMiddleware = require('../../app/middlewares/guest');
+
 routes
-    .get('/login', SessionController.loginForm)
+    .get('/login', guestMiddleware, SessionController.loginForm)
     .post(
         '/login',
         [SessionValidator.loginFields, SessionValidator.login],
@@ -14,7 +16,11 @@ routes
     )
     .delete('/logout', SessionController.logout)
 
-    .get('/recover-password', SessionController.recoverPasswordForm)
+    .get(
+        '/recover-password',
+        guestMiddleware,
+        SessionController.recoverPasswordForm
+    )
     .post(
         '/recover-password',
         [
@@ -26,6 +32,7 @@ routes
 
     .get(
         '/reset-password',
+        guestMiddleware,
         SessionValidator.resetPasswordForm,
         SessionController.resetPasswordForm
     )
