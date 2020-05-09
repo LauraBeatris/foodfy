@@ -47,7 +47,7 @@
 .header__link {
     color: $dark;
     text-decoration: none;
-    font-size: calc($font-2xs) + 2px;
+    font-size: calc(#{$font-2xs} + 2px);
 }
 
 button.header__link {

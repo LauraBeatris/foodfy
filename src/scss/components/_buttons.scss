@@ -5,7 +5,7 @@
     border: none;
     min-width: 136px;
     min-height: 37px;
-    font-size: calc($font-xs) - 2px;
+    font-size: calc(#{$font-xs} - 2px);
     font-weight: bold;
     transition: filter .3s;
 }

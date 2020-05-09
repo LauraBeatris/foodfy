@@ -54,14 +54,14 @@
 
 .recipes .row {
     margin-bottom: $space-sm;
-    margin-top: calc($space-lg) + 6px;
+    margin-top: calc(#{$space-lg} + 6px);
 }
 
 .recipe__info,
 .recipe__ingredients,
 .recipe__preparation,
 .recipe__information {
-    padding: 0 calc($space-2x) + 2px;
+    padding: 0 calc(#{$space-2xs} + 2px);
 }
 
 .recipes.recipes--admin > .row {

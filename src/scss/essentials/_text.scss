@@ -39,7 +39,7 @@
 
 .link {
     color: $gray-medium-secondary;
-    font-size: calc($font-2xs) + 2px;
+    font-size: calc(#{$font-2xs} + 2px);
     font-weight: bold;
     text-decoration: none;
 }

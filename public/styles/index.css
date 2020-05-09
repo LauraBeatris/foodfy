@@ -46,6 +46,10 @@ a {
     flex-direction: row;
   }
 }
+.hidden {
+  display: none;
+}
+
 .actions-container .button + .button {
   margin-top: 8px;
 }
@@ -70,7 +74,7 @@ a {
   }
 }
 .auth-container .title {
-  margin: 0 auto calc($space-md)5px;
+  margin: 0 auto calc(30px + 5px);
   text-align: center;
 }
 
@@ -174,7 +178,7 @@ a {
 .about__text {
   color: #444444;
   font-size: 18px;
-  line-height: calc($space-sm + $space-2xs);
+  line-height: calc(20px + 8px);
 }
 
 .chefs {
@@ -260,14 +264,14 @@ a {
 
 .recipes .row {
   margin-bottom: 20px;
-  margin-top: calc($space-lg)6px;
+  margin-top: calc(40px + 6px);
 }
 
 .recipe__info,
 .recipe__ingredients,
 .recipe__preparation,
 .recipe__information {
-  padding: 0 calc($space-2x)2px;
+  padding: 0 calc(8px + 2px);
 }
 
 .recipes.recipes--admin > .row {
@@ -395,25 +399,25 @@ a {
 }
 
 .box__title {
-  margin-bottom: calc($space-2xs)2px;
+  margin-bottom: calc(8px + 2px);
 }
 
 .box__description {
   color: #000;
-  line-height: calc($space-md)-4px;
+  line-height: calc(30px - 4px);
   font-size: 18px;
   max-width: 316px;
   opacity: 0.7;
 }
 
 .info .box__description {
-  margin-top: calc($font-2xs + 2px);
+  margin-top: calc(14px + 2px);
 }
 
 .chef {
   max-width: 216px;
   max-height: 300px;
-  margin-top: calc($space-2xl)6px;
+  margin-top: calc(60px + 6px);
 }
 
 .box .text {
@@ -437,7 +441,7 @@ a {
   border: none;
   min-width: 136px;
   min-height: 37px;
-  font-size: calc($font-xs)-2px;
+  font-size: calc(18px - 2px);
   font-weight: bold;
   transition: filter 0.3s;
 }
@@ -583,7 +587,7 @@ a.card-info__action:hover {
 .user-card__username {
   font-size: 18px;
   color: #111111;
-  margin-bottom: calc($space-xs)/2;
+  margin-bottom: calc(16px / 2);
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -728,7 +732,7 @@ button.field-container__action {
 .error-message {
   font-size: 14px;
   color: #FF3131;
-  margin-top: calc($space-2xs)/2;
+  margin-top: calc(8px / 2);
 }
 
 .field:disabled {
@@ -859,7 +863,7 @@ textarea.field {
 .header__link {
   color: #111111;
   text-decoration: none;
-  font-size: calc($font-2xs)2px;
+  font-size: calc(14px + 2px);
 }
 
 button.header__link {
@@ -996,7 +1000,7 @@ button.header__link {
 
 .avatar-upload {
   position: relative;
-  padding: calc($space-2xs + 1px) calc($space-sm - 1px);
+  padding: calc(8px + 1px) calc(20px - 1px);
 }
 
 .avatar-upload:hover {
@@ -1004,7 +1008,7 @@ button.header__link {
 }
 
 input + button {
-  margin-top: calc($space-xs)-1px;
+  margin-top: calc(16px - 1px);
 }
 
 @media screen and (min-width: 1200px) {
@@ -1133,7 +1137,7 @@ input + button {
 
 .link {
   color: #969696;
-  font-size: calc($font-2xs)2px;
+  font-size: calc(14px + 2px);
   font-weight: bold;
   text-decoration: none;
 }

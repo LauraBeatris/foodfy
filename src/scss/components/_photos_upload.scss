@@ -36,7 +36,7 @@
 
 .avatar-upload {
     position: relative;
-    padding: calc($space-2xs + 1px) calc($space-sm - 1px);
+    padding: calc(#{$space-2xs} + 1px) calc(#{$space-sm} - 1px);
 }
 
 .avatar-upload:hover {
@@ -44,7 +44,7 @@
 }
 
 input + button {
-    margin-top: calc($space-xs) - 1px;
+    margin-top: calc(#{$space-xs} - 1px);
 }
 
 @media screen and (min-width: 1200px) {

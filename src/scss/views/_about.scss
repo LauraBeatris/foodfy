@@ -32,5 +32,5 @@
 .about__text {
     color: $gray-dark;
     font-size: $font-xs;
-    line-height: calc($space-sm + $space-2xs);
+    line-height: calc(#{$space-sm} + #{$space-2xs});
 }

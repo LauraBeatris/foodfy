@@ -102,7 +102,7 @@ a.card-info__action:hover {
 .user-card__username {
     font-size: $font-xs;
     color: $dark;
-    margin-bottom: calc($space-xs) / 2;
+    margin-bottom: calc(#{$space-xs} / 2);
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;

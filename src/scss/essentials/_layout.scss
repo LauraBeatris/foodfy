@@ -48,6 +48,10 @@ a {
     }
 }
 
+.hidden {
+    display: none;
+}
+
 .actions-container .button + .button {
     margin-top: $space-2xs;
 }
@@ -74,7 +78,7 @@ a {
 }
 
 .auth-container .title {
-    margin: 0 auto calc($space-md) + 5px;
+    margin: 0 auto calc(#{$space-md} + 5px);
     text-align: center;
 }
 

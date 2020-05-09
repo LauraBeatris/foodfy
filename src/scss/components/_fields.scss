@@ -91,7 +91,7 @@ button.field-container__action {
 .error-message {
     font-size: $font-2xs;
     color: $error;
-    margin-top: calc($space-2xs) / 2;
+    margin-top: calc(#{$space-2xs} / 2);
 }
 
 .field:disabled {
