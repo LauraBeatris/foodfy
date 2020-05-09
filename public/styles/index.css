@@ -64,7 +64,7 @@ a {
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
-  margin-top: 146px;
+  margin-top: 100px;
 }
 
 @media screen and (max-width: 800px) {
@@ -697,6 +697,15 @@ button.field-container__action {
 .field-container > #ingredients, .field-container > #preparations {
   display: inherit;
   flex-direction: column;
+}
+
+.field-container__action {
+  color: #6558C3;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 button.field-container__action {
