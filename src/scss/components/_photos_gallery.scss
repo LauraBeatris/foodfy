@@ -1,0 +1,25 @@
+.gallery-preview {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.gallery-preview img {
+    border: 1px solid #DDDDDD;
+    border-radius: 3.5px;
+    height: 49.7px;
+    width: 50px;
+    margin-top: 8px;
+    cursor: pointer;
+    object-fit: cover;
+    opacity: .6;
+}
+
+.gallery-preview .active {
+    opacity: 1;
+}
+
+.gallery-preview img + img {
+    margin-left: 10px;
+}

@@ -1,0 +1,13 @@
+.users__form {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 1200px){
+    .users__form {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+        grid-column-gap: $space-lg;
+    }
+}

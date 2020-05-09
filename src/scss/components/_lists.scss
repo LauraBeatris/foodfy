@@ -1,0 +1,11 @@
+.list {
+    line-height: 28px;
+    color: $gray-dark;
+    font-size: $font-xs;
+    list-style: none;
+}
+
+.list li::before {
+    content: "- ";
+    color: $black;
+}

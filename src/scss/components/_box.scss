@@ -1,0 +1,47 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background-color: $rose;
+    padding: 0px $space-sm;
+    border-radius: $space-md;
+    margin: 0 $space-xs;
+}
+
+.box__title {
+    margin-bottom: calc($space-2xs) + 2px;
+}
+
+.box__description {
+    color: $black;
+    line-height: calc($space-md) - 4px;
+    font-size: $font-xs;
+    max-width: 316px;
+    opacity: 0.7;
+}
+
+.info .box__description {
+    margin-top: calc($font-2xs + 2px);
+}
+
+.chef {
+    max-width: 216px;
+    max-height: 300px;
+    margin-top: calc($space-2xl) + 6px;
+}
+
+.box .text {
+    align-self: center;
+    padding-top: $space-md;
+}
+
+@media screen and (min-width: 1000px) {
+    .box {
+        justify-content: space-between;
+        flex-direction: row;
+        margin: 0 auto;
+        padding: 0px $space-2xl;
+        margin: 0;
+    }
+}

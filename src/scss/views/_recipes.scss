@@ -1,0 +1,124 @@
+.recipes {
+    padding: 50px 0;
+}
+
+.recipes__title {
+    color: $dark;
+    font-size: 24px;
+    margin: 0 0 20px 14px;
+}
+
+.recipes-search .title {
+    margin-bottom: $space-sm;
+    text-align: center;
+}
+
+.recipe__form {
+    padding: 0 10px;
+}
+
+.recipe__image {
+    width: 300px;
+    height: 120px;
+    border-radius: 15px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.recipe__info {
+    text-align: center;
+}
+
+.recipe__author {
+    font-size: $font-md;
+    color: $gray;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.recipes .row {
+    margin-bottom: 19px;
+    margin-top: 46px;
+}
+
+.recipe__info,
+.recipe__ingredients,
+.recipe__preparation,
+.recipe__information {
+    padding: 0 10px;
+}
+
+.recipe__title {
+    margin-top: 10px;
+}
+
+.recipes .row {
+    margin-bottom: $space-sm;
+    margin-top: calc($space-lg) + 6px;
+}
+
+.recipe__info,
+.recipe__ingredients,
+.recipe__preparation,
+.recipe__information {
+    padding: 0 calc($space-2x) + 2px;
+}
+
+.recipes.recipes--admin > .row {
+    margin: 0 $space-2xs $space-md;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 1000px) {
+    .recipes.recipes--admin > .row {
+        margin: 0 0 $space-md;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .recipes {
+        padding: 50px 20px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .recipes-search .title {
+        text-align: initial;
+    }
+
+    .recipe_ingredients,
+    .recipe_preparation {
+        padding: 0;
+    }
+
+    .recipes .title {
+        margin-left: 0;
+        font-weight: bold;
+        align-self: flex-end;
+    }
+
+    .recipe__form {
+        padding: 0px;
+    }
+
+    .recipe__image {
+        min-height: 280px;
+        min-width: 940px;
+    }
+
+    .recipe__author {
+        margin-bottom: 40px;
+    }
+
+    .recipe__info,
+    .recipe_ingredients,
+    .recipe_preparation {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .recipes.recipes-search {
+        padding: 0 0 50px;
+    }
+}
