@@ -7,6 +7,7 @@
         class="field {% if validationErrorMessages.email %}error{% endif %}"
         value="{{user.email}}"
         placeholder="Digite seu email"
+        oninput="FormValidator.validate(this)"
     />
     {% if validationErrorMessages.email %}
         <span class="error-message">{{validationErrorMessages.email}}</span>
@@ -22,6 +23,7 @@
         class="field {% if validationErrorMessages.password %}error{% endif %}"
         value="{{user.password}}"
         placeholder="Digite sua senha"
+        oninput="FormValidator.validate(this)"
     />
     {% if validationErrorMessages.password %}
         <span class="error-message">{{validationErrorMessages.password}}</span>

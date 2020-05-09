@@ -8,13 +8,16 @@
     <form
         id="deleteForm"
         style="display: none;"
-        action="/admin/users/{{user.id}}?_method=DELETE"
-        method="POST">
+        action="/admin/users/{{registedUser.id}}?_method=DELETE"
+        method="POST"
+        data-schema="users"
+        >
     </form>
     <form
         id="updateForm"
-        action="/admin/users/{{user.id}}?_method=PUT"
+        action="/admin/users/{{registedUser.id}}?_method=PUT"
         method="POST"
+        class="submit-form"
         data-schema="users"
     >
         <section class="users container">

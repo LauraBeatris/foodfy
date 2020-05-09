@@ -12,19 +12,19 @@
             <a class="button" href="/admin/users/create">Novo</a>
         </header>
         <div class="grid users-grid">
-            {% for user in users %}
+            {% for registerUser in users %}
                 <div class="user-card">
                     <form
                         id="deleteForm"
                         style="display: none;"
-                        action="/admin/users/{{user.id}}?_method=DELETE"
+                        action="/admin/users/{{registerUser.id}}?_method=DELETE"
                         method="POST">
                     </form>
-                    <span class="user-card__username">{{user.name}}</span>
-                    <span class="user-card__email">{{user.email}}</span>
+                    <span class="user-card__username">{{registerUser.name}}</span>
+                    <span class="user-card__email">{{registerUser.email}}</span>
                     <footer class="user-card__footer">
                         <a
-                            href="/admin/users/{{user.id}}/edit"
+                            href="/admin/users/{{registerUser.id}}/edit"
                             class="user-card__action user-card__edit-user"
                         >
                             Editar

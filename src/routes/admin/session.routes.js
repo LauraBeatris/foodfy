@@ -9,7 +9,7 @@ routes
     .get('/login', SessionController.loginForm)
     .post(
         '/login',
-        [SessionValidator.loginFields(), SessionValidator.login],
+        [SessionValidator.loginFields, SessionValidator.login],
         SessionController.login
     )
     .delete('/logout', SessionController.logout)
@@ -18,7 +18,7 @@ routes
     .post(
         '/recover-password',
         [
-            SessionValidator.recoverPasswordFields(),
+            SessionValidator.recoverPasswordFields,
             SessionValidator.recoverPassword,
         ],
         SessionController.recoverPassword
@@ -31,10 +31,7 @@ routes
     )
     .post(
         '/reset-password',
-        [
-            SessionValidator.resetPasswordFields(),
-            SessionValidator.resetPassword,
-        ],
+        [SessionValidator.resetPasswordFields, SessionValidator.resetPassword],
         SessionController.resetPassword
     );
 

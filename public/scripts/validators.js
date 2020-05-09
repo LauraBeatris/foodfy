@@ -18,15 +18,15 @@ const FormValidatorSchema = {
                 allowEmpty: false,
             },
         },
-        ingredients: {
+        'ingredients[]': {
             presence: {
                 message: '^Adicione um ingrediente',
                 allowEmpty: false,
             },
         },
-        preparations: {
+        'preparations[]': {
             presence: {
-                message: '^Adicione um ingrediente',
+                message: '^Adicione uma instrução',
                 allowEmpty: false,
             },
         },
@@ -41,6 +41,9 @@ const FormValidatorSchema = {
             presence: {
                 message: '^Digite o email do usuário',
             },
+            email: {
+                message: '^Digite um email válido',
+            },
         },
     },
     profile: {
@@ -53,10 +56,62 @@ const FormValidatorSchema = {
             presence: {
                 message: '^Digite seu email',
             },
+            email: {
+                message: '^Digite um email válido',
+            },
         },
         password: {
             presence: {
                 message: '^Digite sua senha para atualizar os dados',
+            },
+        },
+    },
+    login: {
+        email: {
+            presence: {
+                message: '^Digite seu email',
+            },
+            email: {
+                message: '^Digite um email válido',
+            },
+        },
+        password: {
+            presence: {
+                message: '^Digite sua senha',
+            },
+        },
+    },
+    recoverPassword: {
+        email: {
+            presence: {
+                message: '^Digite seu email',
+            },
+            email: {
+                message: '^Digite um email válido',
+            },
+        },
+    },
+    resetPassword: {
+        email: {
+            presence: {
+                message: '^Digite seu email',
+            },
+            email: {
+                message: '^Digite um email válido',
+            },
+        },
+        newPassword: {
+            presence: {
+                message: '^Digite sua nova senha',
+            },
+        },
+        confirmNewPassword: {
+            presence: {
+                message: '^Confirme sua nova senha',
+            },
+            equality: {
+                attribute: 'newPassword',
+                message: '^As senhas não coincidem',
             },
         },
     },
@@ -69,7 +124,6 @@ const FormValidator = {
     errors: {},
     listen() {
         const form = document.querySelector('.submit-form');
-
         if (form) {
             // Get the form node and validation schema
             FormValidator.form = form;
@@ -114,20 +168,33 @@ const FormValidator = {
             field.classList.add('error');
             field.classList.remove('valid');
 
-            const errorMessage = FormValidator.createErrorMessage(field.name);
-            fieldContainer.appendChild(errorMessage);
+            const errorMessage = FormValidator.createErrorMessage(
+                field.name,
+                fieldContainer
+            );
+            if (errorMessage) fieldContainer.appendChild(errorMessage);
         } else {
             field.classList.remove('error');
             field.classList.add('valid');
             FormValidator.removeErrorMessage(fieldContainer);
         }
     },
-    createErrorMessage(fieldName) {
-        const errorMessage = document.createElement('span');
-        errorMessage.classList.add('error-message');
-        errorMessage.innerHTML = FormValidator.errors[fieldName];
+    createErrorMessage(fieldName, fieldContainer) {
+        const alreadyHasErrorMessage =
+            fieldContainer &&
+            Array.from(fieldContainer.children).find((fieldNode) =>
+                fieldNode.classList.contains('error-message')
+            );
 
-        return errorMessage;
+        if (!alreadyHasErrorMessage) {
+            const errorMessage = document.createElement('span');
+            errorMessage.classList.add('error-message');
+            errorMessage.innerHTML = FormValidator.errors[fieldName];
+
+            return errorMessage;
+        }
+
+        return null;
     },
     removeErrorMessage(fieldContainer) {
         const errorMessage = fieldContainer.querySelector('.error-message');

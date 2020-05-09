@@ -5,8 +5,9 @@
         name="name"
         id="name"
         class="field {% if validationErrorMessages.name %}error{% endif %}"
-        value="{{user.name}}"
+        value="{{registedUser.name}}"
         placeholder="Digite o nome completo"
+        oninput="FormValidator.validate(this)"
     />
     {% if validationErrorMessages.name %}
         <span class="error-message">{{validationErrorMessages.name}}</span>
@@ -20,8 +21,9 @@
         name="email"
         id="email"
         class="field {% if validationErrorMessages.email %}error{% endif %}"
-        value="{{user.email}}"
+        value="{{registedUser.email}}"
         placeholder="Digite o email"
+        oninput="FormValidator.validate(this)"
     />
     {% if validationErrorMessages.email %}
         <span class="error-message">{{validationErrorMessages.email}}</span>
@@ -34,10 +36,9 @@
         name="is_admin"
         id="is_admin"
         class="field"
-        {% if user.is_admin %} checked {% endif %}
-        placeholder="Digite o email"
+        {% if registedUser.is_admin %} checked {% endif %}
     />
     <label class="label" for="is_admin">Administrator</label>
 </div>
 
-<input type="hidden" name="currentEmail" value="{{user.email}}" />
+<input type="hidden" name="currentEmail" value="{{registedUser.email}}" />

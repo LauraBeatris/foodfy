@@ -4,7 +4,7 @@ const { parseValidationErrors } = require('../../lib/utils');
 const { formatFilePath } = require('../../lib/utils');
 
 class ProfileValidator {
-    postFields() {
+    get postFields() {
         return [
             check('title')
                 .not()
@@ -41,7 +41,7 @@ class ProfileValidator {
         return next();
     }
 
-    putFields() {
+    get putFields() {
         return [
             check('title')
                 .not()
@@ -73,12 +73,17 @@ class ProfileValidator {
                 path: formatFilePath(req, file.path),
             }));
 
+            const recipe = {
+                ...req.body,
+                id: req.params.id,
+            };
+
             return res.render('admin/recipes/edit', {
-                validationErrorMessages,
-                recipe: { ...req.body, id: req.params.id },
+                recipe,
+                chef_id: req.body.chef_id,
                 chefOptions,
                 files,
-                chef_id: req.body.chef_id,
+                validationErrorMessages,
             });
         }
 

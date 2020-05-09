@@ -21,7 +21,7 @@ routes
         [
             adminMiddleware,
             uploadMiddleware.single('avatar'),
-            ChefValidator.postFields(),
+            ChefValidator.postFields,
             ChefValidator.post,
         ],
         ChefsAdminController.post
@@ -31,7 +31,7 @@ routes
         adminMiddleware,
         [
             uploadMiddleware.single('avatar'),
-            ChefValidator.putFields(),
+            ChefValidator.putFields,
             ChefValidator.put,
         ],
         ChefsAdminController.put

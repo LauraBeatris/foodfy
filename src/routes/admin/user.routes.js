@@ -11,7 +11,7 @@ routes
     .get('/users', adminMiddleware, UserController.list)
     .post(
         '/users',
-        [UserValidator.postFields(), UserValidator.post],
+        [UserValidator.postFields, UserValidator.post],
         UserController.post
     )
     .get('/users/create', adminMiddleware, UserController.create)
@@ -24,7 +24,7 @@ routes
     .put(
         '/users/:id',
         adminMiddleware,
-        [UserValidator.putFields(), UserValidator.put],
+        [UserValidator.putFields, UserValidator.put],
         UserController.put
     )
     .delete('/users/:id', adminMiddleware, UserController.delete);

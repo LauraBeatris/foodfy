@@ -3,7 +3,7 @@ const User = require('../models/User');
 const { parseValidationErrors } = require('../../lib/utils');
 
 class SessionValidator {
-    loginFields() {
+    get loginFields() {
         return [
             check('email')
                 .isEmail()
@@ -38,6 +38,7 @@ class SessionValidator {
                 return res.render('admin/sessions/login', {
                     error:
                         'Usuário não encontrado. Tem certeza que digitou as credenciais corretas?',
+                    user: req.body,
                 });
             }
 
@@ -60,7 +61,7 @@ class SessionValidator {
         }
     }
 
-    recoverPasswordFields() {
+    get recoverPasswordFields() {
         return [
             check('email')
                 .isEmail()
@@ -77,17 +78,15 @@ class SessionValidator {
         if (Object.keys(validationErrorMessages).length > 0) {
             return res.render('admin/sessions/recoverPassword', {
                 validationErrorMessages,
-                user: req.body,
+                email: req.body.email,
             });
         }
-
-        const { email } = req.body;
 
         try {
             const verifyIfUserExists = await User.findOne({
                 filters: {
                     where: {
-                        email,
+                        email: req.body.email,
                     },
                 },
             });
@@ -96,7 +95,7 @@ class SessionValidator {
                 return res.render('admin/sessions/recoverPassword', {
                     error:
                         'Usuário não encontrado. Tem certeza que digitou o email correto?',
-                    email,
+                    email: req.body.email,
                 });
             }
 
@@ -107,7 +106,7 @@ class SessionValidator {
             return res.render('admin/sessions/recoverPassword', {
                 error:
                     'Houve um erro ao enviar o email de recuperação de senha. Por favor, tente novamente.',
-                email,
+                email: req.body.email,
             });
         }
     }
@@ -120,7 +119,7 @@ class SessionValidator {
         return next();
     }
 
-    resetPasswordFields() {
+    get resetPasswordFields() {
         return [
             check('email')
                 .isEmail()
