@@ -11,11 +11,11 @@
         action="/admin/users/{{user.id}}?_method=DELETE"
         method="POST">
     </form>
-    <!-- users section init -->
     <form
         id="updateForm"
         action="/admin/users/{{user.id}}?_method=PUT"
         method="POST"
+        data-schema="users"
     >
         <section class="users container">
             <header class="section-header">
@@ -37,6 +37,5 @@
                 {% include "includes/users/fields.njk" %}
             </section>
         </section>
-        <!-- users section end -->
     </form>
 {% endblock %}

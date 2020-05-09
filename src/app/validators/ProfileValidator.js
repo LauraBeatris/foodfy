@@ -16,7 +16,7 @@ class ProfileValidator {
             check('email')
                 .not()
                 .isEmpty()
-                .withMessage('Digite um email')
+                .withMessage('Digite seu email')
                 .bail()
                 .isEmail()
                 .withMessage('Email inválido'),
