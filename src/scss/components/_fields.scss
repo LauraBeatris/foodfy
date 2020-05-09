@@ -58,6 +58,15 @@ button.field-container__action {
     flex-direction: column;
 }
 
+.field-container__action {
+    color: $purple;
+    text-decoration: none;
+    display: block;
+    font-size: $font-2xs;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
 button.field-container__action {
     background: none;
     border: none;
