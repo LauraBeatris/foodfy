@@ -11,6 +11,7 @@
     "browsersync": "browser-sync start --proxy localhost:8080 --files './src/app/views,./public/'",
     "dev": "npm-run-all -p nodemon browsersync",
     "run:seeds": "node ./src/database/seeds.js",
+    "build:sass": "sass --watch ./src/scss/index.scss:public/styles/index.css",
     "commit": "git-cz"
   },
   "dependencies": {
@@ -25,11 +26,13 @@
     "faker": "^4.1.0",
     "method-override": "^3.0.0",
     "multer": "^1.4.2",
+    "node-sass": "^4.14.1",
     "nodemailer": "^6.4.6",
     "npm-run-all": "^4.1.5",
     "nunjucks": "^3.2.0",
     "pg": "^8.0.3",
-    "pluralize": "^8.0.0"
+    "pluralize": "^8.0.0",
+    "sass": "^1.26.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",

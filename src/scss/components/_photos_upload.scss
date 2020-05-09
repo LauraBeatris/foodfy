@@ -1,0 +1,95 @@
+.photos-upload---box {
+    width: 100%;
+    height: 149px;
+    background: #fff;
+    border: 1px solid #DDDDDD;
+    border-radius: 3.5px;
+    position: relative;
+    z-index: 10;
+}
+
+.add {
+    font-size: 28px;
+    color: $gray-medium;
+}
+
+.photos-upload .add {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.photos-input {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.avatar-upload .photos-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.avatar-upload {
+    position: relative;
+    padding: calc(#{$space-2xs} + 1px) calc(#{$space-sm} - 1px);
+}
+
+.avatar-upload:hover {
+    filter: grayscale(45%);
+}
+
+input + button {
+    margin-top: calc(#{$space-xs} - 1px);
+}
+
+@media screen and (min-width: 1200px) {
+    .avatar-upload {
+        width: 139px;
+    }
+}
+
+.photo {
+    border: 1px solid #DDDDDD;
+    border-radius: 3.5px;
+    height: 149px;
+    position: relative;
+    background: none;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 3.5px;
+    object-fit: cover;
+    object-position: center;
+}
+
+#remove-photo {
+    position: absolute;
+    background: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    color: #FF0000;
+    font-size: 39.6px;
+    transition: background, opacity .3s;
+    cursor: pointer;
+}
+
+.photo:hover {
+    border: none;
+}
+
+.photo:hover #remove-photo {
+    opacity: 1;
+    background: rgba(250, 250, 250, .6);
+}

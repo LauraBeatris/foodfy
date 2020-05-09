@@ -1,0 +1,152 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body, input, button, textarea {
+    font-family: 'Roboto', sans-serif;
+}
+
+button,
+a {
+    cursor: pointer;
+}
+
+.main-content {
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 62px;
+    overflow: hidden;
+}
+
+.container {
+    max-width: 940px;
+    margin: 0 auto;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.actions-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (min-width: 1000px) {
+    .actions-container {
+        flex-direction: row;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.actions-container .button + .button {
+    margin-top: $space-2xs;
+}
+
+@media screen and (min-width: 1000px) {
+    .actions-container .button + .button {
+        margin-left: $space-xs;
+        margin-top: 0;
+    }
+}
+
+.auth-container {
+   max-width: 500px;
+   width: 100%;
+   margin: 0 auto;
+   margin-top: 100px;
+}
+
+@media screen and (max-width: 800px){
+    .auth-container {
+        padding: 0 $space-sm;
+        margin-top: $space-md
+    }
+}
+
+.auth-container .title {
+    margin: 0 auto calc(#{$space-md} + 5px);
+    text-align: center;
+}
+
+.auth-container .button {
+    margin-left: auto;
+}
+
+.auth-container .link {
+    align-self: flex-end;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 $space-md;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.row .show-button {
+    margin-left: $space-2xs;
+    align-self: center;
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.users-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 182px);
+    grid-column-gap: 23%;
+    grid-row-gap: 20px;
+}
+
+@media screen and (max-width: 900px){
+    .users-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-column-gap: unset;
+        grid-row-gap: $space-md;
+        justify-items: center;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+    }
+
+    .grid.grid--two-columns {
+            grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid.grid--three-columns {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid.grid--four-columns {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

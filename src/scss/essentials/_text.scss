@@ -1,0 +1,49 @@
+.title,
+.subtitle {
+    color: $dark;
+}
+
+.subtitle---secondary {
+    color: $gray-dark;
+}
+
+.font-xs {
+    font-size: $font-xs;
+}
+
+.font-sm {
+    font-size: $font-sm;
+}
+
+.font-md {
+    font-size: $font-md;
+}
+
+.font-lg {
+    font-size: $font-lg;
+}
+
+.font-xl {
+    font-size: $font-xl;
+}
+
+.text {
+    line-height: 28px;
+    font-size: $font-xs;
+    color: $gray-dark;
+}
+
+.text.information {
+    white-space: pre-line;
+}
+
+.link {
+    color: $gray-medium-secondary;
+    font-size: calc(#{$font-2xs} + 2px);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: $gray-dark;
+}

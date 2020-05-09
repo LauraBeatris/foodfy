@@ -11,13 +11,23 @@
             <h1 class="title font-md">Receita: {{recipe.title}}</h1>
             {% if user.is_admin %}
                 <div class="actions-container">
-                    <a class="button font-xs" href="/admin/recipes/{{recipe.id}}/edit">Editar receita</a>
+                    <a class="button" href="/admin/recipes/{{recipe.id}}/edit">Editar receita</a>
                 </div>
             {% endif %}
         </div>
         <section class="details__info container">
             <div class="highlight">
-                <img class="details__image---big" {% if files[0].path %} src="{{files[0].path}}" {% else %} src="https://place-hold.it/500x500?text=Receita%20sem%20foto" {% endif %} alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-label="{{recipe.title}}"/>
+                <img class="details__image---big"
+                    {% if files[0].path %}
+                        src="{{files[0].path}}"
+                    {% else %}
+                        src="https://place-hold.it/500x500?text=Receita%20sem%20foto"
+                    {% endif %}
+
+                    alt="Receita de {{recipe.title}}"
+                    title="{{recipe.title}}"
+                    aria-label="{{recipe.title}}"
+                />
             </div>
             <div class="gallery-preview">
                 {% for file in files %}

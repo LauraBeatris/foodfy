@@ -1,0 +1,28 @@
+.chefs {
+    padding: 50px 0;
+}
+
+.chef-recipes {
+    margin-top: $space-xl;
+}
+
+.chef-recipes .title {
+    margin-bottom: $space-md;
+}
+
+.chefs.chefs--admin > .row {
+    margin: 0 $space-2xs $space-md;
+    justify-content: space-between;
+}
+
+@media screen and (min-width: 1000px) {
+    .chefs.chefs--admin > .row {
+        margin: 0 0 $space-md;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .chefs {
+        padding: 50px 20px;
+    }
+}

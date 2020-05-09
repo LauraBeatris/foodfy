@@ -1,0 +1,29 @@
+.message {
+    position: absolute;
+    right: 18px;
+    top: 12px;
+    width: 344px;
+    padding: 61px 44px;
+    color: $white;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 4px;
+    z-index: 100;
+}
+
+.message---error {
+    background: $danger;
+}
+
+.message---success {
+    background: $success;
+}
+
+.message.hide {
+    animation: hidemessage 1.5s 1s ease-out forwards;
+}
+
+.message.show {
+    animation: showmessage 1s 0s ease-out forwards;
+}

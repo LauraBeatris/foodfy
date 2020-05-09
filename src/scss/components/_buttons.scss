@@ -1,0 +1,50 @@
+.button {
+    border-radius: 4px;
+    color: $white;
+    background: $purple;
+    border: none;
+    min-width: 136px;
+    min-height: 37px;
+    font-size: calc(#{$font-xs} - 2px);
+    font-weight: bold;
+    transition: filter .3s;
+}
+
+.button:hover {
+    filter: grayscale(45%);
+}
+
+a.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+input.button {
+    cursor: pointer;
+}
+
+.button.button--delete {
+    background: $danger;
+}
+
+.button.button--cancel {
+    background:  $cancel;
+}
+
+.show-button {
+    border: none;
+    background: none;
+    color: $gray-medium;
+    font-weight: bold;
+    font-size: $font-3xs;
+}
+
+.show-button:hover {
+    color: $gray;
+}
+
+.button---search {
+    margin-top: 0;
+}

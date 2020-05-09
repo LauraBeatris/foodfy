@@ -1,0 +1,122 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0px;
+}
+
+.header > .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header--admin {
+    background: $dark;
+}
+
+.header__nav-link {
+    text-decoration: none;
+}
+
+.header__title {
+    color: $dark;
+    font-family: serif;
+    font-weight: lighter;
+    letter-spacing: 2px;
+}
+
+.header--admin .header__title {
+    color: $white;
+}
+
+.header-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+
+    margin: 10px 0px;
+}
+
+.header-list__item:not(:last-child) {
+    margin-right: 30px;
+}
+
+.header__link {
+    color: $dark;
+    text-decoration: none;
+    font-size: calc(#{$font-2xs} + 2px);
+}
+
+button.header__link {
+    background: none;
+    border: none;
+}
+
+@media screen and (min-width: 1000px){
+    .header__link + form {
+        margin-left: $space-md;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .header__link + form {
+        margin-top: $space-2xs;
+    }
+
+    .header__link---account {
+        margin-top: $space-2xs;
+    }
+}
+
+.header__link.active, .header__link:hover {
+    font-weight: bold;
+}
+
+.header__link.header__link---admin {
+    color: $white;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 500px){
+    .header__search {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+    }
+
+    .header__search .button {
+        margin-top: $space-2xs;
+    }
+}
+
+.header__search .field {
+    min-height: 37px;
+}
+
+
+@media screen and (min-width: 1000px) {
+    .header {
+        flex-direction: row;
+        justify-content: unset;
+        margin: 0 auto;
+    }
+
+    .header > .container {
+        padding: 0px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .header nav {
+        flex-grow: 1;
+        margin-left: 122.4px;
+    }
+
+    .header ul {
+        margin: 0;
+    }
+}

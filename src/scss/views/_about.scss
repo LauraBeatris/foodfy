@@ -1,0 +1,36 @@
+.about-section {
+    padding: 0 15px;
+}
+
+@media screen and (min-width: 1000px) {
+    .about-section {
+        margin-top: $space-xl;
+        padding: 0;
+    }
+}
+
+.about {
+    margin-bottom: $space-md;
+}
+
+.about__title {
+    font-size: $font-md;
+    margin-bottom: $space-md;
+}
+
+.about__subtitle {
+    font-size: $font-sm;
+    margin-bottom: $space-sm;
+}
+
+.about__title,
+.about__subtitle {
+    color: $dark;
+    font-weight: bold;
+}
+
+.about__text {
+    color: $gray-dark;
+    font-size: $font-xs;
+    line-height: calc(#{$space-sm} + #{$space-2xs});
+}

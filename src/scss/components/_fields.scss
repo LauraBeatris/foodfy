@@ -1,0 +1,160 @@
+
+.field-container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.field-container--checkbox {
+    flex-direction: row;
+    align-items: center;
+}
+
+.field-container.field-container--checkbox .label {
+    margin-bottom: 0;
+}
+
+.field-container input[type="checkbox"] {
+    margin-right: $space-2xs;
+}
+
+.field-container > #ingredients, .field-container > #preparations {
+    display: inherit;
+    flex-direction: column;
+}
+
+button.field-container__action {
+    background: none;
+    border: none;
+    align-self: flex-start;
+}
+
+
+.field-container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.field-container--checkbox {
+    flex-direction: row;
+    align-items: center;
+}
+
+.field-container.field-container--checkbox .label {
+    margin-bottom: 0;
+}
+
+.field-container input[type="checkbox"] {
+    margin-right: $space-2xs;
+}
+
+.field-container > #ingredients, .field-container > #preparations {
+    display: inherit;
+    flex-direction: column;
+}
+
+.field-container__action {
+    color: $purple;
+    text-decoration: none;
+    display: block;
+    font-size: $font-2xs;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+button.field-container__action {
+    background: none;
+    border: none;
+    align-self: flex-start;
+}
+
+.label {
+    color: $dark;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.field-container .label {
+    margin-bottom: 10px;
+}
+
+.field {
+    min-height: 49px;
+    background: $white;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    font-size: 16px;
+    color: $dark;
+    padding: 0 20px;
+}
+
+.field.error {
+    border: 1px solid $error;
+}
+
+.error-message {
+    font-size: $font-2xs;
+    color: $error;
+    margin-top: calc(#{$space-2xs} / 2);
+}
+
+.field:disabled {
+    color: rgba(0, 0, 0, .36);
+}
+
+.field---select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    background-color: $white;
+
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23000000%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right .7em top 50%;
+    background-size: .65em auto;
+}
+
+select option[value=""][disabled] {
+    display: none;
+}
+
+.field + .field {
+    margin-top: 10px;
+}
+
+textarea.field {
+    resize: none;
+    padding: 18px 20px;
+    white-space: pre-line;
+}
+
+/* Photos Upload */
+@media screen and (max-width: 700px) {
+    .field-container__photos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 60%;
+        margin: auto;
+        max-width: 149px;
+    }
+
+    .photo {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .field-container__photos {
+        display: grid;
+        grid-template-columns: repeat(6, 149px);
+        grid-column-gap: 10px;
+        align-items: center;
+    }
+}

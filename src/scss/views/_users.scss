@@ -1,0 +1,9 @@
+.users {
+    padding: 50px 0;
+}
+
+@media screen and (max-width: 900px) {
+    .users {
+        padding: 50px 20px;
+    }
+}
