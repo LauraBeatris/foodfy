@@ -1,0 +1,9 @@
+{% macro render(recipes, title, sectionClasses) %}
+    <section class="recipes container {{sectionClasses}}">
+        {% if title %}
+            <h3 class="recipes__title title font-md">{{title}}</h3>
+        {% endif %}
+        <div class="grid grid--three-columns">
+        {{ caller() }}
+    </section>
+{% endmacro %}

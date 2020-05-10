@@ -1,22 +1,17 @@
-{% extends "public/layout.njk" %}
+{% import "components/chefsList.njk" as chefsList %}
+{% import "components/chefsCard.njk" as chefsCard %}
+{% extends "layouts/public.njk" %}
 
 {% block head %}
     <title>Foodfy | Chefs </title>
 {% endblock %}
 
 {% block content %}
-<section class="recipes recipes--admin container">
-    <div class="grid grid--four-columns">
-        {% for chef in chefs %}
-            <div class="card--secondary">
-                <img class="card__img---rounded" src="{{chef.avatar}}" alt="Receita de {{chef.name}}" title="{{chef.name}}" aria-hidden="true"/>
-                <div class="card-info">
-                    <span class="card-info__title">{{chef.name}}</span>
-                    <span class="card-info__subtitle">{{chef.total_recipes}}</span>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-</section>
-    <!-- recipes section end -->
+    <section class="chefs container">
+        {% call chefsList.render() %}
+            {% for chef in chefs %}
+                {{chefsCard.render(chef, true, false)}}
+            {% endfor %}
+        {% endcall %}
+    </section>
 {% endblock %}

@@ -1,4 +1,6 @@
-{% extends "admin/layouts/main.njk" %}
+{% import "components/chefsList.njk" as chefsList %}
+{% import "components/chefsCard.njk" as chefsCard %}
+{% extends "layouts/admin.njk" %}
 
 {% block head %}
     <title>Foodfy | Gerenciar Chefs</title>
@@ -6,23 +8,16 @@
 
 {% block content %}
 <section class="chefs container">
-    <section class="section-header">
+    <header class="section-header">
         <h1 class="title font-md">Gerenciar chefs<h1/>
         {% if user.is_admin %}
             <a class="button" href="/admin/chefs/create">Criar chef</a>
         {% endif %}
-    </section>
-    <div class="grid grid--four-columns">
+    </header>
+    {% call chefsList.render() %}
         {% for chef in chefs %}
-            <div class="card--secondary">
-                <img class="card__img---rounded" src="{{chef.avatar}}" alt="Receita de {{chef.name}}" title="{{chef.name}}" aria-hidden="true"/>
-                <div class="card-info">
-                    <span class="card-info__title">{{chef.name}}</span>
-                    <a class="card-info__action" href="/admin/chefs/{{chef.id}}">Visualizar</a>
-                </div>
-            </div>
+            {{chefsCard.render(chef, false, true)}}
         {% endfor %}
-    </div>
+    {% endcall %}
 </section>
-    <!-- recipes section end -->
 {% endblock %}

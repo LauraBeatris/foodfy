@@ -1,0 +1,46 @@
+{% macro renderMain(navItems, user, logoRedirect, headerClasses) %}
+    <header class="header {{headerClasses}}">
+            <div class="container">
+                <a class="header__link" href="{{logoRedirect}}">
+                    <h1 class="header__title">Foodfy</h1>
+                </a>
+
+                <nav class="header__nav">
+                    <ul class="header-list">
+                        {% for item in navItems %}
+                            <li class="header-list__item">
+                                <a
+                                class="header__link js-header__link"
+                                href="{{item.path}}"
+                                >
+                                    {{item.title}}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        {% if user.is_admin %}
+                            <li class="header-list__item">
+                                <a
+                                class="header__link js-header__link"
+                                href="/admin/users"
+                                >
+                                Usuários
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+
+                {{ caller() }}
+            </div>
+    </header>
+{% endmacro %}
+
+{% macro renderAuth(headerClasses) %}
+    <header class="header">
+        <div class="container">
+            <a class="header__link" href="/admin/login">
+                <h1 class="header__title">Foodfy</h1>
+            </a>
+        </div>
+    </header>
+{% endmacro %}

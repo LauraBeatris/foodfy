@@ -1,0 +1,59 @@
+{% import "components/header.njk" as header %}
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.">
+    <meta name="keywords" content="Receitas, chef, comidas">
+    <link rel="icon" href="/assets/favicon.ico">
+    {% include "includes/head.njk" %}
+    {% block head %}
+        <title>Foodfy | Receitas</title>
+    {% endblock %}
+</head>
+<body>
+    <main class="main-content">
+        {% call header.renderMain([
+            {
+                title: 'Sobre',
+                path: '/about'
+            },
+            {
+                title: 'Receitas',
+                path: '/recipes'
+            },
+            {
+                title: 'Chefs',
+                path: '/chefs'
+            }
+        ], null, "/")
+        %}
+            <form class="header__search" action="/recipes/search">
+                <input
+                    type="text"
+                    class="field"
+                    name="filter"
+                    id="filter"
+                    placeholder="Buscar uma receita"
+                >
+                <button
+                    class="button button---search"
+                    type="submit"
+                >
+                    Buscar
+                </button>
+            </form>
+        {% endcall %}
+
+        {% block content %}
+        {% endblock %}
+
+        <footer class="footer">
+            <span class="footer__text">Todos direitos reservados, receitas Foodfy.</span>
+        </footer>
+    </main>
+    {% include "includes/scripts.njk" %}
+</body>
+</html>

@@ -1,7 +1,8 @@
-{% extends "public/layout.njk" %}
+{% import "components/recipesList.njk" as recipesList %}
+{% import "components/recipesCard.njk" as recipesCard %}
+{% extends "layouts/public.njk" %}
 
 {% block head %}
-    <link rel="stylesheet" href="/styles/home.css">
     <title>Foodfy | As melhores receitas para você</title>
 {% endblock %}
 
@@ -26,22 +27,10 @@
             <img class="chef" src="/assets/chef.png" alt="Chef" aria-hidden="true" title="chef"/>
         </div>
     </section>
-    <!-- info box end -->
 
-    <!-- recipes section init -->
-    <section class="recipes container">
-        <h3 class="recipes__title title font-md">Mais acessadas</h3>
-
-        <div class="grid grid--three-columns">
-            {% for recipe in recipes %}
-                <a class="card card--cursor" href="/recipes/{{recipe.id}}">
-                    <img class="card__img" src="{{recipe.photo}}" alt="Receita de {{recipe.title}}" title="{{recipe.title}}" aria-hidden="true"/>
-                    <div class="card-info">
-                        <span class="card-info__title card__title--underline" class="card-info__title">{{recipe.title}}</span>
-                        <small class="card-info__subtitle">{{recipe.chef_name}}</small>
-                    </div>
-                </a>
-            {% endfor %}
-        </div>
-    </section>
+    {% call recipesList.render(recipes, 'Mais acessadas') %}
+        {% for recipe in recipes %}
+            {{ recipesCard.renderPrimary(recipe) }}
+        {% endfor %}
+    {% endcall %}
 {% endblock %}
