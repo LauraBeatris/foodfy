@@ -90,6 +90,7 @@ Run the following command in order to start the application in a development env
 **Question:** How the multi language support is handled by the server?
 
 **Answer:** This application handle multi language support with the help of a library called [i18n-node](https://github.com/mashpie/i18n-node). It has a middleware that gather language settings of visitors and then persist translations from [JSON files](https://github.com/LauraBeatris/foodfy/tree/master/src/locales) related with a specific locale.
+##
 
 The locale is storaged as a cookie named ```foodfy:locale``` and that can be changed by passing a query string with the value ```?lang=pt```
 
