@@ -29,6 +29,7 @@
 * [Installation](#installation)
 * [Getting Started](#getting-started)
 * [FAQ](#faq)
+* [Acknowledgments](#Acknowledgments)
 * [Contributing](#contributing)
 * [Found a bug? Missing a specific feature?](#issues)
 * [License](#license)
@@ -80,6 +81,22 @@ Run the following command in order to start the application in a development env
 
 ```yarn dev```
 
+# Faq
+
+**Question:** What are the tecnologies used in this project?
+
+**Answer:** The tecnologies used in this project are [NodeJS](https://nodejs.org/en/) + [Express Framework](http://expressjs.com/en/) to handle the server, [Nunjucks](https://mozilla.github.io/nunjucks/templating.html) to develop amazing views & [SCSS](https://sass-lang.com/documentation/syntax) to handle the styles architecture and a better maintenance than normal CSS.
+##
+**Question:** How the multi language support is handled by the server?
+
+**Answer:** This application handle multi language support with the help of a library called [i18n-node](https://github.com/mashpie/i18n-node). It has a middleware that gather language settings of visitors and then persist translations from [JSON files](https://github.com/LauraBeatris/foodfy/tree/master/src/locales) related with a specific locale.
+
+The locale is storaged as a cookie named ```foodfy:locale``` and that can be changed by passing a query string with the value ```?lang=pt```
+
+**Question:** Are all kind of users able to create and update chefs or recipes?
+
+**Answer:** The application has two kind of users: Visitors and Administrators. As a administrator, you're able to create, update and view all the data related to recipes, chefs and also other users. Visitors can also access the admin platform but they don't have access to the views responsable to create and update data.
+
 
 # Issues
 
@@ -92,6 +109,6 @@ Check out the [contributing](https://github.com/LauraBeatris/foodfy/master/CONTR
 # License
 
 Released in 2020.
-This project is under the MIT license.
+This project is under the [MIT license](https://github.com/LauraBeatris/foodfy/master/LICENSE).
 
 Made with love by [Laura Beatris](https://github.com/LauraBeatris) 💜🚀
