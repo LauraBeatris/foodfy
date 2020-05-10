@@ -9,7 +9,7 @@
   "scripts": {
     "nodemon": "nodemon --inspect=0.0.0.0:9229 src/server.js",
     "browsersync": "browser-sync start --proxy localhost:8080 --files './src/app/views,./public/'",
-    "dev": "npm-run-all -p nodemon browsersync",
+    "dev": "npm-run-all -p nodemon build:sass browsersync",
     "run:seeds": "node ./src/database/seeds.js",
     "build:sass": "sass --watch ./src/scss/index.scss:public/styles/index.css",
     "commit": "git-cz"
