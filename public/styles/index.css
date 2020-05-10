@@ -429,7 +429,7 @@ a {
 .chef {
   max-width: 216px;
   max-height: 300px;
-  margin-top: calc(60px + 6px);
+  margin: auto;
 }
 
 .box .text {
@@ -444,6 +444,10 @@ a {
     margin: 0 auto;
     padding: 0px 60px;
     margin: 0;
+  }
+
+  .chef {
+    margin: calc(60px + 6px) 0;
   }
 }
 .button {

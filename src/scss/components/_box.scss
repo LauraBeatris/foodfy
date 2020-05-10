@@ -28,7 +28,7 @@
 .chef {
     max-width: 216px;
     max-height: 300px;
-    margin-top: calc(#{$space-2xl} + 6px);
+    margin: auto;
 }
 
 .box .text {
@@ -43,5 +43,9 @@
         margin: 0 auto;
         padding: 0px $space-2xl;
         margin: 0;
+    }
+
+    .chef {
+        margin: calc(#{$space-2xl} + 6px) 0;
     }
 }
