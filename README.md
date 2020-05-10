@@ -23,19 +23,18 @@
 
 ---
 
-# Table of Contents
+# :pushpin: Table of Contents
 
-* [Features](#features)
-* [Installation](#installation)
-* [Getting Started](#getting-started)
-* [FAQ](#faq)
-* [Acknowledgments](#Acknowledgments)
-* [Contributing](#contributing)
-* [Found a bug? Missing a specific feature?](#issues)
-* [License](#license)
+* [Features](#rocket-features)
+* [Installation](#construction_worker-installation)
+* [Getting Started](#runner-getting-started)
+* [FAQ](#postbox-faq)
+* [Found a bug? Missing a specific feature?](#bug-issues)
+* [Contributing](#tada-contributing)
+* [License](#closed_book-license)
 
 
-# Features
+# :rocket: Features
 
 * 👩🏽‍🍳  Explore recipes and find amazing chefs .
 *  🍕 Create an account to manage recipes, chefs and users.
