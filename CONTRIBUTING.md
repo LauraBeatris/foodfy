@@ -15,7 +15,7 @@ This project is MIT-licensed, and this means that you can implement and use what
 
 ## Commits and Code Padronization
 
-This project follow the [Conventinal Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification. [Husky](https://github.com/typicode/husky) execute scrips according to git hooks in order to test if a developer is following the [Eslint Lint Rules](https://eslint.org/) and also the commits convention.
+This project follow the [Conventinal Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification. [Husky](https://github.com/typicode/husky) execute scrips according to git hooks in order to test if a developer is following the [Eslint Lint Rules](https://github.com/LauraBeatris/foodfy/blob/master/.eslintrc.js) and also the commits convention.
 
 ## Bug reports
 
