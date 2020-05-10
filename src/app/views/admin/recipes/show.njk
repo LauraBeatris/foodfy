@@ -1,3 +1,4 @@
+{% import "components/recipeDetails.njk" as recipeDetails %}
 {% extends "layouts/admin.njk" %}
 
 {% block head %}
@@ -5,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    <main class="recipes recipes--admin container">
+    {% call recipeDetails.render(recipe, files, false, 'recipes---admin container') %}
         <div class="row">
             <h1 class="title font-md">Receita: {{recipe.title}}</h1>
             {% if user.is_admin %}
@@ -14,64 +15,5 @@
                 </div>
             {% endif %}
         </div>
-        <section class="details__info container">
-            <div class="highlight">
-                <img class="details__image---big"
-                    {% if files[0].path %}
-                        src="{{files[0].path}}"
-                    {% else %}
-                        src="https://place-hold.it/500x500?text=Receita%20sem%20foto"
-                    {% endif %}
-
-                    alt="Receita de {{recipe.title}}"
-                    title="{{recipe.title}}"
-                    aria-label="{{recipe.title}}"
-                />
-            </div>
-            <div class="gallery-preview">
-                {% for file in files %}
-                    <img
-                        src="{{file.path}}"
-                        {% if loop.first %} class="active" {% endif %}
-                        onclick="ImageGallery.setImage(event)"
-                    />
-                {% endfor %}
-            </div>
-            <h1 class="details__title title font-xl">{{recipe.title}}</h1>
-            <h3 class="details__subtitle">{{recipe.chef_name}}</h3>
-        </section>
-        <section class="recipe__ingredients container">
-            <div class="row">
-                <h3 class="subtitle font-md">Ingredientes</h3>
-            </div>
-            <ul class="list js-list ingredients">
-                {% for ingredient in recipe.ingredients %}
-                    <li>
-                        {{ingredient}}
-                    </li>
-                {% endfor %}
-            </ul>
-
-        </section>
-        <section class="recipe__preparation container">
-            <div class="row">
-                <h3 class="subtitle font-md">Modo de preparo</h3>
-            </div>
-            <ul class="list js-list preparation">
-                {% for preparation in recipe.preparations %}
-                    <li>
-                        {{preparation}}
-                    </li>
-                {% endfor %}
-            </ul>
-        </section>
-        {% if recipe.information %}
-            <section class="recipe__information container">
-                <div class="row">
-                    <h3 class="subtitle font-md"font-md>Informações adicionais</h3>
-                </div>
-                <p class="text js-text information">{{recipe.information}}</p>
-            </section>
-        {% endif %}
-    </main>
+    {% endcall %}
 {% endblock %}

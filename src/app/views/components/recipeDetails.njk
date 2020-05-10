@@ -1,0 +1,82 @@
+{% macro render(recipe, files, showToggleSectionsButtons, containerClasses) %}
+    <main class="recipes {{containerClasses}}">
+        {% if caller %}
+        {{ caller() }}
+        {% endif %}
+        <section class="recipe__info container">
+           <div class="highlight">
+                <img class="recipe__image"
+                    {% if files[0].path %}
+                        src="{{files[0].path}}"
+                    {% else %}
+                        src="https://place-hold.it/500x500?text=Receita%20sem%20foto"
+                    {% endif %}
+                    alt="Receita de {{recipe.title}}"
+                    title="{{recipe.title}}"
+                    aria-label="{{recipe.title}}"
+                />
+            </div>
+            <div class="gallery-preview">
+                {% for photo in files %}
+                    <img
+                        src="{{photo.path}}"
+                        {% if loop.first %} class="active" {% endif %}
+                        onclick="ImageGallery.setImage(event)"
+                    />
+                {% endfor %}
+            </div>
+            <h1 class="details__title title font-xl">{{recipe.title}}</h1>
+            <h3 class="details__subtitle">{{recipe.chef_name}}</h3>
+        </section>
+        <section class="recipe__ingredients container">
+            <div class="row">
+                <h3 class="subtitle font-md">Ingredientes</h3>
+                {% if showToggleSectionsButtons %}
+                    <button
+                        onclick="ToggleElement.toggle(event, '.js-list.ingredients')"
+                        class="show-button js-show-button btn-ingredients"
+                        data-target=".recipe-ingredients .list"
+                    >
+                        Esconder
+                    </button>
+                {% endif %}
+            </div>
+            <ul class="list js-list ingredients">
+                {% for ingredient in recipe.ingredients %}
+                    <li>
+                        {{ingredient}}
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </section>
+        <section class="recipe__preparation container">
+            <div class="row">
+                <h3 class="subtitle font-md">Modo de preparo</h3>
+                {% if showToggleSectionsButtons %}
+                    <button
+                        onclick="ToggleElement.toggle(event, '.js-list.preparation')"
+                        class="show-button js-show-button btn-preparation"
+                    >
+                        Esconder
+                    </button>
+                {% endif %}
+            </div>
+            <ul class="list js-list preparation">
+                {% for preparation in recipe.preparations %}
+                    <li>
+                        {{preparation}}
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+        {% if recipe.information %}
+            <section class="recipe__information container">
+                <div class="row">
+                    <h3 class="subtitle font-md"font-md>Informações adicionais</h3>
+                </div>
+                <p class="text js-text information">{{recipe.information}}</p>
+            </section>
+        {% endif %}
+    </main>
+{% endmacro %}

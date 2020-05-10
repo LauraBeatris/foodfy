@@ -240,8 +240,8 @@ a {
 }
 
 .recipe__image {
-  width: 300px;
-  height: 120px;
+  width: 100%;
+  height: 300px;
   border-radius: 15px;
   object-fit: cover;
   object-position: center;
@@ -286,13 +286,13 @@ a {
   padding: 0 calc(8px + 2px);
 }
 
-.recipes.recipes--admin > .row {
+.recipes.recipes---admin > .row {
   margin: 0 8px 30px;
   justify-content: space-between;
 }
 
 @media screen and (min-width: 1000px) {
-  .recipes.recipes--admin > .row {
+  .recipes.recipes---admin > .row {
     margin: 0 0 30px;
   }
 }
@@ -855,8 +855,13 @@ textarea.field {
   justify-content: center;
 }
 
-.header--admin {
+.header---admin {
   background: #111111;
+}
+
+.header---admin .header__link {
+  color: #FFF;
+  text-transform: uppercase;
 }
 
 .header__nav-link {
@@ -868,9 +873,10 @@ textarea.field {
   font-family: serif;
   font-weight: lighter;
   letter-spacing: 2px;
+  text-transform: initial;
 }
 
-.header--admin .header__title {
+.header---admin .header__title {
   color: #FFF;
 }
 

@@ -13,8 +13,13 @@
     justify-content: center;
 }
 
-.header--admin {
+.header---admin {
     background: $dark;
+}
+
+.header---admin .header__link {
+    color: $white;
+    text-transform: uppercase;
 }
 
 .header__nav-link {
@@ -26,9 +31,10 @@
     font-family: serif;
     font-weight: lighter;
     letter-spacing: 2px;
+    text-transform: initial;
 }
 
-.header--admin .header__title {
+.header---admin .header__title {
     color: $white;
 }
 

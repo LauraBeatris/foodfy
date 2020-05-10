@@ -1,3 +1,5 @@
+{% import "components/header.njk" as header %}
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -10,57 +12,34 @@
     {% endblock %}
 </head>
 <body>
-    <header class="header header--admin">
-        <div class="container">
-            <a class="header__link" href="/admin/recipes">
-                <h1 class="header__title">Foodfy</h1>
-            </a>
-
-            <nav class="header__nav">
-                <ul class="header-list">
-                    <li class="header-list__item">
-                        <a
-                          class="header__link header__link---admin js-header__link"
-                          href="/admin/recipes"
-                        >
-                            Receitas
-                        </a>
-                    </li>
-                    <li class="header-list__item">
-                        <a
-                          class="header__link header__link---admin js-header__link"
-                          href="/admin/chefs"
-                        >
-                            Chefs
-                        </a>
-                    </li>
-                    {% if user.is_admin %}
-                        <li class="header-list__item">
-                            <a
-                            class="header__link header__link---admin js-header__link"
-                            href="/admin/users"
-                            >
-                            Usuários
-                            </a>
-                        </li>
-                    {% endif %}
-                </ul>
-            </nav>
-
-            <a
-              class="header__link header__link---account header__link---admin js-header__link"
-              href="/admin/profile"
-            >
-                Minha Conta
-            </a>
-            <form
-                action="/admin/logout?_method=DELETE"
-                method="POST"
-            >
-                <button type="submit" class="header__link header__link---admin">Sair</button>
-            </form>
-        </div>
-    </header>
+    {% call header.renderMain([
+        {
+            title: 'Receitas',
+            path: '/admin/recipes'
+        },
+        {
+            title: 'Chefs',
+            path: '/admin/chefs'
+        },
+        {
+            title: 'Usuários',
+            path: '/admin/users'
+        }
+    ], null, "/admin", "header---admin")
+    %}
+        <a
+            class="header__link header__link---account header__link---admin js-header__link"
+            href="/admin/profile"
+        >
+            Minha Conta
+        </a>
+        <form
+            action="/admin/logout?_method=DELETE"
+            method="POST"
+        >
+            <button type="submit" class="header__link header__link---admin">Sair</button>
+        </form>
+    {% endcall %}
 
     {% include "includes/messages.njk" %}
     {% block content %}
