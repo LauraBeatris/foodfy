@@ -5,7 +5,6 @@ Thanks you so much for your interest in contributing to this project!
 ## About our deal
 
 Hi! I'm Laura and i'm the creator and maintainer of this package.
-that's pretty much it.
 
 If you encounter bugs, please do open an issue describing the bug and including steps to easily reproduce it (bonus points for a CodeSandbox that demonstrates the problem).
 
