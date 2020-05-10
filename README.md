@@ -43,7 +43,7 @@
 * 🌏  Multi language support - English and Portuguese .
 * 🎨  A cool dark mode theme toggle.
 
-# Installation
+# :construction_worker: Installation
 
 **You need to install [Node.js](https://nodejs.org/en/download/) and [Yarn](https://yarnpkg.com/) first, then clone the project using this command:**
 
@@ -71,7 +71,7 @@ Install [Postgres]() to create a database or if you have [Docker]() in your mach
 
 Execute the [Database Queries](https://github.com/LauraBeatris/foodfy/blob/master/src/database/seeds.js) to create tables, relationships and procedures.
 
-# Getting Started
+# :runner: Getting Started
 
 To start, run the seeds provided in [Seeds](https://github.com/LauraBeatris/foodfy/blob/master/src/database/seeds.js) in order to populate the database with an initial data.
 
@@ -81,7 +81,7 @@ Run the following command in order to start the application in a development env
 
 ```yarn dev```
 
-# Faq
+# :postbox: Faq
 
 **Question:** What are the tecnologies used in this project?
 
@@ -99,15 +99,15 @@ The locale is storaged as a cookie named ```foodfy:locale``` and that can be cha
 **Answer:** The application has two kind of users: Visitors and Administrators. As a administrator, you're able to create, update and view all the data related to recipes, chefs and also other users. Visitors can also access the admin platform but they don't have access to the views responsable to create and update data.
 
 
-# Issues
+# :bug: Issues
 
 Feel free to **file a new issue** with a respective title and description on the the [Foodfy](https://github.com/LauraBeatris/foodfy/issues) repository. If you already found a solution to your problem, **we would love to review your pull request**! Have a look at our [contribution guidelines](https://github.com/LauraBeatris/foodfy/blob/master/CONTRIBUTING.md) to find out about the coding standards.
 
-# Contributing
+# :tada: Contributing
 
 Check out the [contributing](https://github.com/LauraBeatris/foodfy/blob/master/CONTRIBUTING.md) page to see the best places to file issues, start discussions and begin contributing.
 
-# License
+# :closed_book: License
 
 Released in 2020.
 This project is under the [MIT license](https://github.com/LauraBeatris/foodfy/master/LICENSE).
