@@ -165,15 +165,8 @@ const FormValidator = {
         const fieldContainer = field.parentNode;
 
         if (Object.keys(FormValidator.errors).includes(field.name)) {
-            const validateSingleField = validate.single(
-                field.value,
-                FormValidatorSchema[FormValidator.schema][field.name]
-            );
-
-            if (validateSingleField) {
-                field.classList.add('error');
-                field.classList.remove('valid');
-            }
+            field.classList.add('error');
+            field.classList.remove('valid');
 
             const errorMessage = FormValidator.createErrorMessage(
                 field.name,
