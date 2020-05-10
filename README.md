@@ -15,7 +15,7 @@
 [![Contributors](https://img.shields.io/github/contributors/LauraBeatris/foodfy?color=D54F44&style=flat-square)](https://github.com/LauraBeatris/foodfy/graphs/contributors)
 
 
-> Take your culinary skills to the next level. Cook, explore & manage recipes.
+> Take your culinary skills to the next level. Cook, Explore & Manage Recipes.
 
 <br />
 <p align="center"><img src=".github/home.gif?raw=true"/></p>
