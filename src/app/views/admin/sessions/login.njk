@@ -1,11 +1,11 @@
 {% extends "layouts/auth.njk" %}
 
 {% block head %}
-    <title>Foodfy | Iniciar Sessão</title>
+    <title>Foodfy | {{__("auth.login")}}</title>
 {% endblock %}
 
 {% block content %}
-    <h3 class="title font-md">Iniciar Sessão</h3>
+    <h3 class="title font-md">{{__("auth.login")}}</h3>
     <form
         action="/admin/login"
         method="POST"
@@ -14,8 +14,8 @@
     >
         {% include "includes/sessions/loginFields.njk" %}
         <div class="row">
-            <a class="link" href="/admin/recover-password">Perdeu a senha?</a>
-            <button type="submit" class="button">Acessar</button>
+            <a class="link" href="/admin/recover-password">{{__("auth.forgot_your_password.link")}}</a>
+            <button type="submit" class="button">{{__("auth.access")}}</button>
         </div>
     </form>
 {% endblock %}

@@ -6,7 +6,7 @@
         id="email"
         class="field {% if validationErrorMessages.email %}error{% endif %}"
         value="{{user.email}}"
-        placeholder="Digite seu email"
+        placeholder="{{__('auth.type_your_email')}}"
         oninput="FormValidator.validate(this)"
     />
     {% if validationErrorMessages.email %}
@@ -15,14 +15,14 @@
 </div>
 
 <div class="field-container">
-    <label class="label" for="password">Senha</label>
+    <label class="label" for="password">{{__('auth.password')}}</label>
     <input
         type="password"
         name="password"
         id="password"
         class="field {% if validationErrorMessages.password %}error{% endif %}"
         value="{{user.password}}"
-        placeholder="Digite sua senha"
+        placeholder="{{__('auth.type_your_password')}}"
         oninput="FormValidator.validate(this)"
     />
     {% if validationErrorMessages.password %}

@@ -10,17 +10,17 @@
             <h1 class="title font-md">Chef: {{chef.name}}</h1>
             {% if user.is_admin %}
                 <div class="actions-container">
-                    <a class="button" href="/admin/chefs/{{chef.id}}/edit">Editar chef</a>
+                    <a class="button" href="/admin/chefs/{{chef.id}}/edit">{{__n("buttons.edit")}} chef</a>
                 </div>
             {% endif %}
         </div>
         <section class="details__info container">
             <img class="details__image details__image---rounded" src="{{chef.avatar}}" alt="Chef {{chef.name}}" title="{{chef.name}}" aria-label="{{chef.name}}"/>
             <h1 class="details__title title font-xl">{{chef.name}}</h1>
-            <h3 class="details__subtitle">{{chef.total_recipes}}</h3>
+            <h3 class="details__subtitle">{{request.__n("cards.%s recipe", chef.total_recipes)}}</h3>
         </section>
         <section class="chef-recipes">
-            <h1 class="title font-md">Receitas</h1>
+            <h1 class="title font-md">{{(__n("recipes", 2)) | capitalize}} </h1>
                 {% if chefRecipes.length > 0 %}
                     <div class="grid grid--two-columns">
                         {% for recipe in chefRecipes %}
@@ -29,13 +29,13 @@
                                 <div class="card-info">
                                     <span class="card-info__title">{{recipe.title}}</span>
                                     <small class="card-info__subtitle">{{recipe.chef_name}}</small>
-                                    <a class="card-info__action" href="/admin/recipes/{{recipe.id}}"}}>Visualizar</a>
+                                    <a class="card-info__action" href="/admin/recipes/{{recipe.id}}"}}>{{__("cards.view")}}</a>
                                 </div>
                             </div>
                         {% endfor %}
                     </div>
                 {% else %}
-                   <h4 class="subtitle subtitle---secondary font-md">Nenhuma receita cadastrada</h4>
+                   <h4 class="subtitle subtitle---secondary font-md">{{__("no_registered_recipes")}}</h4>
                 {% endif %}
         </section>
 
