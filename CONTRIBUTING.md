@@ -22,6 +22,6 @@ This project follow the [Conventinal Commits](https://www.conventionalcommits.or
 If you encounter a problem with this library, please open an issue. Be sure to include:
 
 - Package version
-- React version
+- Node and Express versions
 - Brief but thorough description of the issue
 - Link to a CodeSandbox (or similar) demonstrating the problem (optional, but highly recommended, especially for complex problems)
