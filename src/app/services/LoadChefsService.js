@@ -1,4 +1,3 @@
-const pluralize = require('pluralize');
 const Chef = require('../models/Chef');
 
 class LoadChefsService {
@@ -26,10 +25,11 @@ class LoadChefsService {
     formatChef(chef) {
         return {
             ...chef,
-            total_recipes: `${chef.total_recipes} ${pluralize(
-                'receitas',
-                parseInt(chef.total_recipes, 10)
-            )}`,
+            // total_recipes: `${chef.total_recipes} ${pluralize(
+            //     'receitas',
+            //     parseInt(chef.total_recipes, 10)
+            // )}`,
+            total_recipes: chef.total_recipes,
             avatar: chef.avatar.replace('public', ''),
         };
     }

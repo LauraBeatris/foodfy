@@ -14,7 +14,7 @@
         <div class="card-info">
             <span class="card-info__title">{{recipe.title}}</span>
             <small class="card-info__subtitle">{{recipe.chef_name}}</small>
-            <a class="card-info__action" href="/admin/recipes/{{recipe.id}}"}}>Visualizar</a>
+            <a class="card-info__action" href="/admin/recipes/{{recipe.id}}">{{request.__("cards.view")}}</a>
         </div>
     </div>
 {% endmacro %}

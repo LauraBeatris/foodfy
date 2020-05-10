@@ -17,15 +17,15 @@
     <main class="main-content">
         {% call header.renderMain([
             {
-                title: 'Sobre',
+                title: __("header.about"),
                 path: '/about'
             },
             {
-                title: 'Receitas',
+                title: __("header.recipes"),
                 path: '/recipes'
             },
             {
-                title: 'Chefs',
+                title: __("header.chefs"),
                 path: '/chefs'
             }
         ], null, "/")
@@ -36,13 +36,13 @@
                     class="field"
                     name="filter"
                     id="filter"
-                    placeholder="Buscar uma receita"
+                    placeholder="{{__("header.search_a_recipe")}}"
                 >
                 <button
                     class="button button---search"
                     type="submit"
                 >
-                    Buscar
+                    {{__("header.search")}}
                 </button>
             </form>
         {% endcall %}
@@ -51,7 +51,7 @@
         {% endblock %}
 
         <footer class="footer">
-            <span class="footer__text">Todos direitos reservados, receitas Foodfy.</span>
+            <span class="footer__text">{{__("footer")}}</span>
         </footer>
     </main>
     {% include "includes/scripts.njk" %}

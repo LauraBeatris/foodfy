@@ -30,7 +30,7 @@
         </section>
         <section class="recipe__ingredients container">
             <div class="row">
-                <h3 class="subtitle font-md">Ingredientes</h3>
+                <h3 class="subtitle font-md">{{request.__("ingredients")}}</h3>
                 {% if showToggleSectionsButtons %}
                     <button
                         onclick="ToggleElement.toggle(event, '.js-list.ingredients')"
@@ -52,7 +52,7 @@
         </section>
         <section class="recipe__preparation container">
             <div class="row">
-                <h3 class="subtitle font-md">Modo de preparo</h3>
+                <h3 class="subtitle font-md">{{request.__("how_to_prepare")}}</h3>
                 {% if showToggleSectionsButtons %}
                     <button
                         onclick="ToggleElement.toggle(event, '.js-list.preparation')"
@@ -73,7 +73,7 @@
         {% if recipe.information %}
             <section class="recipe__information container">
                 <div class="row">
-                    <h3 class="subtitle font-md"font-md>Informações adicionais</h3>
+                    <h3 class="subtitle font-md">Informações adicionais</h3>
                 </div>
                 <p class="text js-text information">{{recipe.information}}</p>
             </section>

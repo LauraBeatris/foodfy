@@ -1,0 +1,79 @@
+{
+	"welcome": "Bem vindo",
+	"the_best_recipes": "As melhores receitas",
+	"foodfy_description": "Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.",
+	"most_accessed": "Mais acessados",
+	"Manage": "Gerenciar",
+	"about": {
+		"about_foodfy": "Sobre o Foodfy",
+		"how_it_all_began": "Como tudo começou...",
+		"our_recipes": "Nossas receitas"
+	},
+	"auth": {
+		"login": "Iniciar sessão",
+		"name": "Nome",
+		"password": "Senha",
+		"type_your_email": "Digite seu email",
+		"type_your_password": "Digite sua senha",
+		"type_your_new_password": "Digite sua nova senha",
+		"forgot_your_password": {
+			"title": "Esqueceu sua senha?",
+			"link": "Perdeu a senha?"
+		},
+		"access": "Acessar",
+		"type_your_email_to_recover_your_password": "Digite seu email para recuperar sua senha",
+		"recover": "Recuperar",
+		"new_password": "Nova senha",
+		"repeat_password": "Repetir senha",
+		"repeat_your_new_password": "Repita a nova senha"
+	},
+	"profile": {
+		"name": "Nome",
+		"password": "Senha",
+		"type_your_full_name": "Digite seu nome completo",
+		"type_a_password": "Digite a senha",
+		"type_a_email": "Digite o email"
+	},
+	"header": {
+		"about": "Sobre",
+		"recipes": "Receitas",
+		"chefs": "Chefs",
+		"users": "Usuários",
+		"search": "Buscar",
+		"search_a_recipe": "Buscar uma receita",
+		"my_account": "Minha conta",
+		"logout": "Sair"
+	},
+	"cards": {
+		"view": "Visualizar",
+		"edit": "Editar",
+		"remove": "Remover",
+		"%s recipe": {
+			"one": "%d receita",
+			"other": "%d receitas"
+		}
+	},
+	"buttons": {
+		"save": "Salvar",
+		"create": "Criar",
+        "new": "Novo",
+        "edit": "Editar"
+	},
+	"ingredients": "Ingredientes",
+	"how_to_prepare": "Modo de Preparo",
+    "footer": "Todos direitos reservados, receitas Foodfy.",
+    "recipe": "Receita",
+    "recipes": {
+		"one": "receita",
+		"other": "receitas"
+    },
+    "users": {
+        "one": "usuário",
+        "other": "usuários"
+    },
+    "chef": {
+        "one": "chef",
+        "other": "chefs"
+    },
+    "no_registered_recipes": "Nenhuma receita cadastrada"
+}

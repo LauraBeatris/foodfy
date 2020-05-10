@@ -1,12 +1,12 @@
 <div class="field-container">
-    <label class="label" for="name">Nome</label>
+    <label class="label" for="name">{{__('profile.name')}}</label>
     <input
         type="text"
         name="name"
         id="name"
         class="field {% if validationErrorMessages.name %}error{% endif %}"
         value="{{user.name}}"
-        placeholder="Digite o nome completo"
+        placeholder="{{__('profile.type_your_full_name')}}"
         oninput="FormValidator.validate(this)"
     />
     {% if validationErrorMessages.name %}
@@ -22,7 +22,7 @@
         id="email"
         class="field {% if validationErrorMessages.email %}error{% endif %}"
         value="{{user.email}}"
-        placeholder="Digite o email"
+        placeholder="{{__('profile.type_a_email')}}"
         oninput="FormValidator.validate(this)"
     />
     {% if validationErrorMessages.email %}
@@ -31,13 +31,13 @@
 </div>
 
 <div class="field-container">
-    <label class="label" for="email">Senha</label>
+    <label class="label" for="email">{{__("profile.password")}}</label>
     <input
         type="password"
         name="password"
         id="password"
         class="field {% if validationErrorMessages.password %}error{% endif %}"
-        placeholder="Digite a senha"
+        placeholder="{{__('profile.type_a_password')}}"
         oninput="FormValidator.validate(this)"
     />
     {% if validationErrorMessages.password %}

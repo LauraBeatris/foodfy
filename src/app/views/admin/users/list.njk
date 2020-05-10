@@ -1,15 +1,15 @@
 {% extends "layouts/admin.njk" %}
 
 {% block head %}
-    <title>Foodfy | Gerenciar Usuários </title>
+    <title>Foodfy | {{__("Manage")}} {{__("users")}} </title>
 {% endblock %}
 
 {% block content %}
     <!-- users section init -->
     <section class="users container">
         <header class="section-header">
-            <h1 class="title font-md">Gerenciar usuários<h1/>
-            <a class="button" href="/admin/users/create">Novo</a>
+            <h1 class="title font-md">{{__("Manage")}} {{__("users")}}<h1/>
+            <a class="button" href="/admin/users/create">{{__("buttons.new")}}</a>
         </header>
         <div class="grid users-grid">
             {% for registerUser in users %}
@@ -27,13 +27,13 @@
                             href="/admin/users/{{registerUser.id}}/edit"
                             class="user-card__action user-card__edit-user"
                         >
-                            Editar
+                            {{__("cards.edit")}}
                         </a>
                         <input
                             type="submit"
                             class="user-card__action user-card__remove-user"
                             onclick="DeleteAlert.run(event, 'Você tem certeza que deseja deletar esse usuário?')"
-                            value="Remover"
+                            value="{{__('cards.remove')}}"
                             form="deleteForm"
                         />
                     </footer>

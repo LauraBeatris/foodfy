@@ -17,18 +17,16 @@
     <section class="info container">
         <div class="box">
             <div class="text">
-                <h2 class="title box__title font-lg">As melhores receitas</h2>
+                <h2 class="title box__title font-lg">{{__("the_best_recipes")}}</h2>
                 <p class="box__description">
-                    Aprenda a construir os melhores pratos
-                    com receitas criadas por profissionais
-                    do mundo inteiro.
+                    {{__("foodfy_description")}}
                 </p>
             </div>
             <img class="chef" src="/assets/chef.png" alt="Chef" aria-hidden="true" title="chef"/>
         </div>
     </section>
 
-    {% call recipesList.render(recipes, 'Mais acessadas') %}
+    {% call recipesList.render(recipes, __("most_accessed")) %}
         {% for recipe in recipes %}
             {{ recipesCard.renderPrimary(recipe) }}
         {% endfor %}

@@ -1,0 +1,79 @@
+{
+	"welcome": "Welcome",
+	"the_best_recipes": "The best recipes",
+	"foodfy_description": "Learn how to do delicious dishes created by professionals from all over the world.",
+	"most_accessed": "Most accessed",
+	"Manage": "Manage",
+	"about": {
+		"about_foodfy": "About Foodfy",
+		"how_it_all_began": "How it all began...",
+		"our_recipes": "Our recipes"
+	},
+	"header": {
+		"about": "About",
+		"recipes": "Recipes",
+		"chefs": "Chefs",
+		"users": "Users",
+		"search": "Search",
+		"search_a_recipe": "Search a recipe",
+		"my_account": "My Account",
+		"logout": "Logout"
+	},
+	"auth": {
+		"login": "Login",
+		"name": "Name",
+		"password": "Password",
+		"type_your_email": "Type your email",
+		"type_your_password": "Type your password",
+		"type_your_new_password": "Type your new password",
+		"forgot_your_password": {
+			"title": "Forgot your password?",
+			"link": "Forgot your password?"
+		},
+		"access": "Access",
+		"type_your_email_to_recover_your_password": "Type your email to recover your password",
+		"recover": "Recover",
+		"new_password": "New Password",
+		"repeat_password": "Confirm your password",
+		"repeat_your_new_password": "Repeat your new password"
+	},
+	"profile": {
+		"name": "Name",
+		"password": "Password",
+		"type_your_full_name": "Type your full name",
+		"type_a_password": "Type a password",
+		"type_a_email": "Type an email"
+	},
+	"cards": {
+		"view": "Details",
+		"edit": "Edit",
+		"remove": "Remove",
+		"%s recipe": {
+			"one": "%d recipe",
+			"other": "%d recipes"
+		}
+	},
+	"buttons": {
+		"save": "Save",
+		"create": "Create",
+		"new": "New",
+		"edit": "Edit"
+	},
+	"ingredients": "Ingredients",
+	"how_to_prepare": "How to prepare",
+	"footer": "All rights reserved by Foodfy Recipes",
+	"recipe": "Recipe",
+	"recipes": {
+		"one": "recipe",
+		"other": "recipes"
+	},
+	"users": {
+		"one": "user",
+		"other": "users"
+	},
+	"chef": {
+		"one": "chef",
+		"other": "chefs"
+    },
+    "no_registered_recipes": "No registered recipes"
+}
