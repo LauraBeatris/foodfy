@@ -1,7 +1,7 @@
 // COLORS
-$white: #FFF;
+$white: var(--white-color);
 $rose: #FBDFDB;
-$dark: #111111;
+$dark: var(--dark-color);
 $black: #000;
 $gray: #777777;
 $gray-light: #EEEEEE;

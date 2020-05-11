@@ -40,4 +40,19 @@ const ToggleElement = {
     },
 };
 
+const ToggleTheme = {
+    listen() {
+        const toggle = document.querySelector('.theme-toggle');
+
+        if (toggle)
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('dawn');
+                toggle.classList.toggle('dusk');
+
+                document.querySelector('body').classList.toggle('dark');
+            });
+    },
+};
+
+ToggleTheme.listen();
 Navigation.active();

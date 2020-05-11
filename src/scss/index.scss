@@ -1,3 +1,6 @@
+// Theme
+@import "essentials/theme";
+
 // Variables (Must be above all imports that uses it)
 @import "essentials/variables";
 
@@ -21,7 +24,7 @@
 @import "components/header";
 @import "components/message";
 @import "components/photos_upload";
-@import "components/photos_gallery";
+@import "components/theme_toggle";
 
 // Essentials
 @import "essentials/animations";

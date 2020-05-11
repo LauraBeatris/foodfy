@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     padding: 30px 0px;
+    margin-bottom: 10px;
 }
 
 .header > .container {
@@ -43,7 +44,7 @@
     display: flex;
     align-items: center;
 
-    margin: 10px 0px;
+    margin: 20px 0px;
 }
 
 .header-list__item:not(:last-child) {
@@ -109,6 +110,7 @@ button.header__link {
         flex-direction: row;
         justify-content: unset;
         margin: 0 auto;
+        background: $white;
     }
 
     .header > .container {
