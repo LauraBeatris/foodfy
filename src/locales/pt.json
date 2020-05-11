@@ -3,7 +3,10 @@
 	"the_best_recipes": "As melhores receitas",
 	"foodfy_description": "Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.",
 	"most_accessed": "Mais acessados",
-	"Manage": "Gerenciar",
+    "Manage": "Gerenciar",
+    "head": {
+        "title": "As melhores receitas para você"
+    },
 	"about": {
 		"about_foodfy": "Sobre o Foodfy",
 		"how_it_all_began": "Como tudo começou...",
