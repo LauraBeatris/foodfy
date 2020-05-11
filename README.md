@@ -19,7 +19,8 @@
 
 <br />
 <p align="center"><img src=".github/home.gif?raw=true"/></p>
-<p align="center"><img src=".github/admin.jpg?raw=true"/></p>
+<p align="center"><img src=".github/toggle_theme.gif?raw=true"/></p>
+<p align="center"><img style="width: 500px;" src=".github/admin.jpg?raw=true"/></p>
 
 ---
 
