@@ -78,5 +78,20 @@
         "one": "chef",
         "other": "chefs"
     },
-    "no_registered_recipes": "Nenhuma receita cadastrada"
+    "no_registered_recipes": "Nenhuma receita cadastrada",
+    "toasts": {
+        "errors": {
+            "list": "Erro ao listar",
+            "post": "Erro ao criar",
+            "put": "Erro ao atualizar",
+            "delete": "Erro ao deletar",
+            "view_render": "Erro ao renderizar a view"
+        },
+        "success": {
+            "post": "Sucesso ao criar",
+            "put": "Sucesso ao atualizar",
+            "delete": "Sucesso ao deletar",
+            "recover_email": "Email de recuperação de senha enviado com sucesso"
+        }
+    }
 }

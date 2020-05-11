@@ -1,12 +1,12 @@
 {
-    "welcome": "Welcome",
+	"welcome": "Welcome",
 	"the_best_recipes": "The best recipes",
 	"foodfy_description": "Learn how to do delicious dishes created by professionals from all over the world.",
 	"most_accessed": "Most accessed",
-    "Manage": "Manage",
-    "head": {
-        "title": "The best recipes for you"
-    },
+	"Manage": "Manage",
+	"head": {
+		"title": "The best recipes for you"
+	},
 	"about": {
 		"about_foodfy": "About Foodfy",
 		"how_it_all_began": "How it all began...",
@@ -77,21 +77,26 @@
 	"chef": {
 		"one": "chef",
 		"other": "chefs"
-    },
-    "no_registered_recipes": "No registered recipes",
-    "toasts": {
-        "errors": {
-            "list": "Error to list",
-            "post": "Error to create",
-            "put": "Error to update",
-            "delete": "Error to delete",
-            "view_render": "Error to render a view"
-        },
-        "success": {
-            "post": "Successfully created",
-            "put": "Successfully updated",
-            "delete": "Successfully deleted",
-            "recover_email": "Password recovery email sent successfully"
-        }
-    }
+	},
+	"no_registered_recipes": "No registered recipes",
+	"toasts": {
+		"errors": {
+			"list": "Error to list",
+			"post": "Error to create",
+			"put": "Error to update",
+			"delete": "Error to delete",
+			"view_render": "Error to render a view of"
+		},
+		"success": {
+			"post": "Successfully created",
+			"put": "Successfully updated",
+			"delete": "Successfully deleted",
+			"recover_email": "{field} Password recovery email sent successfully"
+		}
+	},
+	"toast": {
+		"success": {
+			"post": "toast.success.post"
+		}
+	}
 }

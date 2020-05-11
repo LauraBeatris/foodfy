@@ -155,7 +155,7 @@ async function runSeed() {
 
         const chef = await createChef();
         await createRecipes({ user_id: adminUser.id, chef_id: chef.id });
-        console.log('Seeds generated 🚀');
+        console.log('Seeds generated 🚀'); // eslint-disable-line
         process.exit();
     } catch (err) {
         console.log('Error while generating seed data', err); // eslint-disable-line

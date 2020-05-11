@@ -22,6 +22,7 @@ module.exports = {
     "prettier/prettier": "error",
     "class-methods-use-this": "off",
     "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
-    "camelcase": ["error", {allow: [".*_.*"], ignoreDestructuring: true}]
+    "camelcase": ["error", {allow: [".*_.*"], ignoreDestructuring: true}],
+    "no-underscore-dangle": "off"
 },
 };

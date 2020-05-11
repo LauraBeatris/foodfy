@@ -1,5 +1,6 @@
 const Recipe = require('../../models/Recipe');
 const LoadRecipesService = require('../../services/LoadRecipesService');
+const { successMessage, errorMessage } = require('../../../lib/utils');
 
 /*
     This controller is responsable for the recipes operations related to
@@ -20,7 +21,7 @@ class RecipesAdminController {
             });
         } catch (err) {
             return res.render('admin/recipes/index', {
-                error: 'Erro ao listar receitas',
+                error: errorMessage(req, 'list', 'recipes'),
             });
         }
     }
@@ -38,8 +39,7 @@ class RecipesAdminController {
             };
 
             return res.status(errorData.status).json({
-                error:
-                    'Houve um erro ao renderizar a view de criação uma receita',
+                error: errorMessage(req, 'view_render', 'recipes'),
                 errorData,
             });
         }
@@ -68,16 +68,19 @@ class RecipesAdminController {
             const recipeFilesPromises = req.files.map((file) =>
                 Recipe.createFile({ file, recipe_id: recipe.id })
             );
-            await Promise.all(recipeFilesPromises);
 
+            await Promise.all(recipeFilesPromises);
             return res.redirect(
                 301,
-                `/admin/recipes/${recipe.id}?success=Receita criada com sucesso`
+                `/admin/recipes/${recipe.id}?success=${successMessage(
+                    req,
+                    'post',
+                    'recipes'
+                )}`
             );
         } catch (err) {
             return res.render('admin/recipes/create', {
-                error:
-                    'Houve um erro ao criar a receita. Por favor, tente novamente.',
+                error: errorMessage(req, 'post', 'recipes'),
                 recipe: req.body,
                 chefOptions: req.chefOptions,
             });
@@ -105,7 +108,7 @@ class RecipesAdminController {
             };
 
             return res.status(errorData.status).json({
-                error: 'Houve um erro ao procurar pela receita',
+                error: errorMessage(req, 'view_render', 'recipes'),
                 errorData,
             });
         }
@@ -132,8 +135,7 @@ class RecipesAdminController {
             };
 
             return res.status(errorData.status).json({
-                error:
-                    'Houve um erro durante o render da view de edição uma receita',
+                error: errorMessage(req, 'view_render', 'recipes'),
                 errorData,
             });
         }
@@ -185,12 +187,15 @@ class RecipesAdminController {
 
             return res.redirect(
                 301,
-                `/admin/recipes/${recipe.id}?success=Receita editada com sucesso`
+                `/admin/recipes/${recipe.id}?success=${successMessage(
+                    req,
+                    'put',
+                    'recipes'
+                )}`
             );
         } catch (err) {
             return res.render('admin/recipes/edit', {
-                error:
-                    'Houve um erro ao editar a receita. Por favor, tente novamente',
+                error: errorMessage(req, 'put', 'recipes'),
                 recipe: req.body,
             });
         }
@@ -201,12 +206,15 @@ class RecipesAdminController {
             await Recipe.delete(req.params.id);
             return res.redirect(
                 301,
-                `/admin/recipes?success=Receita deletada com sucesso`
+                `/admin/recipes?success=${successMessage(
+                    req,
+                    'delete',
+                    'recipes'
+                )}`
             );
         } catch (err) {
             return res.render('admin/recipes/edit', {
-                error:
-                    'Houve um erro ao deletar a receita. Por favor, tente novamente',
+                error: errorMessage(req, 'delete', 'recipes'),
                 recipe: req.body,
             });
         }

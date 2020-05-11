@@ -21,4 +21,8 @@ module.exports = {
 
         return fieldsErrorMessages;
     },
+    successMessage: (req, method, field) =>
+        ` ${req.__(`toasts.success.${method}`)} ${req.__n(field, 1)}`,
+    errorMessage: (req, method, field) =>
+        ` ${req.__(`toasts.errors.${method}`)} ${req.__n(field, 1)}`,
 };
