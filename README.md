@@ -36,10 +36,10 @@
 
 # :rocket: Features
 
-* 👩🏽‍🍳  Explore recipes and find amazing chefs .
+* 👩🏽‍🍳 Explore recipes and find amazing chefs.
 *  🍕 Create an account to manage recipes, chefs and users.
-* 📨  As an administrator of the platform, you're able to invite other users .
-* 🌏  Multi language support - English and Portuguese .
+* 📨  As an administrator of the platform, you're able to invite other users.
+* 🌏  Multi language support - English and Portuguese.
 * 🎨  A cool dark mode theme toggle.
 
 # :construction_worker: Installation
