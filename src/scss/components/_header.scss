@@ -5,6 +5,7 @@
     justify-content: center;
     padding: 30px 0px;
     margin-bottom: 10px;
+    background: var(--bg-color);
 }
 
 .header > .container {
@@ -21,6 +22,14 @@
 .header---admin .header__link {
     color: $white;
     text-transform: uppercase;
+}
+
+body.dark .header .header__link {
+    color: var(--text-color);
+}
+
+body.dark .header .header__title {
+    color: var(--text-color);
 }
 
 .header__nav-link {
@@ -110,7 +119,6 @@ button.header__link {
         flex-direction: row;
         justify-content: unset;
         margin: 0 auto;
-        background: $white;
     }
 
     .header > .container {

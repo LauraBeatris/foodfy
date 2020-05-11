@@ -7,6 +7,16 @@
     display: flex;
 }
 
+body.dark {
+    .footer {
+        background-color: var(--bg-color);
+    }
+
+    .footer__text {
+        color: $gray-light;
+    }
+}
+
 .footer__text {
     color: $gray;
     font-size: 14px;

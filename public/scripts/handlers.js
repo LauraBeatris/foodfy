@@ -40,6 +40,12 @@ const ToggleElement = {
     },
 };
 
+function getProperty(property) {
+    return window
+        .getComputedStyle(document.querySelector('html'))
+        .getPropertyValue(property);
+}
+
 const ToggleTheme = {
     listen() {
         const toggle = document.querySelector('.theme-toggle');
@@ -50,7 +56,44 @@ const ToggleTheme = {
                 toggle.classList.toggle('dusk');
 
                 document.querySelector('body').classList.toggle('dark');
+                ToggleTheme.changeColors();
             });
+    },
+    darkColors: {
+        bgColor: '#333',
+        textColor: '#FFF',
+    },
+    lightColors: {
+        bgColor: getProperty('--bg-color'),
+        textColor: getProperty('--text-color'),
+    },
+    transformAttribute(attribute) {
+        return `--${attribute.replace(/([A-Z]+)/g, '-$1')}`.toLowerCase();
+    },
+    changeColors() {
+        const isDark = document
+            .querySelector('body')
+            .classList.contains('dark');
+
+        if (isDark) {
+            Object.keys(ToggleTheme.darkColors).forEach((attributeKey) => {
+                document
+                    .querySelector('html')
+                    .style.setProperty(
+                        ToggleTheme.transformAttribute(attributeKey),
+                        ToggleTheme.darkColors[attributeKey]
+                    );
+            });
+        } else {
+            Object.keys(ToggleTheme.lightColors).forEach((attributeKey) => {
+                document
+                    .querySelector('html')
+                    .style.setProperty(
+                        ToggleTheme.transformAttribute(attributeKey),
+                        ToggleTheme.lightColors[attributeKey]
+                    );
+            });
+        }
     },
 };
 

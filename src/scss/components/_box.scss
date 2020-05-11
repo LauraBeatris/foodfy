@@ -13,6 +13,10 @@
     margin-bottom: calc(#{$space-2xs} + 2px);
 }
 
+body.dark .box__title.title {
+    color: $dark;
+}
+
 .box__description {
     color: $black;
     line-height: calc(#{$space-md} - 4px);

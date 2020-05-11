@@ -3,6 +3,11 @@
     color: $dark;
 }
 
+body.dark .title,
+body.dark .subtitle {
+    color: var(--text-color);
+}
+
 .subtitle---secondary {
     color: $gray-dark;
 }

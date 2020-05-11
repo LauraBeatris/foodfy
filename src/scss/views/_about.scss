@@ -34,3 +34,16 @@
     font-size: $font-xs;
     line-height: calc(#{$space-sm} + #{$space-2xs});
 }
+
+
+body.dark {
+    .about__text {
+        color: var(--text-color);
+    }
+
+    .about__title,
+    .about__subtitle {
+        color: var(--text-color);
+        font-weight: bold;
+    }
+}
