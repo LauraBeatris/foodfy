@@ -53,7 +53,7 @@ Obs: The admin platform isn't all translated yet.
 
 SSH URLs provide access to a Git repository via SSH, a secure protocol. If you use a SSH key registered in your Github account, clone the project using this command:
 
-```git@github.com:LauraBeatris/foodfy.git```
+```git clone git@github.com:LauraBeatris/foodfy.git```
 
 **Install dependencies**
 
