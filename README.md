@@ -47,7 +47,7 @@ Obs: The admin platform isn't all translated yet.
 
 # :construction_worker: Installation
 
-**You need to install [Node.js](https://nodejs.org/en/download/) and [Yarn](https://yarnpkg.com/) first, then clone the project using this command:**
+**You need to install [Node.js](https://nodejs.org/en/download/) and [Yarn](https://yarnpkg.com/) first, then in order to clone the project via HTTPS, run this command:**
 
 ```git clone https://github.com/LauraBeatris/foodfy.git```
 
