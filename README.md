@@ -51,7 +51,7 @@ Obs: The admin platform isn't all translated yet.
 
 ```git clone https://github.com/LauraBeatris/foodfy.git```
 
-SSH URLs provide access to a Git repository via SSH, a secure protocol. If you a SSH key registered in your Github account, clone the project using this command:
+SSH URLs provide access to a Git repository via SSH, a secure protocol. If you use a SSH key registered in your Github account, clone the project using this command:
 
 ```git@github.com:LauraBeatris/foodfy.git```
 
@@ -67,7 +67,7 @@ After copying the examples, make sure to fill the variables with new values.
 
 **Setup a database**
 
-Install [Postgres]() to create a database or if you have [Docker]() in your machine, fill the environment values related to database configurations and the run the following commands in order to create a postgres container.
+Install [Postgres](https://www.postgresql.org/) to create a database or if you have [Docker](https://www.docker.com/) in your machine, fill the environment values related to database configurations and the run the following commands in order to create a postgres container.
 
 ```docker-compose up```
 
