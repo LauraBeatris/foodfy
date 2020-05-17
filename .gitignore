@@ -103,4 +103,5 @@ dist
 # TernJS port file
 .tern-port
 
-public/uploads
+public/uploads/* 
+!public/upload/.gitkeep
