@@ -43,7 +43,7 @@
 * 🌏  Multi language support - English and Portuguese.
 * 🎨  A cool dark mode theme toggle.
 
-Obs: The admin platform isn't all translated yet.
+**Obs: The admin platform isn't all translated yet.**
 
 # :construction_worker: Installation
 
