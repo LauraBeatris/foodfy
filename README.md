@@ -51,7 +51,7 @@
 
 ```git clone https://github.com/LauraBeatris/foodfy.git```
 
-SSH URLs provide access to a Git repository via SSH, a secure protocol. If you use a SSH key registered in your Github account, clone the project using this command:
+SSH URLs provide access to a Git repository via SSH, a secure protocol. If you have a SSH key registered in your Github account, clone the project using this command:
 
 ```git clone git@github.com:LauraBeatris/foodfy.git```
 
