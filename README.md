@@ -103,7 +103,7 @@ The locale is storaged as a cookie named ```foodfy:locale``` and that can be cha
 
 # :bug: Issues
 
-Feel free to **file a new issue** with a respective title and description on the the [Foodfy](https://github.com/LauraBeatris/foodfy/issues) repository. If you already found a solution to your problem, **we would love to review your pull request**! Have a look at our [contribution guidelines](https://github.com/LauraBeatris/foodfy/blob/master/CONTRIBUTING.md) to find out about the coding standards.
+Feel free to **file a new issue** with a respective title and description on the the [Foodfy](https://github.com/LauraBeatris/foodfy/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**! Have a look at our [contribution guidelines](https://github.com/LauraBeatris/foodfy/blob/master/CONTRIBUTING.md) to find out about the coding standards.
 
 # :tada: Contributing
 
