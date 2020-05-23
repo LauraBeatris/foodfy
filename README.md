@@ -43,7 +43,7 @@
 * 🌏  Multi language support - English and Portuguese.
 * 🎨  A cool dark mode theme toggle.
 
-Obs: The admin platform isn't all translated yet.
+**Obs: The admin platform isn't all translated yet.**
 
 # :construction_worker: Installation
 
@@ -51,7 +51,7 @@ Obs: The admin platform isn't all translated yet.
 
 ```git clone https://github.com/LauraBeatris/foodfy.git```
 
-SSH URLs provide access to a Git repository via SSH, a secure protocol. If you use a SSH key registered in your Github account, clone the project using this command:
+SSH URLs provide access to a Git repository via SSH, a secure protocol. If you have a SSH key registered in your Github account, clone the project using this command:
 
 ```git clone git@github.com:LauraBeatris/foodfy.git```
 
@@ -103,7 +103,7 @@ The locale is storaged as a cookie named ```foodfy:locale``` and that can be cha
 
 # :bug: Issues
 
-Feel free to **file a new issue** with a respective title and description on the the [Foodfy](https://github.com/LauraBeatris/foodfy/issues) repository. If you already found a solution to your problem, **we would love to review your pull request**! Have a look at our [contribution guidelines](https://github.com/LauraBeatris/foodfy/blob/master/CONTRIBUTING.md) to find out about the coding standards.
+Feel free to **file a new issue** with a respective title and description on the the [Foodfy](https://github.com/LauraBeatris/foodfy/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**! Have a look at our [contribution guidelines](https://github.com/LauraBeatris/foodfy/blob/master/CONTRIBUTING.md) to find out about the coding standards.
 
 # :tada: Contributing
 
