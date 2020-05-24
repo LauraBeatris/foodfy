@@ -69,15 +69,15 @@ After copying the examples, make sure to fill the variables with new values.
 
 **Running with docker-compose**
 
-To prepare database and run the application, you just need execute docker-compose after set your environment (.env file):
+In order to prepare the database and also run the application, set your environment variables and then execute docker-compose
 
 ```docker-compose up```
 
 With this command, the port `3000` will be available to access the application.
 
-**Setup a database**
+**Manually setup**
 
-But if you preffer, you can setup your database with docker compose, and the application manually.
+You may prefer to manually configure the database and the application.
 
 Install [Postgres](https://www.postgresql.org/) to create a database or if you have [Docker](https://www.docker.com/) in your machine, fill the environment values related to database configurations and the run the following commands in order to create a postgres container.
 
