@@ -73,7 +73,7 @@ In order to prepare the database and also run the application, set your environm
 
 ```docker-compose up```
 
-With this command, the port `3000` will be available to access the application.
+With this command, the port seted in your environment `PORT` variable will be available to access the application.
 
 **Manually setup**
 

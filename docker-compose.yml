@@ -19,7 +19,7 @@ services:
     env_file:
       - .env
     ports:
-      - '3000:${PORT-8080}'
+      - '${PORT-8080}:${PORT-8080}'
     command: bash -c './wait-for-it.sh postgres:5432 -- yarn db:prepare && yarn start'
     networks:
       - foodfy-network
