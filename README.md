@@ -65,15 +65,27 @@ Create your enviroment variables based on the examples of ```.env.example```
 
 After copying the examples, make sure to fill the variables with new values.
 
-**Setup a database**
+# :runner: Getting Started
 
-Install [Postgres](https://www.postgresql.org/) to create a database or if you have [Docker](https://www.docker.com/) in your machine, fill the environment values related to database configurations and the run the following commands in order to create a postgres container.
+**Running with docker-compose**
+
+To prepare database and run the application, you just need execute docker-compose after set your environment (.env file):
 
 ```docker-compose up```
 
-Execute the [Database Queries](https://github.com/LauraBeatris/foodfy/blob/master/src/database/seeds.js) to create tables, relationships and procedures.
+With this command, the port `3000` will be available to access the application.
 
-# :runner: Getting Started
+**Setup a database**
+
+But if you preffer, you can setup your database with docker compose, and the application manually.
+
+Install [Postgres](https://www.postgresql.org/) to create a database or if you have [Docker](https://www.docker.com/) in your machine, fill the environment values related to database configurations and the run the following commands in order to create a postgres container.
+
+```docker-compose up postgres```
+
+Execute the follow command to create tables, relationships and procedures:
+
+```yarn db:create```
 
 To start, run the seeds provided in [Seeds](https://github.com/LauraBeatris/foodfy/blob/master/src/database/seeds.js) in order to populate the database with an initial data.
 

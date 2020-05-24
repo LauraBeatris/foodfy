@@ -1,6 +1,3 @@
-DROP DATABASE IF EXISTS foodfy;
-CREATE DATABASE foodfy;
-
 CREATE TABLE files (
   id SERIAL PRIMARY KEY,
   name TEXT,
