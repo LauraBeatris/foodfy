@@ -9,5 +9,23 @@ services:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_DB: ${DB_DATABASE}
     ports:
-      - "5432:5432"
+      - '5432:5432'
+    networks:
+      - foodfy-network
     restart: unless-stopped
+  app:
+    container_name: app
+    build: .
+    env_file:
+      - .env
+    ports:
+      - '${PORT-8080}:${PORT-8080}'
+    command: bash -c './wait-for-it.sh postgres:5432 -- yarn db:prepare && yarn start'
+    networks:
+      - foodfy-network
+    depends_on:
+      - postgres
+
+networks:
+  foodfy-network:
+    driver: bridge

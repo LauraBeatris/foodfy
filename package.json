@@ -7,9 +7,12 @@
   "license": "MIT",
   "description": "Foodfy is a web application focused on food recipes",
   "scripts": {
+    "start": "node src/server.js",
     "nodemon": "nodemon --inspect=0.0.0.0:9229 src/server.js",
     "browsersync": "browser-sync start --proxy localhost:8080 --files './src/app/views,./public/'",
     "dev": "npm-run-all -p nodemon build:sass browsersync",
+    "db:create": "node ./src/database/create.js",
+    "db:prepare": "yarn db:create && yarn run:seeds",
     "run:seeds": "node ./src/database/seeds.js",
     "build:sass": "sass --watch ./src/scss/index.scss:public/styles/index.css",
     "commit": "git-cz"
@@ -32,6 +35,7 @@
     "npm-run-all": "^4.1.5",
     "nunjucks": "^3.2.0",
     "pg": "^8.0.3",
+    "pgtools": "^0.3.0",
     "sass": "^1.26.5"
   },
   "devDependencies": {
