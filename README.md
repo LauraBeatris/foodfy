@@ -124,6 +124,6 @@ Check out the [contributing](https://github.com/LauraBeatris/foodfy/blob/master/
 # :closed_book: License
 
 Released in 2020.
-This project is under the [MIT license](https://github.com/LauraBeatris/foodfy/master/LICENSE).
+This project is under the [MIT license](https://github.com/LauraBeatris/foodfy/blob/master/LICENSE).
 
 Made with love by [Laura Beatris](https://github.com/LauraBeatris) 💜🚀
