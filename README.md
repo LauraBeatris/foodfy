@@ -59,7 +59,7 @@ SSH URLs provide access to a Git repository via SSH, a secure protocol. If you h
 
 ```yarn install```
 
-Create your enviroment variables based on the examples of ```.env.example```
+Create your environment variables based on the examples of ```.env.example```
 
 ```cp .env.example .env```
 
@@ -97,7 +97,7 @@ Run the following command in order to start the application in a development env
 
 # :postbox: Faq
 
-**Question:** What are the tecnologies used in this project?
+**Question:** What are the technologies used in this project?
 
 **Answer:** The tecnologies used in this project are [NodeJS](https://nodejs.org/en/) + [Express Framework](http://expressjs.com/en/) to handle the server, [Nunjucks](https://mozilla.github.io/nunjucks/templating.html) to develop amazing views & [SCSS](https://sass-lang.com/documentation/syntax) to handle the styles architecture and a better maintenance than normal CSS.
 ##
